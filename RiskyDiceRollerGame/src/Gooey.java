@@ -1,11 +1,16 @@
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
+
 import javax.swing.*;
 
 public class Gooey {
     JFrame frame = new JFrame();
-
-    JPanel panel = new JPanel();
+    JPanel map = new JPanel();
+    JPanel diceZone = new JPanel(new GridBagLayout());
+    
     /**
         Method name: createMainFrame
         Purpose: Initializes and configures the main game frame.
@@ -21,12 +26,32 @@ public class Gooey {
         frame.setResizable(true);
         frame.setLayout(new BorderLayout());
     }
+    
+    /*
+     * Makes Game map
+     */
+    public void initMap() {
+    	map.setBackground(Color.red);
+    	map.setPreferredSize(new Dimension(1200, 800));
+    	frame.add(map,BorderLayout.CENTER);
+    }
 
+    /*
+     * Creates right panel
+     */
+    public void initDiceZone() {
+    	diceZone.setBackground(Color.blue);
+    	diceZone.setPreferredSize(new Dimension(200, 0));
+    	frame.add(diceZone,BorderLayout.EAST);
+    }
+    
     /*
      * Creates the main window and components for view.
      */
     public void initializeMainFrame(){
         createMainFrame();
+        initMap();
+        initDiceZone();
         frame.setVisible(true);
         frame.pack();
         frame.setLocationRelativeTo(null);
