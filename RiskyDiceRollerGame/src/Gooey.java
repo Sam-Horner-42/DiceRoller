@@ -2,6 +2,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import javax.swing.*;
 public class Gooey {
     JFrame frame = new JFrame();
     JPanel map = new JPanel();
+    JPanel rightSection = new JPanel(new BorderLayout());
     JPanel diceZone = new JPanel(new GridBagLayout());
     
     /**
@@ -40,9 +42,28 @@ public class Gooey {
      * Creates right panel
      */
     public void initDiceZone() {
-    	diceZone.setBackground(Color.blue);
-    	diceZone.setPreferredSize(new Dimension(200, 0));
-    	frame.add(diceZone,BorderLayout.EAST);
+    	rightSection.setBackground(Color.blue);
+    	rightSection.setPreferredSize(new Dimension(200,0));
+    	diceZone.setBackground(Color.green);
+    	diceZone.setPreferredSize(new Dimension(200, 100));
+    	JPanel tSection = new JPanel(new BorderLayout());
+    	JLabel dice = new JLabel("Dice");
+        Font myFont = new Font("Arial", Font.PLAIN, 20); 
+        dice.setFont(myFont);
+    	tSection.add(dice,BorderLayout.CENTER);
+    	dice.setHorizontalAlignment(SwingConstants.CENTER);
+    	dice.setVerticalAlignment(SwingConstants.CENTER);
+    	tSection.setBackground(Color.blue);
+    	tSection.setPreferredSize(new Dimension(200, 150));
+    	JPanel bSection = new JPanel();
+    	bSection.setBackground(Color.blue);
+    	bSection.setPreferredSize(new Dimension(200, 100));
+    	JScrollPane diceScroll = new JScrollPane(diceZone,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    	
+    	rightSection.add(tSection,BorderLayout.NORTH);
+    	rightSection.add(diceScroll, BorderLayout.CENTER);
+    	rightSection.add(bSection,BorderLayout.SOUTH);
+    	frame.add(rightSection,BorderLayout.EAST);
     }
     
     /*
@@ -58,5 +79,6 @@ public class Gooey {
     }
     
     
+    //test
     
 }
