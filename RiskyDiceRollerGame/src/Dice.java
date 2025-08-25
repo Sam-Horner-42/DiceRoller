@@ -1,10 +1,7 @@
 import java.util.*;
 
 public class Dice {
-    private boolean rolled;
-    private int numSides;
-    private int result;
-
+    
     /*
     rolls a die using numSides and random, the result is the side of the dice that was rolled
     */ 
