@@ -22,6 +22,9 @@ public class Gooey {
         frame.setLayout(new BorderLayout());
     }
 
+    /*
+     * Creates the main window and components for view.
+     */
     public void initializeMainFrame(){
         createMainFrame();
         frame.setVisible(true);
