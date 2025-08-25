@@ -11,9 +11,15 @@ public class Dice {
         return roll;
     }
 
-    //checks if the player rolled between the ranges accounting for the defense buffer
+    /*
+    checks if the player rolled between the ranges accounting for the defense buffer
+    */
     public boolean combatResult(int defenseTotal, int attackTotal, int minRange, int maxRange) {
         return (attackTotal > (minRange - defenseTotal) || attackTotal < (maxRange + defenseTotal));
+    }
+    
+    public int reward(int difficultyLevel){
+        return 0;
     }
 
 
