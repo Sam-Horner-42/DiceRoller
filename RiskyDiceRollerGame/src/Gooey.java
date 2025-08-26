@@ -14,7 +14,7 @@ public class Gooey {
     JPanel rightSection = new JPanel(new BorderLayout());
     JPanel diceZone = new JPanel(new GridLayout());
     JPanel bSection = new JPanel();
-    
+    JLabel bottomText = new JLabel("example text");
     /**
         Method name: createMainFrame
         Purpose: Initializes and configures the main game frame.
@@ -66,7 +66,10 @@ public class Gooey {
     	// bsection, bottom section, since we need to add info to this, it can't be local
     	bSection.setBackground(Color.blue);
     	bSection.setPreferredSize(new Dimension(200, 100));
-    	
+    	 bottomText.setFont(myFont);
+     	bSection.add(bottomText,BorderLayout.CENTER);
+     	bottomText.setHorizontalAlignment(SwingConstants.CENTER);
+     	bottomText.setVerticalAlignment(SwingConstants.CENTER);
     	// scrollpane just makes it so that we can scroll down to see all our dice, we placed dicezone in it
     	JScrollPane diceScroll = new JScrollPane(diceZone,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     	
