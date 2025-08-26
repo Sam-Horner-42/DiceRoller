@@ -2,6 +2,7 @@
 import java.awt.*;
 import javax.swing.*;
 
+/* This should probably be a part of Gooey.java... */
 public class GamePanel extends JPanel implements Runnable {
     final int tileSize = 48;
     
