@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     /* Built in class that runs every frame */
     public void update() {
-        //System.out.print("The game is running");
+        System.out.print("The game is running");
     }
 
     /* Used to draw things on the screen */

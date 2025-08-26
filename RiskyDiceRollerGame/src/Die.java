@@ -12,10 +12,10 @@ public class Die {
      * Constructs a single dice for use
      */
     public Die(int numSides, char dieType, boolean isSpecialDice, boolean rolled){
-        numSides = this.numSides;
-        isSpecialDice = this.isSpecialDice;
-        rolled = this.rolled;
-        dieType = this.dieType;
+        this.numSides = numSides;
+        this.isSpecialDice = isSpecialDice;
+        this.rolled = rolled;
+        this.dieType = dieType;
     }
     
     /*
