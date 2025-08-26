@@ -32,7 +32,10 @@ public class Gooey {
     public void initMap() {
     	map.setBackground(Color.white);
     	map.setPreferredSize(new Dimension(1200, 800));
-    	frame.add(map,BorderLayout.CENTER);
+    	frame.add(map, BorderLayout.CENTER);
+
+        TileMap tileMap = new TileMap(); // adds the tile map inside the main map, so graphics can be placed dynamically
+        frame.add(tileMap);
     }
 
     /*

@@ -32,11 +32,6 @@ public class Die {
     */
     public boolean combatResult(int defenseTotal, int attackTotal, int minRange, int maxRange) {
         return (attackTotal > (minRange - defenseTotal) || attackTotal < (maxRange + defenseTotal));
-    }
-    
-    public int reward(int difficultyLevel){
-        return 0;
-    }
-
+    }    
 
 }
