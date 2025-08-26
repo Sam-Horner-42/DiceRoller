@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 
 import javax.swing.*;
 
@@ -11,7 +12,8 @@ public class Gooey {
     JFrame frame = new JFrame();
     JPanel map = new JPanel();
     JPanel rightSection = new JPanel(new BorderLayout());
-    JPanel diceZone = new JPanel(new GridBagLayout());
+    JPanel diceZone = new JPanel(new GridLayout());
+    JPanel bSection = new JPanel();
     
     /**
         Method name: createMainFrame
@@ -42,10 +44,15 @@ public class Gooey {
      * Creates right panel
      */
     public void initDiceZone() {
+    	// overarching panel containing our 3 components
     	rightSection.setBackground(Color.blue);
     	rightSection.setPreferredSize(new Dimension(200,0));
+    	
+    	//diceZone is where the dice will be displayed in the right panel, we can add things to it as it is not a local variable
     	diceZone.setBackground(Color.green);
     	diceZone.setPreferredSize(new Dimension(200, 100));
+    	
+    	//tsection, short for top section, just has the word dice on it
     	JPanel tSection = new JPanel(new BorderLayout());
     	JLabel dice = new JLabel("Dice");
         Font myFont = new Font("Arial", Font.PLAIN, 20); 
@@ -55,11 +62,15 @@ public class Gooey {
     	dice.setVerticalAlignment(SwingConstants.CENTER);
     	tSection.setBackground(Color.blue);
     	tSection.setPreferredSize(new Dimension(200, 150));
-    	JPanel bSection = new JPanel();
+    	
+    	// bsection, bottom section, since we need to add info to this, it can't be local
     	bSection.setBackground(Color.blue);
     	bSection.setPreferredSize(new Dimension(200, 100));
+    	
+    	// scrollpane just makes it so that we can scroll down to see all our dice, we placed dicezone in it
     	JScrollPane diceScroll = new JScrollPane(diceZone,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     	
+    	// we add everythin to the overarching right panel, then add it to the frame
     	rightSection.add(tSection,BorderLayout.NORTH);
     	rightSection.add(diceScroll, BorderLayout.CENTER);
     	rightSection.add(bSection,BorderLayout.SOUTH);
@@ -79,6 +90,7 @@ public class Gooey {
     }
     
     
-    //test
+    //test pls
+    
     
 }
