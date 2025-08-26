@@ -37,6 +37,8 @@ public class Gooey {
     	map.setPreferredSize(new Dimension(1200, 800));
     	frame.add(map, BorderLayout.CENTER);
 
+        GamePanel tileMap = new GamePanel();
+        frame.add(tileMap);
     }
 
     /*
