@@ -37,8 +37,6 @@ public class Gooey {
     	map.setPreferredSize(new Dimension(1200, 800));
     	frame.add(map, BorderLayout.CENTER);
 
-        TileMap tileMap = new TileMap(); // adds the tile map inside the main map, so graphics can be placed dynamically
-        frame.add(tileMap);
     }
 
     /*
@@ -67,7 +65,7 @@ public class Gooey {
     	// bsection, bottom section, since we need to add info to this, it can't be local
     	bSection.setBackground(Color.blue);
     	bSection.setPreferredSize(new Dimension(200, 100));
-    	 bottomText.setFont(myFont);
+    	bottomText.setFont(myFont);
      	bSection.add(bottomText,BorderLayout.CENTER);
      	bottomText.setHorizontalAlignment(SwingConstants.CENTER);
      	bottomText.setVerticalAlignment(SwingConstants.CENTER);
