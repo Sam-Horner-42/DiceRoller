@@ -30,7 +30,7 @@ public class Gooey {
      * Makes Game map
      */
     public void initMap() {
-    	map.setBackground(Color.red);
+    	map.setBackground(Color.white);
     	map.setPreferredSize(new Dimension(1200, 800));
     	frame.add(map,BorderLayout.CENTER);
     }
@@ -39,8 +39,8 @@ public class Gooey {
      * Creates right panel
      */
     public void initDiceZone() {
-    	diceZone.setBackground(Color.blue);
-    	diceZone.setPreferredSize(new Dimension(200, 0));
+    	diceZone.setBackground(Color.black);
+    	diceZone.setPreferredSize(new Dimension(300, 0));
     	frame.add(diceZone,BorderLayout.EAST);
     }
     
