@@ -1,5 +1,5 @@
-import java.awt.Color;
-import java.awt.Dimension;
+
+import java.awt.*;
 import javax.swing.*;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -15,7 +15,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.blue);
         this.setDoubleBuffered(true); // useful for threads
     }
 
@@ -33,17 +32,24 @@ public class GamePanel extends JPanel implements Runnable {
     public void run(){
         // while the game thread exists
         while(gameThread != null){
-
+            update(); // update information each frame
+            repaint(); // redraw the screen with new information
         }
     }
 
     /* Built in class that runs every frame */
     public void update() {
-
+        
     }
 
     /* Used to draw things on the screen */
     public void paintComponent(Graphics g){
-        super.paintComponent(g);
+        super.paintComponent(g); // makes the method work, Java handles the functionality (IDK tbh)
+        
+        Graphics2D g2 = (Graphics2D)g; // involves methods that are useful for games
+
+        g2.setColor(Color.white);
+        g2.fillRect(100, 100, tileSize, tileSize); // draws a rectangle on the screen the height and width of a tile
+
     }
 }
