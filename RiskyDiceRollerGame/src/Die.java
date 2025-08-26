@@ -1,11 +1,10 @@
 import java.util.*;
 
 public class Die {
-    private final char DEFENSE_DIE = 'D';
-    private final char ATTACK_DIE = 'A'; 
+    
 
     private boolean rolled; // determines if this specific dice instance has already been rolled
-    private char dieType; // Attack 'A' or defense 'D'
+    private char dieType; // Attack 'A' or defense 'D' (potential for more types)
     private int numSides; // specifies total number of sides on a single dice
     private boolean isSpecialDice; // determines whether a dice is special or not
 
@@ -26,7 +25,6 @@ public class Die {
         Random random = new Random();
         int roll = random.nextInt(die.numSides)+1; // +1 prevents 0 result    
         return roll;
-
     }
 
     /*
