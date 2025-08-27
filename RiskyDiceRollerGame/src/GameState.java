@@ -5,8 +5,12 @@ public class GameState {
         System.out.println("The game has started");
     }
 
+    void newGame(){
+        Player player = new Player(3);
+        play();
+    }
+
     void play(){
-        
 
     }
 
