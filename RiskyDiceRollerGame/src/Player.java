@@ -26,6 +26,7 @@ public class Player {
             playerDice.add(starterAttackDie);
             playerDice.add(starterDefenseDie);
         }
+        diceCount += 4;
             
     }
 }

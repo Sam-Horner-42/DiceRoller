@@ -1,7 +1,6 @@
 
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 public class Gooey extends JPanel implements Runnable {
@@ -152,9 +151,7 @@ public class Gooey extends JPanel implements Runnable {
         super.paintComponent(g); // clears the screen
         
         Graphics2D g2 = (Graphics2D)g; // involves methods that are useful for games
-        Map tileMap = new Map();
-        BufferedImage newTile = tileMap.buildTile(0); 
-        g2.drawImage(newTile, null, 20, 20);
+        
         g2.setColor(Color.white);
         g2.fillRect(100, 100, tileSize, tileSize); // draws a rectangle on the screen the height and width of a tile
 

@@ -33,18 +33,16 @@ public class Map extends JPanel{
     }
 
     /*  */
-    public BufferedImage buildTile(int mapTile) {
+    public void buildTile(int mapTile) {
         BufferedImage tile; // a single tile image
         String fileName = convertIntToFile(mapTile); // takes in the int from the multidimensional array and returns the name of the corresponding file
         try {
             tile = ImageIO.read(new File(fileName)); // turns the file into a usable image
             System.out.println(tile);
-            return tile;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("This is an exception LMAO");
         }
-        return null;
     }
 
     /* This method handles changing a single image within the 2D array for dynamic repainting */
