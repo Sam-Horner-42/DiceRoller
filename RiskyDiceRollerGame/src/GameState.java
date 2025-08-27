@@ -87,7 +87,7 @@ public class GameState {
         int option = 0;
         while (option != EXIT) {
             try {
-                diceSelector();
+                diceSelector(1, 6);
                 option = scanner.nextInt();
                 processMainOption(option);
             } catch (InputMismatchException | NumberFormatException e) { //accounts for anything other than an integer
@@ -97,9 +97,11 @@ public class GameState {
         }
     }
 
-    void diceSelector(){
+    /* Displays all current player dice and provides a method to select a single die */
+    void diceSelector(int minRange, int maxRange){
         player.displayPlayerDice();
-        System.out.print("\nSelect the dice you wish to roll:");
+        displayRange(minRange, maxRange);
+        System.out.print("\nSelect the dice you wish to roll by Index: ");
     }
 
     /**
@@ -162,6 +164,9 @@ public class GameState {
         }
     }
 
+    void displayRange(int min, int max){
+        System.out.println("Roll Between: " + min + " and " + max);
+    }
     /*
     checks if the player rolled between the ranges accounting for the defense buffer
     */
