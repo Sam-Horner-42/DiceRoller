@@ -3,6 +3,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameState {
+    Player player;
+
     /** A static Scanner instance used for reading input from the user. */
     private static Scanner scanner;
 
@@ -30,6 +32,12 @@ public class GameState {
      * Represents the menu option for exiting the program.
      */
     private static final int EXIT = 5;
+
+    public GameState() {
+        scanner = new Scanner(System.in);
+    }
+
+    
     /* Provides functionality depending on the state the game is in */
     void mainMenu(){
         processMainMenu();
@@ -37,7 +45,7 @@ public class GameState {
     }
 
     void newGame(){
-        Player player = new Player(0);
+        player = new Player(0);
         player.addStarterDice();
         tutorial();
         play(true);
@@ -90,8 +98,8 @@ public class GameState {
     }
 
     void diceSelector(){
-        System.out.println("\nSelect your option in the menu below:");
-        
+        player.displayPlayerDice();
+        System.out.print("\nSelect the dice you wish to roll:");
     }
 
     /**
