@@ -13,7 +13,7 @@ public class GameState {
     }
 
     void play(){
-
+        Logic logic = new Logic();
     }
 
     void gameOver(){

@@ -1,8 +1,7 @@
 import java.util.*;
 
-public class Die {
+public class Die implements Comparable<Die>{
     
-
     private boolean rolled; // determines if this specific dice instance has already been rolled
     private String dieType; // Attack 'A' or defense 'D' (potential for more types)
     private int numSides; // specifies total number of sides on a single dice
@@ -20,6 +19,16 @@ public class Die {
         this.dieType = dieType;
     }
     
+    /* Sort the dice by their number of sides, from smallest to largest */
+    @Override
+    public int compareTo(Die other){
+        return Integer.compare(this.numSides, other.numSides);
+    }
+
+    /* 
+    Dynamically generates a die name based on its parameters 
+    Will need to add further logic for special dice
+    */
     public String generateDieName(int numSides, String dieType, boolean isSpecialDice, boolean rolled){
         String dieName = "";
         if(isSpecialDice){
@@ -30,6 +39,7 @@ public class Die {
         dieName += numSides + "-Sided " + dieType + " Die ";
         return dieName;
     }
+
     /*
     rolls a die using numSides and random, the result is the side of the dice that was rolled
     */ 
@@ -39,12 +49,6 @@ public class Die {
         return roll;
     }
 
-    /*
-    checks if the player rolled between the ranges accounting for the defense buffer
-    */
-    public boolean combatResult(int defenseTotal, int attackTotal, int minRange, int maxRange) {
-        return (attackTotal > (minRange - defenseTotal) || attackTotal < (maxRange + defenseTotal));
-    }    
 
     @Override
     public String toString(){
