@@ -7,11 +7,13 @@ public class Player {
     private int strengthLevel; // will be used to determine difficulty of neighbouring tiles
     private int diceCount;
 
-    private ArrayList<Die> playerDice = new ArrayList<>(); // the dice the player currently has
+    private ArrayList<Die> playerDice; // the dice the player currently has
     private ArrayList<Die> selectedDice = new ArrayList<>(); // the currently selected dice to be rolled
      
     public Player(int diceCount){
-        this.diceCount = diceCount;
+        this.diceCount = this.playerDice.size(); // total number of dice is amount of dice in the player inventory
+        this.playerDice = new ArrayList<>(); // all the dice currently in inventory
+        this.selectedDice = new ArrayList<>(); // all the dice the player has selected to roll
     }
 
     public int getStrengthLevel(){
@@ -27,15 +29,26 @@ public class Player {
         for(int i = 0; i<2; i++){
             playerDice.add(starterAttackDie);
             playerDice.add(starterDefenseDie);
-        }
-        diceCount += 4;
+        } 
+    }
+
+    public void displayPlayerDice(){
         Collections.sort(playerDice);
         for(Die i: playerDice){
             System.out.println(i);
         }
         System.out.println("Total Player Dice: " + diceCount);  
     }
-    
+
+    /* Adds to the selected dice ArrayList */
+    public void selectDice(int index){
+        selectedDice.add(playerDice.get(index));
+    }
+
+    /* Remove the deselected dice from the selected dice ArrayList */
+    public void deselectDice(int index){
+        selectedDice.remove(index);
+    }
     public void rollDice(ArrayList<Die> selectedDice){
         for(Die i: selectedDice){
             i.rollDie(i);
