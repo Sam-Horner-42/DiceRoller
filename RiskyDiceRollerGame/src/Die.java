@@ -8,6 +8,46 @@ public class Die implements Comparable<Die>{
     private boolean isSpecialDice; // determines whether a dice is special or not
     private String name;
 
+    public boolean isRolled() {
+        return rolled;
+    }
+
+    public void setRolled(boolean rolled) {
+        this.rolled = rolled;
+    }
+
+    public String getDieType() {
+        return dieType;
+    }
+
+    public void setDieType(String dieType) {
+        this.dieType = dieType;
+    }
+
+    public int getNumSides() {
+        return numSides;
+    }
+
+    public void setNumSides(int numSides) {
+        this.numSides = numSides;
+    }
+
+    public boolean isSpecialDice() {
+        return isSpecialDice;
+    }
+
+    public void setSpecialDice(boolean isSpecialDice) {
+        this.isSpecialDice = isSpecialDice;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /*
      * Constructs a single dice for use
      */

@@ -78,18 +78,18 @@ public class GameState {
     public void tutorial(){
         System.out.println("The goal of the game is to conquer all of the territories.");
         System.out.println("To conquer a territory you must roll within the correct range.");
-        System.out.println("Attack die add to your total.");
-        System.out.println("Defensive die increase your safe range.");
-        System.out.println("You currently have 4 die.");
+        System.out.println("Attack dice add to your total.");
+        System.out.println("Defensive dice increase your safe range.");
+        System.out.println("You currently have 4 dice.");
         System.out.println("You can roll up to 5 in a single turn.");
-        System.out.println("Select the 6 sided attack die");
+        System.out.println("Select one of your 6-Sided Attack Dice");
 
         int option = 0;
         while (option != EXIT) {
             try {
                 diceSelector(1, 6);
                 option = scanner.nextInt();
-                processMainOption(option);
+                processDiceOption(option);
             } catch (InputMismatchException | NumberFormatException e) { //accounts for anything other than an integer
                 scanner.nextLine(); //consume invalid input
                 System.out.println("...Invalid input. Please enter a valid number...");
@@ -103,6 +103,55 @@ public class GameState {
         displayRange(minRange, maxRange);
         System.out.print("\nSelect the dice you wish to roll by Index: ");
     }
+
+    /**
+     * Executes the action based on the user's selected main menu option.
+     *
+     * @param option the menu option selected by the user.
+     */
+    private void processDiceOption(int option)
+    {
+        player.selectDice(option);
+        player.displaySelectedDice();
+    }
+    
+    /* Prompts the user to roll the dice or not */
+    private void promptRoll()
+    {
+        System.out.println("Would you like to roll these dice? (y/n)");
+    }
+
+    /* provides user with prompt above and handles input */
+    public void processRoll() {
+        String option = "";
+        while (!option.equalsIgnoreCase("exit")) {
+            try {
+                promptRoll();
+                option = scanner.nextLine();
+                yesOrNo(option);
+            } catch (InputMismatchException | NumberFormatException e) { //accounts for anything other than an integer
+                scanner.nextLine(); //consume invalid input
+                System.out.print("Please say yes or no to continue.");
+            }
+        }
+    }
+
+    /* Prompts for yes or no */
+    private void yesOrNo(String option)
+    {
+       switch (option.toLowerCase()) {
+            case "yes", "y", "ye", "yuh", "yeah", "ok":
+                player.rollDice();
+                break;
+            case "no", "nope", "n", "nuh-uh", "nah", "exit":
+                System.out.println("Exiting...<Program by SH>");
+                exit(0);
+                break;
+            default:
+                System.out.println("...Invalid option. Please try again...");
+        }
+    }
+
 
     /**
      * Displays the main menu options to the user.
@@ -167,6 +216,7 @@ public class GameState {
     void displayRange(int min, int max){
         System.out.println("Roll Between: " + min + " and " + max);
     }
+
     /*
     checks if the player rolled between the ranges accounting for the defense buffer
     */

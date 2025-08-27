@@ -25,15 +25,36 @@ public class Player {
         this.strengthLevel = strengthLevel;
     }
 
+    public int getTotalDamage(){
+        return this.totalDamage;
+    }
+    public void setTotalDamage(int damage){
+        totalDamage = damage;
+    }
+    public int getTotalDefense(){
+        return this.totalDefense;
+    }
+    public void setTotalDefense(int defense){
+        totalDefense = defense;
+    }
+
+    public void newRoll(){
+        totalDamage = 0;
+        totalDefense = 0;
+    }
+
+
+    /* Adds 2 6-sided attack die, and 2 4-sided defense die */
     public void addStarterDice(){
         Die starterAttackDie = new Die("", 6, "Attack", false, false);
         Die starterDefenseDie = new Die("", 4, "Defense", false, false);
-        for(int i = 0; i<2; i++){
+        for(int i = 0; i < 2; i++){
             playerDice.add(starterAttackDie);
             playerDice.add(starterDefenseDie);
         } 
     }
 
+    /* Displays all the player dice with index */
     public void displayPlayerDice(){
         if(playerDice != null){
             this.diceCount = playerDice.size();
@@ -48,20 +69,39 @@ public class Player {
           
     }
 
-    /* Adds to the selected dice ArrayList */
-    public void selectDice(int index){
-        selectedDice.add(playerDice.get(index));
+    /* Displays all the currently selected dice by index */
+    public void displaySelectedDice(){
+        if(selectedDice != null) {
+            Collections.sort(selectedDice);
+            for (int i = 0; i < selectedDice.size(); i++) {
+                Die die = selectedDice.get(i);
+                System.out.println("Index: " + i);
+                System.out.println(die);
+            }
+        }
+          
     }
 
-    /* Remove the deselected dice from the selected dice ArrayList */
+    /* Adds to the selected dice ArrayList and removes it from playerDice */
+    public void selectDice(int index){
+        selectedDice.add(playerDice.get(index));
+        playerDice.remove(index);
+    }
+
+    /* Remove the deselected dice from the selected dice ArrayList and place it back in playerDice */
     public void deselectDice(int index){
+        playerDice.add(selectedDice.get(index));
         selectedDice.remove(index);
     }
 
     /* Roll all the selected dice */
-    public void rollDice(ArrayList<Die> selectedDice){
+    public void rollDice(){
         for(Die i: selectedDice){
-            i.rollDie(i);
+            int result = i.rollDie(i);
+            if (i.dieType == ("Attack")){
+
+            }
+
         }
     }
 }
