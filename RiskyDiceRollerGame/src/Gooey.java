@@ -1,18 +1,33 @@
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+
+import java.awt.*;
 import javax.swing.*;
 
-public class Gooey {
+public class Gooey extends JPanel implements Runnable {
+    
     JFrame frame = new JFrame();
     JPanel map = new JPanel();
     JPanel rightSection = new JPanel(new BorderLayout());
     JPanel diceZone = new JPanel(new GridLayout());
     JPanel bSection = new JPanel();
     JLabel bottomText = new JLabel("example text");
+
+    KeyHandler keyHandler = new KeyHandler(); // handles user key presses
+    Thread gameThread; // runs the game
+    final int tileSize = 48;
+    
+    /* 16:9 aspect ratio */
+    final int maxScreenCol = 32;
+    final int maxScreenRow = 18;
+    final int screenWidth = tileSize * maxScreenCol;
+    final int screenHeight = tileSize * maxScreenRow;
+    private boolean running = false;
+
+    public Gooey(){
+        this.setDoubleBuffered(true); // useful for threads
+        this.addKeyListener(keyHandler); // gamePanel will be able to recognize key input.
+        this.setFocusable(true);
+    }
     /**
         Method name: createMainFrame
         Purpose: Initializes and configures the main game frame.
@@ -36,7 +51,6 @@ public class Gooey {
     	map.setBackground(Color.white);
     	map.setPreferredSize(new Dimension(1200, 800));
     	frame.add(map, BorderLayout.CENTER);
-
     }
 
     /*
@@ -89,9 +103,59 @@ public class Gooey {
         frame.setVisible(true);
         frame.pack();
         frame.setLocationRelativeTo(null);
+        startGameThread(); // begins the thread to allow us to update the screen dynamically
     }
     
     
+
+    /*
+     * Starts the game, initializes the clock
+     */
+    public void startGameThread() {
+        if (running) return;
+        GameState gameState = new GameState();
+        gameState.mainMenu();
+        gameThread = new Thread(this); // starts the game thread
+        gameThread.start(); // invokes run
+        running = true;
+    }
+
+    /* Automatically called when the thread is created */
+    @Override
+    public void run(){
+        // while the game thread exists
+        while(gameThread != null){
+            update(); // update information each frame
+            repaint(); // redraw the screen with new information
+            try {
+                Thread.sleep(16); // ~60 FPS, prevents too many calls
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /* Built in class that runs every frame */
+    public void update() {
+        
+    }
+
+    // tells the screen to repaint
+    public void repaint(){
+        
+    }
+
+    
+    /* Used to draw things on the screen */
+    public void paintComponent(Graphics g){
+        super.paintComponent(g); // clears the screen
+        
+        Graphics2D g2 = (Graphics2D)g; // involves methods that are useful for games
+        
+        g2.setColor(Color.white);
+        g2.fillRect(100, 100, tileSize, tileSize); // draws a rectangle on the screen the height and width of a tile
+
+    }
     //test pls
     
     
