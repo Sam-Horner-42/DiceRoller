@@ -10,7 +10,7 @@ public class Player {
     private int totalDefense;
 
     private ArrayList<Die> playerDice; // the dice the player currently has
-    private ArrayList<Die> selectedDice = new ArrayList<>(); // the currently selected dice to be rolled
+    private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
      
     public Player(int diceCount){
         this.diceCount = diceCount; // total number of dice is amount of dice in the player inventory

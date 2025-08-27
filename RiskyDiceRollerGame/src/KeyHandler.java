@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 /* Provides functionality for handling user keyboard interaction */
 public class KeyHandler implements KeyListener{
     public boolean spacePressed;
+    
     @Override
     public void keyTyped(KeyEvent e) {
         
