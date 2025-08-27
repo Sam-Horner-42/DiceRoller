@@ -243,7 +243,7 @@ public class GameState {
     checks if the player rolled between the ranges accounting for the defense buffer
     */
     public boolean combatResult(int attackTotal, int defenseTotal, int minRange, int maxRange) {
-        return (attackTotal > (minRange - defenseTotal) || attackTotal < (maxRange + defenseTotal));
+        return (attackTotal > (minRange - defenseTotal) && attackTotal < (maxRange + defenseTotal));
     }  
 
     

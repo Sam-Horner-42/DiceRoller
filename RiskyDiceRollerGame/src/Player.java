@@ -18,10 +18,11 @@ public class Player {
         this.selectedDice = new ArrayList<>(); // all the dice the player has selected to roll
     }
 
-    public int getStrengthLevel(){
+    public int getStrengthLevel() {
         return this.strengthLevel;
     }
-    public void setStrengthLevel(int strengthLevel){
+
+    public void setStrengthLevel(int strengthLevel) {
         this.strengthLevel = strengthLevel;
     }
 
@@ -84,7 +85,7 @@ public class Player {
     }
 
     /* Adds to the selected dice ArrayList and removes it from playerDice */
-    public void selectDice(int index){
+    public void selectDice(int index) {
         selectedDice.add(playerDice.get(index));
         playerDice.remove(index);
     }
