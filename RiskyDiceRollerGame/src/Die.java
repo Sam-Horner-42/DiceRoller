@@ -27,7 +27,7 @@ public class Die {
         }else {
             dieName += "Standard ";
         }
-        dieName += numSides + "-Sided " + dieType;
+        dieName += numSides + "-Sided " + dieType + " Die ";
         return dieName;
     }
     /*
@@ -50,7 +50,7 @@ public class Die {
     public String toString(){
         String string = "";
         string += "Name: " + name;
-        string += "Number of Sides: " + numSides;
+        string += "\nNumber of Sides: " + numSides;
         string += "\nDie Type: " + dieType;
         string += "\nRolled: " + rolled;
         string += "\nSpecial: " + isSpecialDice;
