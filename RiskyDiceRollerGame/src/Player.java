@@ -20,13 +20,20 @@ public class Player {
     }
 
     public void addStarterDice(){
-        Die starterAttackDie = new Die(6, 'A', false, false);
-        Die starterDefenseDie = new Die(6, 'D', false, false);
+        Die starterAttackDie = new Die("", 6, "Attack", false, false);
+        Die starterDefenseDie = new Die("", 6, "Defense", false, false);
         for(int i = 0; i<2; i++){
             playerDice.add(starterAttackDie);
             playerDice.add(starterDefenseDie);
         }
         diceCount += 4;
-            
+        for(Die i: playerDice){
+            System.out.println(i);
+        }
+        System.out.println("Total Player Dice: " + diceCount);  
+    }
+
+    public void rollDice(){
+
     }
 }
