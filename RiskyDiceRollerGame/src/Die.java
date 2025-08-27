@@ -45,7 +45,8 @@ public class Die implements Comparable<Die>{
     */ 
     public int rollDie(Die die) {
         Random random = new Random();
-        int roll = random.nextInt(die.numSides)+1; // +1 prevents 0 result    
+        int roll = random.nextInt(die.numSides)+1; // +1 prevents 0 result   
+        System.out.println(die.name + " rolled: " + roll); 
         return roll;
     }
 

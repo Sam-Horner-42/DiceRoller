@@ -6,9 +6,10 @@ public class Player {
     public final int maxDice = 20;
     private int strengthLevel; // will be used to determine difficulty of neighbouring tiles
     private int diceCount;
-    private ArrayList<Die> playerDice = new ArrayList<>(); // the dice the player currently has
 
-    
+    private ArrayList<Die> playerDice = new ArrayList<>(); // the dice the player currently has
+    private ArrayList<Die> selectedDice = new ArrayList<>(); // the currently selected dice to be rolled
+     
     public Player(int diceCount){
         this.diceCount = diceCount;
     }
@@ -34,8 +35,10 @@ public class Player {
         }
         System.out.println("Total Player Dice: " + diceCount);  
     }
-
-    public void rollDice(){
-
+    
+    public void rollDice(ArrayList<Die> selectedDice){
+        for(Die i: selectedDice){
+            i.rollDie(i);
+        }
     }
 }
