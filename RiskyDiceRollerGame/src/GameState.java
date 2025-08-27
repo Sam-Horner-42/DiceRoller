@@ -33,6 +33,9 @@ public class GameState {
      */
     private static final int EXIT = 5;
 
+    private int minRange; // class level variables for every round of combat
+    private int maxRange;
+
     public GameState() {
         scanner = new Scanner(System.in);
     }
@@ -75,19 +78,27 @@ public class GameState {
 
     }
 
+    /* Displays tutorial instructions */
     public void tutorial(){
-        System.out.println("The goal of the game is to conquer all of the territories.");
+        System.out.println("\nThe goal of the game is to conquer all of the territories.");
         System.out.println("To conquer a territory you must roll within the correct range.");
         System.out.println("Attack dice add to your total.");
         System.out.println("Defensive dice increase your safe range.");
         System.out.println("You currently have 4 dice.");
         System.out.println("You can roll up to 5 in a single turn.");
-        System.out.println("Select one of your 6-Sided Attack Dice");
+        System.out.println("Select one of your 6-Sided Attack Dice\n");
+        minRange = 1;
+        maxRange = 6;
+        combatHandler();
+        
+    }
 
+    /* Ran at the beginning of every round of combat, sets up combat based on min and max range, and resets min and max when finished */
+    public void combatHandler(){
         int option = 0;
         while (option != EXIT) {
             try {
-                diceSelector(1, 6);
+                diceSelector(minRange, maxRange);
                 option = scanner.nextInt();
                 processDiceOption(option);
             } catch (InputMismatchException | NumberFormatException e) { //accounts for anything other than an integer
@@ -95,6 +106,9 @@ public class GameState {
                 System.out.println("...Invalid input. Please enter a valid number...");
             }
         }
+        // reset min and max ranges
+        minRange = 0;
+        maxRange = 0;
     }
 
     /* Displays all current player dice and provides a method to select a single die */
@@ -113,6 +127,7 @@ public class GameState {
     {
         player.selectDice(option);
         player.displaySelectedDice();
+        processRoll();
     }
     
     /* Prompts the user to roll the dice or not */
@@ -127,11 +142,12 @@ public class GameState {
         while (!option.equalsIgnoreCase("exit")) {
             try {
                 promptRoll();
+                scanner = new Scanner(System.in);
                 option = scanner.nextLine();
                 yesOrNo(option);
             } catch (InputMismatchException | NumberFormatException e) { //accounts for anything other than an integer
                 scanner.nextLine(); //consume invalid input
-                System.out.print("Please say yes or no to continue.");
+                System.out.print("Please say yes or no to continue. Or type exit to quit.");
             }
         }
     }
@@ -139,14 +155,20 @@ public class GameState {
     /* Prompts for yes or no */
     private void yesOrNo(String option)
     {
-       switch (option.toLowerCase()) {
+       switch(option.toLowerCase()) {
             case "yes", "y", "ye", "yuh", "yeah", "ok":
                 player.rollDice();
+                if(combatResult(player.getTotalDamage(), player.getTotalDefense(), minRange, maxRange)){
+                    System.out.println("Success!");
+                } else {
+                    System.out.println("Failure :(");
+                }
+                // reset ranges
+                minRange = 0;
+                maxRange = 0;    
                 break;
             case "no", "nope", "n", "nuh-uh", "nah", "exit":
-                System.out.println("Exiting...<Program by SH>");
-                exit(0);
-                break;
+                return; // allow the user to select more dice
             default:
                 System.out.println("...Invalid option. Please try again...");
         }
@@ -220,11 +242,9 @@ public class GameState {
     /*
     checks if the player rolled between the ranges accounting for the defense buffer
     */
-    public boolean combatResult(int defenseTotal, int attackTotal, int minRange, int maxRange) {
+    public boolean combatResult(int attackTotal, int defenseTotal, int minRange, int maxRange) {
         return (attackTotal > (minRange - defenseTotal) || attackTotal < (maxRange + defenseTotal));
     }  
 
-    public void combatHandler(){
-
-    }
+    
 }

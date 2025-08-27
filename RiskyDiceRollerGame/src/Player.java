@@ -72,6 +72,7 @@ public class Player {
     /* Displays all the currently selected dice by index */
     public void displaySelectedDice(){
         if(selectedDice != null) {
+            System.out.println("Currently Selected Dice: ");
             Collections.sort(selectedDice);
             for (int i = 0; i < selectedDice.size(); i++) {
                 Die die = selectedDice.get(i);
@@ -98,10 +99,11 @@ public class Player {
     public void rollDice(){
         for(Die i: selectedDice){
             int result = i.rollDie(i);
-            if (i.dieType == ("Attack")){
-
+            if (i.getDieType().equals("Attack")){
+                totalDamage += result;
+            } else {
+                totalDefense += result;
             }
-
         }
     }
 }
