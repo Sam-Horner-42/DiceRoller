@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Player {
     public final int maxDice = 20;
@@ -21,12 +22,13 @@ public class Player {
 
     public void addStarterDice(){
         Die starterAttackDie = new Die("", 6, "Attack", false, false);
-        Die starterDefenseDie = new Die("", 6, "Defense", false, false);
+        Die starterDefenseDie = new Die("", 4, "Defense", false, false);
         for(int i = 0; i<2; i++){
             playerDice.add(starterAttackDie);
             playerDice.add(starterDefenseDie);
         }
         diceCount += 4;
+        Collections.sort(playerDice);
         for(Die i: playerDice){
             System.out.println(i);
         }
