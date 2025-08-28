@@ -6,7 +6,7 @@ public class Die implements Comparable<Die>{
     private String description;
     private String fileName;
 
-    private enum DICE {D4, D6, D8, D10, D12, D20}
+    
     
 
     public int getNumSides() {
@@ -53,7 +53,7 @@ public class Die implements Comparable<Die>{
 
     public String generateFileName(int numSides){
         String fileName = "";
-        fileName += "D" + numSides + ".png";
+        fileName += "/assets/D" + numSides + ".png";
         return fileName;
     }
 

@@ -17,6 +17,11 @@ public class Model {
     private int totalDefense;
     public LabelMouseListener listeners;
 
+    // Sets of enums to hold dice and item labels
+    private enum DICE {D4, D6, D8, D10, D12, D20}
+    private enum COMMON_ITEMS{}
+    private enum UNCOMMON_ITEMS{}
+    private enum RARE_ITEMS{}
 
     private ArrayList<Die> playerDice; // the dice the player currently has
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
