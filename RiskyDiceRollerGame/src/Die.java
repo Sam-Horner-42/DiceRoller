@@ -101,6 +101,5 @@ public class Die implements Comparable<Die>{
         string += "\nSpecial: " + isSpecialDice;
         string += "\n";
         return string;
-
     }
 }
