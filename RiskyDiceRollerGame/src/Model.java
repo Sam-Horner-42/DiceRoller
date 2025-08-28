@@ -31,6 +31,7 @@ public class Model {
 
     private ArrayList<Die> playerDice; // the dice the player currently has
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
+    private ArrayList<Integer> wageredDice; // the dice wagered before combat begins, int for the index in player dice
 
     private ArrayList<Item> playerItems; // currently held items
     private ArrayList<Item> selectedItems; // items currently selected
@@ -142,6 +143,25 @@ public class Model {
         this.levels = levels;
     }
 
+    /* When the player clicks PLAY */
+    public void startGame(){
+        addStarterDice(); // 2 D4s, 2 D6s
+    }
+
+    /* Adds 2 6-sided attack die, and 2 4-sided defense die */
+    public void addStarterDice(){
+        Die starterD6 = new Die("", 6, "");
+        Die starterD4 = new Die("", 4, "");
+        for(int i = 0; i < 2; i++){
+            playerDice.add(starterD6);
+            playerDice.add(starterD4);
+        } 
+        Collections.sort(playerDice);
+    }
+
+    public void wager(){
+
+    }
     /** Comabt always starts here 
      * Assigns current level based on ID passed in
      * Sets up min and max range associated with the current level
@@ -157,34 +177,65 @@ public class Model {
     /* Adds a single die by index to the selected dice ArrayList and removes it from playerDice 
      * Updates potential max and potential min of this roll
     */
-    public void selectDice(int index) {
+    public void selectCombatDice(int index) {
         if(selectedDice.size() < 5) {
             selectedDice.add(playerDice.get(index));
             playerDice.remove(index);
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
         }   
+        Collections.sort(selectedDice);
     }
 
     /* Removes a single deselected die from the selected dice ArrayList and place it back in playerDice 
     *  Updates potential max and potential min of this roll
     */
-    public void deselectDice(int index){
+    public void deselectCombatDice(int index){
         playerDice.add(selectedDice.get(index));
         selectedDice.remove(index);
         potentialMin = calculatePotentialMinDamage();
         potentialMax = calculatePotentialMaxDamage();
+        Collections.sort(playerDice);
+    }
+
+    /* Calculates total potential damage based on all the currently selected dice */
+    public int calculatePotentialMaxDamage(){
+        int potentialMax = 0;
+        if(selectedDice != null) {
+            for(int i = 0; i < selectedDice.size(); i++) {
+                Die die = selectedDice.get(i);
+                potentialMax += die.getNumSides();
+            }
+        }
+        return potentialMax;
+    }
+
+    /* Calculate the potential minimum value of all the currently selected dice
+     * Can be used with above method to display total potential range of the currently selected die
+     */
+    public int calculatePotentialMinDamage(){
+        int potentialMin = 0;
+        if(selectedDice != null) {
+            for(int i = 0; i < selectedDice.size(); i++) {
+                potentialMin++;
+            }
+        }
+        return potentialMin;
     }
 
     /* Iterates through the array list of dice and returns the total calculated roll 
      * Will be called when the user selects ROLL
     */
-    public int rollDice() {
+    public void rollDice() {
         int result = 0;
-        for(Die i: selectedDice){
-            result = rollDie(i);
-        }
-        return result;
+        for (int i = 0; i < playerDice.size(); i++) {
+            Die die = selectedDice.get(i);
+            result += rollDie(die);
+            }
+        totalDamage = result;
+        playerDice.addAll(selectedDice); // put all the selected dice back in the player dice
+        selectedDice.removeAll(selectedDice); // remove all the selected dice
+        Collections.sort(playerDice);
     }
     
     /*
@@ -192,8 +243,9 @@ public class Model {
     */ 
     public int rollDie(Die die) {
         Random random = new Random();
-        int roll = random.nextInt(die.getNumSides())+1; // +1 prevents 0 result   
-        System.out.println(die.getName() + " rolled: " + roll); 
+        int roll = random.nextInt(die.getNumSides())+1; // +1 prevents 0 result 
+        System.out.println("Roll: " + roll); // displaying what we rolled
+        //System.out.println(die.getName() + " rolled: " + roll); 
         return roll;
     }
 
@@ -209,16 +261,7 @@ public class Model {
 
     }
 
-    /* Adds 2 6-sided attack die, and 2 4-sided defense die */
-    public void addStarterDice(){
-        Die starterD6 = new Die("", 6, "");
-        Die starterD4 = new Die("", 4, "");
-        for(int i = 0; i < 2; i++){
-            playerDice.add(starterD6);
-            playerDice.add(starterD4);
-        } 
-    }
-
+    
     /* Displays all the player dice with index 
      * Uses a for loop so we get every index, not just first occurence
     */
@@ -251,29 +294,6 @@ public class Model {
           
     }
 
-    /* Calculates total potential damage based on all the currently selected dice */
-    public int calculatePotentialMaxDamage(){
-        int potentialMax = 0;
-        if(selectedDice != null) {
-            for(int i = 0; i < selectedDice.size(); i++) {
-                Die die = selectedDice.get(i);
-                potentialMax += die.getNumSides();
-            }
-        }
-        return potentialMax;
-    }
-
-    /* Calculate the potential minimum value of all the currently selected dice
-     * Can be used with above method to display total potential range of the currently selected die
-     */
-    public int calculatePotentialMinDamage(){
-        int potentialMin = 0;
-        if(selectedDice != null) {
-            for(int i = 0; i < selectedDice.size(); i++) {
-                potentialMin++;
-            }
-        }
-        return potentialMin;
-    }
+    
     
 }

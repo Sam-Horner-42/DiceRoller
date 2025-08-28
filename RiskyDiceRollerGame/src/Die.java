@@ -6,9 +6,6 @@ public class Die implements Comparable<Die>{
     private String description;
     private String fileName;
 
-    
-    
-
     public int getNumSides() {
         return numSides;
     }
@@ -47,7 +44,7 @@ public class Die implements Comparable<Die>{
     */
     public String generateDieName(int numSides){
         String dieName = "";
-        dieName += numSides + "-Sided Die ";
+        dieName += numSides + "-Sided Die";
         return dieName;
     }
 
@@ -61,8 +58,6 @@ public class Die implements Comparable<Die>{
     public String toString(){
         String string = "";
         string += "Name: " + name;
-        string += "\nNumber of Sides: " + numSides;
-        string += "\n";
         return string;
     }
 }
