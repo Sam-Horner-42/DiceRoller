@@ -2,11 +2,10 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-public class Gooey extends JPanel implements Runnable {
+public class Gooey extends JPanel {
 
 	JFrame frame = new JFrame();
 	ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/mapBackground.png"));
@@ -76,8 +75,6 @@ public class Gooey extends JPanel implements Runnable {
 	JLabel red_jelly11 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly12 = new JLabel(loadImage("red_jelly"));
 
-	KeyHandler keyHandler = new KeyHandler(); // handles user key presses
-	Thread gameThread; // runs the game
 	final int tileSize = 48;
 
 	/* 16:9 aspect ratio */
@@ -88,8 +85,6 @@ public class Gooey extends JPanel implements Runnable {
 	private boolean running = false;
 
 	public Gooey() {
-		this.setDoubleBuffered(true); // useful for threads
-		this.addKeyListener(keyHandler); // gamePanel will be able to recognize key input.
 		this.setFocusable(true);
 	}
 
