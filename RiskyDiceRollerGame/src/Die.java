@@ -7,6 +7,7 @@ public class Die implements Comparable<Die>{
     private int numSides; // specifies total number of sides on a single dice
     private boolean isSpecialDice; // determines whether a dice is special or not
     private String name;
+    private String fileName;
 
     public boolean isRolled() {
         return rolled;

@@ -1,6 +1,5 @@
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JLabel;
 
 public class LabelMouseListener extends MouseAdapter {
@@ -38,6 +37,11 @@ public class LabelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
+		/*if (view.getSelectedLevel() != level) {
+			levelLabel.setIcon(view.loadLevelImage(level.getName())); // Show full card on hover
+		} 
+		*/
+		
 	}
 
 	/**
