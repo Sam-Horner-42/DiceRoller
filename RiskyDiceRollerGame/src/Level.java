@@ -6,7 +6,7 @@ public class Level {
     private boolean levelComplete;
     private int minRange;
     private int maxRange;
-    
+
     public Level(String levelId, String name, int difficulty, boolean levelComplete, int minRange, int maxRange) {
         this.levelID = levelId;
         this.name = name;
@@ -54,6 +54,22 @@ public class Level {
 
     public void setLevelComplete(boolean levelComplete) {
         this.levelComplete = levelComplete;
+    }
+
+    public int getMinRange() {
+        return minRange;
+    }
+
+    public void setMinRange(int minRange) {
+        this.minRange = minRange;
+    }
+
+    public int getMaxRange() {
+        return maxRange;
+    }
+
+    public void setMaxRange(int maxRange) {
+        this.maxRange = maxRange;
     }
 
 
