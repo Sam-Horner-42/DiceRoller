@@ -1017,57 +1017,9 @@ public class Gooey extends JPanel implements Runnable {
 		frame.setVisible(true);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
-		startGameThread(); // begins the thread to allow us to update the screen dynamically
 	}
 
-	/*
-	 * Starts the game, initializes the clock
-	 */
-	public void startGameThread() {
-		if (running)
-			return;
-		GameState gameState = new GameState();
-		gameState.mainMenu();
-		gameThread = new Thread(this); // starts the game thread
-		gameThread.start(); // invokes run
-		running = true;
-	}
-
-	/* Automatically called when the thread is created */
-	@Override
-	public void run() {
-		// while the game thread exists
-		while (gameThread != null) {
-			update(); // update information each frame
-			repaint(); // redraw the screen with new information
-			try {
-				Thread.sleep(16); // ~60 FPS, prevents too many calls
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	/* Built in class that runs every frame */
-	public void update() {
-
-	}
-
-	// tells the screen to repaint
-	public void repaint() {
-
-	}
-
-	/* Used to draw things on the screen */
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g); // clears the screen
-
-		Graphics2D g2 = (Graphics2D) g; // involves methods that are useful for games
-
-		g2.setColor(Color.white);
-		g2.fillRect(100, 100, tileSize, tileSize); // draws a rectangle on the screen the height and width of a tile
-
-	}
+	
 	// test pls
 
 }
