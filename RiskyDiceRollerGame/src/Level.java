@@ -1,12 +1,28 @@
 /* Holds functionality for updating level appearance and level info */
 public class Level {
     private String name;
-
     private int difficulty;
-
     private String levelID;
-
     private boolean levelComplete;
+    private int minRange;
+    private int maxRange;
+    
+    public Level(String levelId, String name, int difficulty, boolean levelComplete, int minRange, int maxRange) {
+        this.levelID = levelId;
+        this.name = name;
+        this.difficulty = difficulty;
+        this.levelComplete = levelComplete;
+        this.minRange = minRange;
+        this.maxRange = maxRange;
+    }
+
+    public Level(String name, int difficulty, boolean levelComplete, int minRange, int maxRange) {
+        this.name = name;
+        this.difficulty = difficulty;
+        this.levelComplete = levelComplete;
+        this.minRange = minRange;
+        this.maxRange = maxRange;
+    }
 
     public String getName() {
         return name;

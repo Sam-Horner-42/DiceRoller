@@ -22,7 +22,6 @@ public class Model {
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
     private HashMap<String, Level> levels; // stores all the different levels associated with their IDs
     
-    
     /*  */
     public Model(int diceCount){
         this.diceCount = diceCount; // total number of dice is amount of dice in the player inventory
@@ -56,15 +55,24 @@ public class Model {
         totalDefense = 0;
     }
 
-    public void startCombat(){
-
+    public void startCombat(int levelId){
+        //TODO get level by ID, move to that level
     }
-
+    /* Ran at the beginning of every round of combat, sets up combat based on min and max range, and resets min and max when finished */
+    public void combatHandler(){
+        //TODO DETERMINE RANGE
+        //TODO SELECT DICE
+        //TODO 
+        selectDice(maxDice);
+    }
+    
     /* Adds 2 6-sided attack die, and 2 4-sided defense die */
     public void addStarterDice(){
-        Die starterDice = new Die("", 6, "Attack", false, false);
+        Die starterD6 = new Die("", 6, "");
+        Die starterD4 = new Die("", 4, "");
         for(int i = 0; i < 2; i++){
-            playerDice.add(starterDice);
+            playerDice.add(starterD6);
+            playerDice.add(starterD4);
             
         } 
     }
@@ -110,15 +118,12 @@ public class Model {
     }
 
     /* Roll all the selected dice */
-    public void rollDice(){
+    public int rollDice() {
+        int result = 0;
         for(Die i: selectedDice){
-            int result = rollDie(i);
-            if (i.getDieType().equals("Attack")){
-                totalDamage += result;
-            } else {
-                totalDefense += result;
-            }
+            result = rollDie(i);
         }
+        return result;
     }
     
     /*
@@ -148,11 +153,7 @@ public class Model {
 
     }
 
-    /* Ran at the beginning of every round of combat, sets up combat based on min and max range, and resets min and max when finished */
-    public void combatHandler(){
-        combatStart();
-        selectDice(maxDice);
-    }
+    
 
     /*
     checks if the player rolled between the ranges accounting for the defense buffer
