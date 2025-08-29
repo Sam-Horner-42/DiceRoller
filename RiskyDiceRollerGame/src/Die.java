@@ -39,8 +39,14 @@ public class Die implements Comparable<Die>{
     public void setIsSelected(boolean isSelected){
         this.isSelected = isSelected;
     }
+    
+    
 
-    /*
+    public String getDescription() {
+		return description;
+	}
+
+	/*
      * Constructs a single dice for use
      */
     public Die(String name, int numSides, String fileName, boolean isSelected){
@@ -48,6 +54,7 @@ public class Die implements Comparable<Die>{
         this.fileName = generateFileName(numSides);
         this.numSides = numSides;
         this.isSelected = isSelected;
+        this.description = generateDescription();
     }
     
     /* Sort the dice by their number of sides, from smallest to largest */
@@ -71,6 +78,22 @@ public class Die implements Comparable<Die>{
         fileName += "D" + numSides;
         return fileName;
     }
+    
+    public String generateDescription(){
+        String info = "This is a " + name + "\n it's sides are: ";
+        for(int i = 1; i<numSides + 1;i++) {
+        	if(i == numSides) {
+        		info = info + i;
+        	}else {
+        		info = info + i + ", ";
+        	}
+        	
+        }
+        
+        
+    	return info;
+    }
+    
 
     @Override
     public String toString(){
