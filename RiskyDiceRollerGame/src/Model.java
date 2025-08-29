@@ -143,6 +143,10 @@ public class Model {
         this.levels = levels;
     }
 
+    public void genLevels(){
+        
+    }
+
     /* When the player clicks PLAY */
     public void startGame(){
         addStarterDice(); // 2 D4s, 2 D6s

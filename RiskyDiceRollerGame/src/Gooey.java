@@ -14,7 +14,7 @@ public class Gooey extends JPanel {
 	JPanel diceZone = new JPanel(new GridLayout());
 	JPanel bSection = new JPanel();
 	JLabel bottomText = new JLabel("example text");
-	Controller controller = new Controller();
+	Controller controller;
 
 	// chocolate chip islands
 	JLabel chocoChip1 = new JLabel(loadImage("chocoChip"));
@@ -75,18 +75,6 @@ public class Gooey extends JPanel {
 	JLabel red_jelly11 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly12 = new JLabel(loadImage("red_jelly"));
 
-	final int tileSize = 48;
-
-	/* 16:9 aspect ratio */
-	final int maxScreenCol = 32;
-	final int maxScreenRow = 18;
-	final int screenWidth = tileSize * maxScreenCol;
-	final int screenHeight = tileSize * maxScreenRow;
-	private boolean running = false;
-
-	public Gooey() {
-		this.setFocusable(true);
-	}
 
 	/**
 	 * Method name: createMainFrame Purpose: Initializes and configures the main
