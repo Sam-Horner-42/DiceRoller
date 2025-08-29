@@ -9,7 +9,7 @@ public class Level {
     String hoveredImgPath;
 
     /* Holds the level ID to get from the hashmap, the levels name, the two seperate image icons for the different paths */
-    public Level(String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange) {
+    public Level(String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange, boolean isLocked) {
         this.name = name;
         this.defaultImgPath = defaultImgPath;
         this.hoveredImgPath = hoveredImgPath;
