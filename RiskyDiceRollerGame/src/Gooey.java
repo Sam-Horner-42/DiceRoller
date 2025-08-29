@@ -872,33 +872,42 @@ public class Gooey extends JPanel {
 	public void initLevelView() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		Font myFont = new Font("Arial", Font.PLAIN, 20);
+		levelView.setBackground(Color.black);
 		
 		// Top Row 1st Column
 		gbc.gridx = 0; gbc.gridy = 0;
-		gbc.weightx = 0.1; gbc.weighty = 0.2;
+		gbc.weightx = 0; gbc.weighty = 0;
+		gbc.anchor = GridBagConstraints.LINE_START;
 		JButton back = new JButton();
 		back.addActionListener(controller);
 		back.setActionCommand("Back");
 		back.setIcon(loadImage("backArrow"));
-		back.setPreferredSize(new Dimension(90,180));
+		back.setPreferredSize(new Dimension(225,200));
 		levelView.add(back,gbc);
+		gbc = new GridBagConstraints();
 		
 		// Top Row 2nd Column
-		gbc.gridx = 1;
-		gbc.weightx = 0.9;
+		gbc.gridx = 1; gbc.gridy = 0;
+		gbc.gridwidth = 2;
+		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
 		JPanel namePanel = new JPanel(new BorderLayout());
+		//namePanel.setPreferredSize(new Dimension(675,225));
 		namePanel.setBackground(Color.cyan);
 		namePanel.add(cityName,BorderLayout.CENTER);
 		cityName.setFont(myFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);
 		levelView.add(namePanel,gbc);
+		gbc = new GridBagConstraints();
+
 		
 		// Second Row 1st Column
 		gbc.gridx = 0; gbc.gridy = 1;
-		gbc.weightx = 0.1;
+		gbc.weightx = 0; gbc.weighty = 0;
+		gbc.anchor = GridBagConstraints.LINE_START;
 		JPanel tRange = new JPanel(new BorderLayout());
+		tRange.setPreferredSize(new Dimension(225,100));
 		tRange.setBackground(Color.RED);
 		JLabel trange = new JLabel("Target Range");
 		trange.setFont(myFont);
@@ -906,9 +915,14 @@ public class Gooey extends JPanel {
 		trange.setVerticalAlignment(SwingConstants.CENTER);
 		tRange.add(trange, BorderLayout.CENTER);
 		levelView.add(tRange,gbc);
+		gbc = new GridBagConstraints();
+
 		
 		// 2nd Row 2nd Column
-		gbc.gridx = 1; gbc.gridy = 1; gbc.weightx = 0.9;
+		gbc.gridx = 1; gbc.gridy = 1;
+		gbc.gridwidth = 2;
+		gbc.weightx = 1.0; 
+		gbc.fill = GridBagConstraints.BOTH;
 		JPanel tRangePanel = new JPanel(new GridLayout());
 		tRangePanel.setBackground(Color.GREEN);
 		JLabel dash1 = new JLabel("To");
@@ -925,24 +939,29 @@ public class Gooey extends JPanel {
 		tRangePanel.add(dash1);
 		tRangePanel.add(tMaxRange);
 		levelView.add(tRangePanel, gbc);
+		gbc = new GridBagConstraints();
 
 		// 3rd Row 1st Column
-		gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.weightx = 0.1;
+		gbc.gridx = 0; gbc.gridy = 2;
+		gbc.weightx = 0; gbc.weighty = 0;
+		gbc.anchor = GridBagConstraints.LINE_START;
 		JPanel cRange = new JPanel(new BorderLayout());
 		cRange.setBackground(Color.BLUE);
+		cRange.setPreferredSize(new Dimension(225,100));
 		JLabel crange = new JLabel("Current Possible Range");
 		crange.setFont(myFont);
 		crange.setHorizontalAlignment(SwingConstants.CENTER);
 		crange.setVerticalAlignment(SwingConstants.CENTER);
 		cRange.add(crange, BorderLayout.CENTER);
 		levelView.add(cRange, gbc);
+		gbc = new GridBagConstraints();
+
 
 		// 3rd Row 2nd Column
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		gbc.weightx = 0.9;
+		gbc.gridx = 1; gbc.gridy = 2;
+		gbc.gridwidth = 2;
+		gbc.weightx = 1.0; 
+		gbc.fill = GridBagConstraints.BOTH;
 		JPanel cRangePanel = new JPanel(new GridLayout());
 		cRangePanel.setBackground(Color.GRAY);
 		JLabel dash2 = new JLabel("To");
@@ -959,26 +978,29 @@ public class Gooey extends JPanel {
 		cRangePanel.add(dash2);
 		cRangePanel.add(cMaxRange);
 		levelView.add(cRangePanel, gbc);
-		
+		gbc = new GridBagConstraints();
+
 		// 4th row, First column
-		gbc.gridx = 0;
-		gbc.gridy = 3;
-		gbc.weightx = 0.9;
-		gbc.weighty = 0.4;
-		JPanel diceItemHolder = new JPanel(new GridLayout(2,1));
-		JPanel itemHolder = new JPanel(new GridLayout(1,3));
+		gbc.gridx = 0; gbc.gridy = 3;
+		gbc.gridwidth = 2;
+		//gbc.gridheight = 2;
+		gbc.weightx = 1.0; 
+		gbc.fill = GridBagConstraints.BOTH;
+		JPanel diceItemHolder = new JPanel(new GridLayout(2, 1));
+		diceItemHolder.setPreferredSize(new Dimension(675,500));
+		JPanel itemHolder = new JPanel(new GridLayout(1, 3));
 		JPanel itemSlot1Holder = new JPanel(new BorderLayout());
 		JPanel itemSlot2Holder = new JPanel(new BorderLayout());
 		JPanel itemSlot3Holder = new JPanel(new BorderLayout());
 		itemHolder.setBackground(Color.PINK);
 		itemHolder.add(itemSlot1Holder);
-		itemSlot1Holder.add(itemSlot1,BorderLayout.CENTER);
+		itemSlot1Holder.add(itemSlot1, BorderLayout.CENTER);
 		itemHolder.add(itemSlot2Holder);
-		itemSlot2Holder.add(itemSlot2,BorderLayout.CENTER);
+		itemSlot2Holder.add(itemSlot2, BorderLayout.CENTER);
 		itemHolder.add(itemSlot3Holder);
-		itemSlot3Holder.add(itemSlot3,BorderLayout.CENTER);
+		itemSlot3Holder.add(itemSlot3, BorderLayout.CENTER);
 		diceItemHolder.add(itemHolder);
-		JPanel diceHolder = new JPanel(new GridLayout(1,5));
+		JPanel diceHolder = new JPanel(new GridLayout(1, 5));
 		diceHolder.setBackground(Color.MAGENTA);
 		diceHolder.add(diceSlot1);
 		diceHolder.add(diceSlot2);
@@ -987,34 +1009,36 @@ public class Gooey extends JPanel {
 		diceHolder.add(diceSlot5);
 		diceItemHolder.add(diceHolder);
 		levelView.add(diceItemHolder, gbc);
-		
-		
+		gbc = new GridBagConstraints();
+
 		// 4th row, 2nd column
-		gbc.gridx = 1;
+		gbc.gridx = 2;
 		gbc.gridy = 3;
-		gbc.weightx = 0.1;
-		gbc.weighty = 0.4;
-		JPanel rollPanel = new JPanel(new BorderLayout());
-		rollPanel.setBackground(Color.RED);
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		//gbc.gridheight = 2;
+		gbc.fill = GridBagConstraints.BOTH;
+
+
+		gbc.anchor = GridBagConstraints.LINE_END;
 		JButton roll = new JButton();
-		rollPanel.add(roll, BorderLayout.CENTER);
-		levelView.add(rollPanel,gbc);
+		//roll.setPreferredSize(new Dimension(225, 500));
+		levelView.add(roll, gbc);
 
 		mainArea.add(levelView, "level");
 
 	}
-	
+
 	public void addMainArea() {
 		frame.add(mainArea, BorderLayout.CENTER);
 	}
-	
+
 	public void changeMainArea() {
 		CardLayout cl = (CardLayout) mainArea.getLayout();
-		if(mapOnScreen) {
+		if (mapOnScreen) {
 			cl.show(mainArea, "level");
 			mapOnScreen = false;
-		}
-		else {
+		} else {
 			cl.show(mainArea, "map");
 			mapOnScreen = true;
 		}
@@ -1113,18 +1137,20 @@ public class Gooey extends JPanel {
 		// we add everythin to the overarching right panel, then add it to the frame
 		gbc.gridx = 1;
 		gbc.gridy = 0;
-		
 		rightSection.add(tSection, gbc);
+		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 1;
+		gbc.fill = GridBagConstraints.VERTICAL;
+		gbc.weighty = 1;
 		rightSection.add(diceScroll, gbc);
+		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 2;
 		rightSection.add(bSection, gbc);
+		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 3;
-		gbc.fill = GridBagConstraints.VERTICAL;
-		gbc.weighty = 1;
 		rightSection.add(itemScroll, gbc);
 		frame.add(rightSection, BorderLayout.EAST);
 	}
