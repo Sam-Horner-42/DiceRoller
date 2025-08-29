@@ -8,12 +8,80 @@ public class Controller implements ActionListener {
 	//TODO add a map to link Jlabels with levels
 	private Model model;
 	private Gooey gooey;
-	HashMap<JLabel, Level> levels;
-	ArrayList<Level> levelData;
+	private HashMap<JLabel, Level> levels;
+	private ArrayList<Level> levelData;
+
+	private HashMap<JLabel, Die> unselectedDice;
+	private HashMap<JLabel, Die> rollingDice;
+
+	private ArrayList<Die> playerDice; // the dice the player currently has
+	private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
+
+	// Getters and Setters
+	public Model getModel() {
+		return model;
+	}
+
+	public Gooey getGooey() {
+		return gooey;
+	}
+
+
+	public HashMap<JLabel, Level> getLevels() {
+		return levels;
+	}
+
+	public void setLevels(HashMap<JLabel, Level> levels) {
+		this.levels = levels;
+	}
+
+	public ArrayList<Level> getLevelData() {
+		return levelData;
+	}
+
+	public void setLevelData(ArrayList<Level> levelData) {
+		this.levelData = levelData;
+	}
+
+	public HashMap<JLabel, Die> getUnselectedDice() {
+		return unselectedDice;
+	}
+
+	public void setUnselectedDice(HashMap<JLabel, Die> unselectedDice) {
+		this.unselectedDice = unselectedDice;
+	}
+
+	public HashMap<JLabel, Die> getRollingDice() {
+		return rollingDice;
+	}
+
+	public void setRollingDice(HashMap<JLabel, Die> rollingDice) {
+		this.rollingDice = rollingDice;
+	}
+
+	
+
+	public void setPlayerDice(ArrayList<Die> playerDice) {
+		this.playerDice = playerDice;
+	}
+
+	public ArrayList<Die> getSelectedDice() {
+		return selectedDice;
+	}
+
+	public void setSelectedDice(ArrayList<Die> selectedDice) {
+		this.selectedDice = selectedDice;
+	}
 	
 	public void makeMapsAndList(){
 		levels = model.getLevels();
 		levelData = model.getLevelData();
+
+		unselectedDice = model.getUnselectedDice();
+		rollingDice = model.getRollingDice();
+
+		playerDice = model.getPlayerDice();
+		selectedDice = model.getSelectedDice();
 	}
 	
 
@@ -42,6 +110,21 @@ public class Controller implements ActionListener {
 		levels.put(gooey.red_jelly3, levelData.get(15));
 	}
 
+	public void addDice(Die die, JLabel label){
+		unselectedDice.put(label, die);
+	}
+	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
+    public void addStarterDice(){
+        Die starterD6 = new Die("", 6, "", false);
+        Die starterD4 = new Die("", 4, "", false);
+        for(int i = 0; i < 6; i++) { 
+            playerDice.add(starterD6);
+            playerDice.add(starterD4);
+        } 
+        Collections.sort(playerDice);
+
+		gooey.updateDiceZone();
+    }
 
 	public void setModel(Model model){
 		this.model = model;

@@ -32,9 +32,12 @@ public class Model {
     private enum RARE_ITEMS{}
     private enum STATE{MAP, LEVEL}
 
+    public HashMap<JLabel, Die> unselectedDice = new HashMap<>();
+    public HashMap<JLabel, Die> rollingDice = new HashMap<>();
+
     private ArrayList<Die> playerDice; // the dice the player currently has
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
-    private ArrayList<Integer> wageredDice; // the dice wagered before combat begins, int for the index in player dice
+    //private ArrayList<Integer> wageredDice; // the dice wagered before combat begins, int for the index in player dice
 
     private ArrayList<Item> playerItems; // currently held items
     private ArrayList<Item> selectedItems; // items currently selected
@@ -155,6 +158,23 @@ public class Model {
         this.levelData = levelData;
     }
 
+    public HashMap<JLabel, Die> getUnselectedDice() {
+        return unselectedDice;
+    }
+
+    public void setUnselectedDice(HashMap<JLabel, Die> unselectedDice) {
+        this.unselectedDice = unselectedDice;
+    }
+
+    public HashMap<JLabel, Die> getRollingDice() {
+        return rollingDice;
+    }
+
+    public void setRollingDice(HashMap<JLabel, Die> rollingDice) {
+        this.rollingDice = rollingDice;
+    }
+    
+
     public void genLevels(){
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
@@ -201,21 +221,7 @@ public class Model {
         levelData.add(jammyDodger3);
     }
 
-    /* When the player clicks PLAY */
-    public void startGame(){
-        addStarterDice(); // 2 D4s, 2 D6s
-    }
-
-    /* Adds 2 6-sided attack die, and 2 4-sided defense die */
-    public void addStarterDice(){
-        Die starterD6 = new Die("", 6, "");
-        Die starterD4 = new Die("", 4, "");
-        for(int i = 0; i < 2; i++){
-            playerDice.add(starterD6);
-            playerDice.add(starterD4);
-        } 
-        Collections.sort(playerDice);
-    }
+    
 
     public void wager(){
 
@@ -238,6 +244,7 @@ public class Model {
     public void selectCombatDice(int index) {
         if(selectedDice.size() < 5) {
             selectedDice.add(playerDice.get(index));
+            selectedDice.get(index).setIsSelected(true); // this dice is now selected
             playerDice.remove(index);
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
@@ -250,6 +257,7 @@ public class Model {
     */
     public void deselectCombatDice(int index){
         playerDice.add(selectedDice.get(index));
+        playerDice.get(index).setIsSelected(false); // this dice is no longer selected
         selectedDice.remove(index);
         potentialMin = calculatePotentialMinDamage();
         potentialMax = calculatePotentialMaxDamage();

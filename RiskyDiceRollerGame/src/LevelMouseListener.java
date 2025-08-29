@@ -39,12 +39,9 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
-		System.out.println(controller.levels.get(label).getName()); 
-		if(level != null)
-			//label.setIcon(view.loadImage(level.getHoveredImgPath()));
-			System.out.println(controller.levels.get(label).getName()); 
+		System.out.println(controller.getLevels().get(label).getName()); 
+		label.setIcon(view.loadImage(controller.getLevels().get(label).getHoveredImgPath()));
 
-		
 	}
 
 	/**
@@ -55,8 +52,7 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
-		if(level != null)
-			label.setIcon(view.loadImage(level.getDefaultImgPath()));
+		label.setIcon(view.loadImage(controller.getLevels().get(label).getDefaultImgPath()));
 	}
 
 	/**
@@ -66,9 +62,9 @@ public class LevelMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if((controller.levels.get(label).getIsLocked()) == false || controller.levels.get(label).getIsComplete()){
+		if((controller.getLevels().get(label).getIsLocked()) == false || controller.getLevels().get(label).getIsComplete()){
 			//TODO what happens when you click on a level
-			view.fillLevelInfo(controller.levels.get(label));
+			view.fillLevelInfo(controller.getLevels().get(label));
 			view.changeMainArea();
 		}
 			

@@ -1054,9 +1054,9 @@ public class Gooey extends JPanel {
 	
 	public void updateLabels() {
 		for(int i=0;i<levelLabels.size();i++) {
-			boolean change = controller.levels.get(levelLabels.get(i)).getIsComplete();
+			boolean change = controller.getLevels().get(levelLabels.get(i)).getIsComplete();
 			if(change) {
-				levelLabels.get(i).setIcon(loadImage(controller.levels.get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
+				levelLabels.get(i).setIcon(loadImage(controller.getLevels().get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
 			}
 			
 		}
@@ -1143,6 +1143,7 @@ public class Gooey extends JPanel {
 			label.addMouseListener(new DiceMouseListener(this, controller, label));
 			panel.add(label, BorderLayout.CENTER);
 			diceZone.add(panel);
+			controller.addDice(die, label);
 			
 		}
 
