@@ -932,7 +932,8 @@ public class Gooey extends JPanel {
 		//namePanel.setPreferredSize(new Dimension(675,225));
 		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
-		cityName.setFont(myFont);
+		Font cityFont = new Font("Coiny Regular", Font.PLAIN, 40);
+		cityName.setFont(cityFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);
 		levelView.add(namePanel,gbc);
@@ -1088,6 +1089,7 @@ public class Gooey extends JPanel {
 		}
 	}
 
+
 	/* Probably the ugliest way I could have coded this */
 	public void fillLevelInfo(Level level) {
 		levelName = level.getName();
@@ -1099,6 +1101,11 @@ public class Gooey extends JPanel {
 		cMinRange.setText("" + 0);
 		cMaxRange.setText("" + 0);
 		
+	}
+
+	public void updateRanges(int min, int max){
+		cMinRange.setText("" + min);
+		cMaxRange.setText("" + max);
 	}
 	
 	public void fillLabelList() {

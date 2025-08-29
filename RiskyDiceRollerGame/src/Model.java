@@ -274,7 +274,7 @@ public class Model {
 
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
-
+            gooey.updateRanges(potentialMin, potentialMax);
             Collections.sort(selectedDice);
             Collections.sort(playerDice);
             
@@ -290,6 +290,11 @@ public class Model {
             die.setIsSelected(false);
             playerDice.add(die);
             selectedDice.remove(die);
+
+            potentialMin = calculatePotentialMinDamage();
+            potentialMax = calculatePotentialMaxDamage();
+            gooey.updateRanges(potentialMin, potentialMax);
+            
             Collections.sort(playerDice);
             Collections.sort(selectedDice);
         }
