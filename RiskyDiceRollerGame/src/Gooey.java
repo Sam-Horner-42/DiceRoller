@@ -8,6 +8,12 @@ import javax.swing.*;
 
 public class Gooey extends JPanel {
 
+	String levelName;
+	int levelMinRange;
+	int levelMaxRange = 0; // Will always start at 0 because the player has not selected dice
+	int currentMinRange = 0; // Same as above
+	int currentMaxRange = 0;
+
 	JFrame frame = new JFrame();
 	ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/mapBackground.png"));
 	ImagePanel map = new ImagePanel(bgIcon, new GridBagLayout());
@@ -1011,9 +1017,17 @@ public class Gooey extends JPanel {
 			mapOnScreen = true;
 		}
 	}
-	
+
+	/* Probably the ugliest way I could have coded this */
 	public void fillLevelInfo(Level level) {
-		
+		levelName = level.getName();
+		levelMinRange = level.getMinRange();
+		levelMaxRange = level.getMaxRange(); 
+		cityName.setText(levelName);
+		tMinRange.setText("" + levelMinRange);
+		tMaxRange.setText("" + levelMaxRange);
+		cMinRange.setText("" + 0);
+		cMaxRange.setText("" + 0);
 	}
 	
 	public void fillLabelList() {

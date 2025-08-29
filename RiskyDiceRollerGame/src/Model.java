@@ -157,8 +157,8 @@ public class Model {
 
     public void genLevels(){
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
-        Level choco1 = new Level("choco1", "chocoChip", "chocoChipHovered", 1, false, 1, 6);
-        Level choco2 = new Level("choco2", "chocoChip", "chocoChipHovered", 1, false, 2, 8);
+        Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered", 1, false, 1, 6);
+        Level choco2 = new Level("Death By Chocolate", "chocoChip", "chocoChipHovered", 1, false, 2, 8);
         Level choco3 = new Level("choco3", "chocoChip", "chocoChipHovered", 1, false, 1, 6);
         Level choco4 = new Level("choco4", "chocoChip", "chocoChipHovered", 2, false, 1, 6);
         
