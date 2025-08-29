@@ -2,21 +2,23 @@
 public class Level {
     private String name;
     private int difficulty;
-    private boolean levelComplete;
+    private boolean isComplete;
     private int minRange;
     private int maxRange;
     String defaultImgPath;
     String hoveredImgPath;
+    boolean isLocked;
 
     /* Holds the level ID to get from the hashmap, the levels name, the two seperate image icons for the different paths */
-    public Level(String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange, boolean isLocked) {
+    public Level(String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean isComplete, int minRange, int maxRange, boolean isLocked) {
         this.name = name;
         this.defaultImgPath = defaultImgPath;
         this.hoveredImgPath = hoveredImgPath;
         this.difficulty = difficulty;
-        this.levelComplete = levelComplete;
+        this.isComplete = isComplete;
         this.minRange = minRange;
         this.maxRange = maxRange;
+        this.isLocked = isLocked;
     }
 
 
@@ -37,12 +39,12 @@ public class Level {
     }
 
 
-    public boolean isLevelComplete() {
-        return levelComplete;
+    public boolean getIsComplete() {
+        return isComplete;
     }
 
-    public void setLevelComplete(boolean levelComplete) {
-        this.levelComplete = levelComplete;
+    public void setIsComplete(boolean isComplete) {
+        this.isComplete = isComplete;
     }
 
     public int getMinRange() {
@@ -75,6 +77,14 @@ public class Level {
 
     public void setHoveredImgPath(String defaultImgPath){
         this.defaultImgPath = defaultImgPath;
+    }
+
+    public boolean getIsLocked(){
+        return isLocked;
+    }
+
+    public void setIsLocked(boolean isLocked){
+        this.isLocked = isLocked;
     }
 
 

@@ -66,10 +66,12 @@ public class LevelMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("clicked");
-		//TODO what happens when you click on a level
-		view.fillLevelInfo(controller.levels.get(label));
-		view.changeMainArea();
+		if((controller.levels.get(label).getIsLocked()) == false || controller.levels.get(label).getIsComplete()){
+			//TODO what happens when you click on a level
+			view.fillLevelInfo(controller.levels.get(label));
+			view.changeMainArea();
+		}
+			
 	}
 	
 	

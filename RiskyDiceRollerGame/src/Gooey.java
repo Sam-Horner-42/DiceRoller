@@ -877,10 +877,11 @@ public class Gooey extends JPanel {
 		gbc.gridx = 0; gbc.gridy = 0;
 		gbc.weightx = 0.1; gbc.weighty = 0.2;
 		JButton back = new JButton();
+		back.addActionListener(controller);
+		back.setActionCommand("Back");
 		back.setIcon(loadImage("backArrow"));
 		back.setPreferredSize(new Dimension(90,180));
 		levelView.add(back,gbc);
-		back.addActionListener(e -> changeMainArea());
 		
 		// Top Row 2nd Column
 		gbc.gridx = 1;
@@ -1053,7 +1054,7 @@ public class Gooey extends JPanel {
 	
 	public void updateLabels() {
 		for(int i=0;i<levelLabels.size();i++) {
-			boolean change = controller.levels.get(levelLabels.get(i)).isLevelComplete();
+			boolean change = controller.levels.get(levelLabels.get(i)).getIsComplete();
 			if(change) {
 				levelLabels.get(i).setIcon(loadImage(controller.levels.get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
 			}

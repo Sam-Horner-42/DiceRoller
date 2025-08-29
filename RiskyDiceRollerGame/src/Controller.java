@@ -58,7 +58,17 @@ public class Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		String command = e.getActionCommand();
+		switch(command){
+			case "Roll":
+				model.rollDice();
+				break;
+			case "Back":
+				gooey.changeMainArea();
+				break;
+			default:
+				System.out.println("Fuck you.");
+		}
 	}
 
 }
