@@ -51,6 +51,10 @@ public class Controller implements ActionListener {
 		this.gooey = gooey;
 	}
 
+	public ArrayList<Die> getPlayerDice(){
+		return model.getPlayerDice();
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

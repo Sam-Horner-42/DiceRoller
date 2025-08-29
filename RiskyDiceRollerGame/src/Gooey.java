@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -33,7 +34,7 @@ public class Gooey extends JPanel {
 	JLabel itemSlot2 = new JLabel("PlaceHolder");
 	JLabel itemSlot3 = new JLabel("PlaceHolder");
 
-	JPanel diceZone = new JPanel(new GridLayout());
+	JPanel diceZone = new JPanel(new GridLayout(0,2));
 	JPanel itemZone = new JPanel(new GridLayout());
 	
 	ArrayList<JLabel> levelLabels = new ArrayList<>();
@@ -1128,12 +1129,25 @@ public class Gooey extends JPanel {
 	}
 
 	public void updateDiceZone() {
-		//ArrayList<Die> playerDice = model.getPlayerDice();
-		//Collections.sort(playerDice);
-		/* for (Die die : playerDice) {
-			JLabel label = new JLabel(die.getName());
-			diceZone.add(label);
-		}*/
+		ArrayList<Die> playerDice = controller.getPlayerDice();
+		Collections.sort(playerDice);
+
+		diceZone.removeAll(); // clear previous dice
+
+		for (Die die : playerDice) {
+			JPanel panel = new JPanel(new BorderLayout());
+			JLabel label = new JLabel(loadImage(die.getFileName()));
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+        	label.setVerticalAlignment(SwingConstants.CENTER);
+			label.addMouseListener(new DiceMouseListener(this, controller, label));
+			panel.add(label, BorderLayout.CENTER);
+			diceZone.add(panel);
+			
+		}
+
+		diceZone.revalidate(); // relayout
+    	diceZone.repaint();    // refresh
+		
 		
 	}
 

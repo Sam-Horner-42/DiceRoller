@@ -23,6 +23,14 @@ public class Die implements Comparable<Die>{
         this.name = name;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     /*
      * Constructs a single dice for use
      */
@@ -50,7 +58,7 @@ public class Die implements Comparable<Die>{
 
     public String generateFileName(int numSides){
         String fileName = "";
-        fileName += "/assets/D" + numSides + ".png";
+        fileName += "D" + numSides;
         return fileName;
     }
 
