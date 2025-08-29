@@ -36,6 +36,8 @@ public class Gooey extends JPanel {
 
 	JPanel diceZone = new JPanel(new GridLayout(0,2));
 	JPanel itemZone = new JPanel(new GridLayout());
+	Window popup = new JWindow(frame);
+	JLabel popupLabel =new JLabel();
 	
 	ArrayList<JLabel> levelLabels = new ArrayList<>();
 	boolean labelListFilled = false;
@@ -84,6 +86,16 @@ public class Gooey extends JPanel {
 		frame.setLayout(new BorderLayout());
 	}
 	
+	public void createPopup() {
+	    popup.setLayout(new BorderLayout());
+	    popup.setSize(200, 100);	
+		popup.add(popupLabel, BorderLayout.CENTER);
+		popup.setVisible(false);
+	}
+	
+	public void usePopup(String text) {
+		popupLabel.setText(text);
+	}
 	
 
 	public void setController(Controller controller) {
@@ -1166,7 +1178,7 @@ public class Gooey extends JPanel {
 			JLabel label = new JLabel(loadImage(die.getFileName()));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
         	label.setVerticalAlignment(SwingConstants.CENTER);
-			label.addMouseListener(new DiceMouseListener(this, controller, label));
+			label.addMouseListener(new DiceMouseListener(this, controller, label, die));
 			panel.add(label, BorderLayout.CENTER);
 			diceZone.add(panel);
 			controller.addDice(label, die);
@@ -1197,6 +1209,7 @@ public class Gooey extends JPanel {
 			fillLabelList();
 		}
 		createMainFrame();
+		createPopup();
 		updateLabels();
 		initMap();
 		initLevelView();

@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -16,7 +17,7 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	private Controller controller;
 
-	private Level level;
+	private Die dice;
 	
 	/**
 	 * Constructor to initialize the LabelMouseListener.
@@ -25,10 +26,11 @@ public class DiceMouseListener extends MouseAdapter {
 	 * @param controller The game controller.
 	 * @param label The JLabel associated with the card.
 	 */
-	DiceMouseListener(Gooey view, Controller controller, JLabel label){
+	DiceMouseListener(Gooey view, Controller controller, JLabel label, Die dice){
 		this.view = view;
 		this.controller = controller;
 		this.label = label;
+		this.dice = dice;
 	}
 
 	/**
@@ -38,10 +40,11 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		//TODO what happens when you hover over a level
-		if(controller.getUnselectedDice().get(label).getIsSelected())
-			System.out.println(controller.getUnselectedDice().get(label).getName());
-		
+
+		Point location = label.getLocationOnScreen();
+        view.popup.setLocation(location.x, location.y + label.getHeight());
+        view.usePopup(dice.getDescription());
+        view.popup.setVisible(true);
 	}
 
 	/**
@@ -51,8 +54,9 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
-		//TODO what happens when your mouse exits a level
-		
+
+		view.popup.setVisible(false);
+
 	}
 
 	/**
