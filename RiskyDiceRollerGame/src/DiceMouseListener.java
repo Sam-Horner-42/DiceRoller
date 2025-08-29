@@ -41,11 +41,6 @@ public class DiceMouseListener extends MouseAdapter {
 		//TODO what happens when you hover over a level
 		if(controller.getUnselectedDice().get(label).getIsSelected())
 			System.out.println(controller.getUnselectedDice().get(label).getName());
-		System.out.println(controller.getLevels().get(label).getName()); 
-		if(level != null)
-			//label.setIcon(view.loadImage(level.getHoveredImgPath()));
-			System.out.println(controller.getLevels().get(label).getName()); 
-
 		
 	}
 
@@ -57,8 +52,7 @@ public class DiceMouseListener extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
-		if(level != null)
-			label.setIcon(view.loadImage(level.getDefaultImgPath()));
+		
 	}
 
 	/**
