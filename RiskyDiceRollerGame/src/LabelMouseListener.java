@@ -41,10 +41,6 @@ public class LabelMouseListener extends MouseAdapter {
 		//TODO what happens when you hover over a level
 		if(level != null)
 			label.setIcon(view.loadImage(level.getHoveredImgPath()));
-		/*if (view.getSelectedLevel() != level) {
-			levelLabel.setIcon(view.loadLevelImage(level.getName())); // Show full card on hover
-		} 
-		*/
 		
 	}
 
