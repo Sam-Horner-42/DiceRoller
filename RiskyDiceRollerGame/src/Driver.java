@@ -2,17 +2,14 @@ public class Driver {
     public static void main(String[] args) {
 
         Gooey gooey = new Gooey();
+        gooey.initializeMainFrame();
 
         Model model = new Model();
 
         Controller controller = new Controller();
         controller.setModel(model);
         controller.setGooey(gooey);
-        gooey.setController(controller);
-        model.genLevels();
-        controller.makeMapsAndList();
-        controller.populateLevelMap();
-        gooey.initializeMainFrame();
+
         model.addStarterDice();
         System.out.println("Dice @ Start " + model.getPlayerDice());
         model.selectCombatDice(2);
@@ -27,7 +24,10 @@ public class Driver {
         System.out.println("Total Roll Damage After Roll: " + model.getTotalDamage());
         System.out.println("Player Dice After Roll: " + model.getPlayerDice());
         
-
+        model.genLevels();
+        controller.makeMapsAndList();
+       
+        controller.populateLevelMap();
  
     }
 }

@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -84,6 +83,9 @@ public class Gooey extends JPanel {
 		this.controller = controller;
 	}
 
+	public void initMenu(){
+		
+	}
 
 	/*
 	 * Makes Game map
@@ -989,10 +991,6 @@ public class Gooey extends JPanel {
 		rollPanel.add(roll, BorderLayout.CENTER);
 		levelView.add(rollPanel,gbc);
 
-		
-
-		
-
 		mainArea.add(levelView, "level");
 
 	}
@@ -1004,8 +1002,8 @@ public class Gooey extends JPanel {
 	public void changeMainArea() {
 		CardLayout cl = (CardLayout) mainArea.getLayout();
 		if(mapOnScreen) {
-		cl.show(mainArea, "level");
-		mapOnScreen = false;
+			cl.show(mainArea, "level");
+			mapOnScreen = false;
 		}
 		else {
 			cl.show(mainArea, "map");
