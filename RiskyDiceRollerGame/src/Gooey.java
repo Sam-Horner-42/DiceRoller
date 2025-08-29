@@ -27,6 +27,7 @@ public class Gooey extends JPanel {
 	JLabel cMaxRange = new JLabel("PlaceHolder");
 
 	JPanel selectedDiceHolder = new JPanel(new GridLayout(0, 5));
+	JPanel selectedItemHolder = new JPanel(new GridLayout(1, 3));
 
 	JLabel itemSlot1 = new JLabel("PlaceHolder");
 	JLabel itemSlot2 = new JLabel("PlaceHolder");
@@ -69,6 +70,21 @@ public class Gooey extends JPanel {
 	JLabel red_jelly2 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly3 = new JLabel(loadImage("red_jelly"));
 	
+	static final Color DARK_BROWN = new Color(176, 137, 112);
+	
+
+	/**
+	 * Predefined green color for UI elements.
+	 */
+	static final Color BEIGE = new Color(235, 213, 161);
+
+	/**
+	 * Predefined beige color for UI elements.
+	 */
+	static final Color LIGHT_BROWN = new Color(230, 190, 150);
+	
+	static final Color PURPLE = new Color(153, 77, 115);
+
 
 
 	/**
@@ -96,7 +112,9 @@ public class Gooey extends JPanel {
 	}
 	
 	public void useMessageBoard(String text) {
+		Font myFont = new Font("Arial", Font.PLAIN, 20);
 		messageBoard.setText("");
+		messageBoard.setFont(myFont);
 		messageBoard.setText(text);
 
 	}
@@ -912,7 +930,7 @@ public class Gooey extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		JPanel namePanel = new JPanel(new BorderLayout());
 		//namePanel.setPreferredSize(new Dimension(675,225));
-		namePanel.setBackground(Color.cyan);
+		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
 		cityName.setFont(myFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -927,7 +945,7 @@ public class Gooey extends JPanel {
 		gbc.anchor = GridBagConstraints.LINE_START;
 		JPanel tRange = new JPanel(new BorderLayout());
 		tRange.setPreferredSize(new Dimension(225,100));
-		tRange.setBackground(Color.RED);
+		tRange.setBackground(DARK_BROWN);
 		JLabel trange = new JLabel("Target Range");
 		trange.setFont(myFont);
 		trange.setHorizontalAlignment(SwingConstants.CENTER);
@@ -943,7 +961,7 @@ public class Gooey extends JPanel {
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
 		JPanel tRangePanel = new JPanel(new GridLayout());
-		tRangePanel.setBackground(Color.GREEN);
+		tRangePanel.setBackground(LIGHT_BROWN);
 		JLabel dash1 = new JLabel("To");
 		dash1.setFont(myFont);
 		dash1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -965,7 +983,7 @@ public class Gooey extends JPanel {
 		gbc.weightx = 0; gbc.weighty = 0;
 		gbc.anchor = GridBagConstraints.LINE_START;
 		JPanel cRange = new JPanel(new BorderLayout());
-		cRange.setBackground(Color.BLUE);
+		cRange.setBackground(PURPLE);
 		cRange.setPreferredSize(new Dimension(225,100));
 		JLabel crange = new JLabel("Current Possible Range");
 		crange.setFont(myFont);
@@ -982,7 +1000,7 @@ public class Gooey extends JPanel {
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
 		JPanel cRangePanel = new JPanel(new GridLayout());
-		cRangePanel.setBackground(Color.GRAY);
+		cRangePanel.setBackground(DARK_BROWN);
 		JLabel dash2 = new JLabel("To");
 		dash2.setFont(myFont);
 		dash2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1005,19 +1023,10 @@ public class Gooey extends JPanel {
 		//gbc.gridheight = 2;
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
-		JPanel itemHolder = new JPanel(new GridLayout(1, 3));
-		itemHolder.setPreferredSize(new Dimension(675,250));
-		JPanel itemSlot1Holder = new JPanel(new BorderLayout());
-		JPanel itemSlot2Holder = new JPanel(new BorderLayout());
-		JPanel itemSlot3Holder = new JPanel(new BorderLayout());
-		itemHolder.setBackground(Color.PINK);
-		itemHolder.add(itemSlot1Holder);
-		itemSlot1Holder.add(itemSlot1, BorderLayout.CENTER);
-		itemHolder.add(itemSlot2Holder);
-		itemSlot2Holder.add(itemSlot2, BorderLayout.CENTER);
-		itemHolder.add(itemSlot3Holder);
-		itemSlot3Holder.add(itemSlot3, BorderLayout.CENTER);
-		levelView.add(itemHolder,gbc);
+
+		selectedItemHolder.setPreferredSize(new Dimension(675,250));
+		selectedItemHolder.setBackground(LIGHT_BROWN);
+		levelView.add(selectedItemHolder,gbc);
 		gbc = new GridBagConstraints();
 
 		// 4th row, Second column
@@ -1029,8 +1038,8 @@ public class Gooey extends JPanel {
 		gbc.anchor = GridBagConstraints.LINE_END;
 		messageBoard.setEditable(false);
 		messageBoard.setPreferredSize(new Dimension(225,250));
-		messageBoard.setBackground(Color.black);
-		messageBoard.setForeground(Color.white);
+		messageBoard.setBackground(BEIGE);
+		messageBoard.setForeground(PURPLE);
 		levelView.add(messageBoard, gbc);
 		gbc = new GridBagConstraints();
 
@@ -1043,7 +1052,7 @@ public class Gooey extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 
 		selectedDiceHolder.setPreferredSize(new Dimension(675,250));
-		selectedDiceHolder.setBackground(Color.MAGENTA);
+		selectedDiceHolder.setBackground(BEIGE);
 		levelView.add(selectedDiceHolder, gbc);
 		gbc = new GridBagConstraints();
 
@@ -1057,6 +1066,7 @@ public class Gooey extends JPanel {
 		JButton roll = new JButton();
 		roll.addActionListener(controller);
 		roll.setIcon(loadImage("RollButton"));
+		roll.setBackground(PURPLE);
 		roll.setActionCommand("Roll");
 		levelView.add(roll, gbc);
 
@@ -1133,9 +1143,9 @@ public class Gooey extends JPanel {
 
 		// diceZone is where the dice will be displayed in the right panel, we can add
 		// things to it as it is not a local variable
-		diceZone.setBackground(Color.green);
+		diceZone.setBackground(DARK_BROWN);
 		diceZone.setPreferredSize(new Dimension(300, 300));
-		itemZone.setBackground(Color.green);
+		itemZone.setBackground(DARK_BROWN);
 		itemZone.setPreferredSize(new Dimension(300, 300));
 
 		// tsection, short for top section, just has the word dice on it
@@ -1146,14 +1156,14 @@ public class Gooey extends JPanel {
 		tSection.add(dice, BorderLayout.CENTER);
 		dice.setHorizontalAlignment(SwingConstants.CENTER);
 		dice.setVerticalAlignment(SwingConstants.CENTER);
-		tSection.setBackground(Color.YELLOW);
+		tSection.setBackground(LIGHT_BROWN);
 		tSection.setPreferredSize(new Dimension(300, 50));
 
 		// bsection, bottom section, since we need to add info to this, it can't be
 		// local
 		JPanel bSection = new JPanel(new BorderLayout());
 		JLabel bottomText = new JLabel("Items");
-		bSection.setBackground(Color.RED);
+		bSection.setBackground(LIGHT_BROWN);
 		bSection.setPreferredSize(new Dimension(300, 50));
 		bottomText.setFont(myFont);
 		bSection.add(bottomText, BorderLayout.CENTER);
@@ -1198,6 +1208,7 @@ public class Gooey extends JPanel {
 
 		for (Die die : playerDice) {
 			JPanel panel = new JPanel(new BorderLayout());
+			panel.setOpaque(false);
 			JLabel label = new JLabel(loadImage(die.getFileName()));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
         	label.setVerticalAlignment(SwingConstants.CENTER);
