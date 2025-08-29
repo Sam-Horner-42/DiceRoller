@@ -21,59 +21,30 @@ public class Gooey extends JPanel {
 	JLabel chocoChip2 = new JLabel(loadImage("chocoChip"));
 	JLabel chocoChip3 = new JLabel(loadImage("chocoChip"));
 	JLabel chocoChip4 = new JLabel(loadImage("chocoChip"));
-	JLabel chocoChip5 = new JLabel(loadImage("chocoChip"));
-	JLabel chocoChip6 = new JLabel(loadImage("chocoChip"));
-	JLabel chocoChip7 = new JLabel(loadImage("chocoChip"));
+
 
 	// macaron islands
 	JLabel macaron1 = new JLabel(loadImage("macaron"));
 	JLabel macaron2 = new JLabel(loadImage("macaron"));
 	JLabel macaron3 = new JLabel(loadImage("macaron"));
-	JLabel macaron4 = new JLabel(loadImage("macaron"));
-	JLabel macaron5 = new JLabel(loadImage("macaron"));
-	JLabel macaron6 = new JLabel(loadImage("macaron"));
-	JLabel macaron7 = new JLabel(loadImage("macaron"));
-	JLabel macaron8 = new JLabel(loadImage("macaron"));
-	JLabel macaron9 = new JLabel(loadImage("macaron"));
-	JLabel macaron10 = new JLabel(loadImage("macaron"));
+
 
 	// fudge islands
 	JLabel fudge1 = new JLabel(loadImage("fudge"));
 	JLabel fudge2 = new JLabel(loadImage("fudge"));
 	JLabel fudge3 = new JLabel(loadImage("fudge"));
-	JLabel fudge4 = new JLabel(loadImage("fudge"));
-	JLabel fudge5 = new JLabel(loadImage("fudge"));
-	JLabel fudge6 = new JLabel(loadImage("fudge"));
-	JLabel fudge7 = new JLabel(loadImage("fudge"));
-	JLabel fudge8 = new JLabel(loadImage("fudge"));
-	JLabel fudge9 = new JLabel(loadImage("fudge"));
-	JLabel fudge10 = new JLabel(loadImage("fudge"));
-	JLabel fudge11 = new JLabel(loadImage("fudge"));
-	JLabel fudge12 = new JLabel(loadImage("fudge"));
+
 	// peanut-cookie islands
 	JLabel peanut_cookie1 = new JLabel(loadImage("peanut_cookie"));
 	JLabel peanut_cookie2 = new JLabel(loadImage("peanut_cookie"));
 	JLabel peanut_cookie3 = new JLabel(loadImage("peanut_cookie"));
-	JLabel peanut_cookie4 = new JLabel(loadImage("peanut_cookie"));
-	JLabel peanut_cookie5 = new JLabel(loadImage("peanut_cookie"));
-	JLabel peanut_cookie6 = new JLabel(loadImage("peanut_cookie"));
-	JLabel peanut_cookie7 = new JLabel(loadImage("peanut_cookie"));
-	JLabel peanut_cookie8 = new JLabel(loadImage("peanut_cookie"));
-	JLabel peanut_cookie9 = new JLabel(loadImage("peanut_cookie"));
+
 
 	// red-eyes filled islands
 	JLabel red_jelly1 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly2 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly3 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly4 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly5 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly6 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly7 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly8 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly9 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly10 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly11 = new JLabel(loadImage("red_jelly"));
-	JLabel red_jelly12 = new JLabel(loadImage("red_jelly"));
+
 
 	final int tileSize = 48;
 
@@ -155,8 +126,6 @@ public class Gooey extends JPanel {
 		JPanel nw11 = new JPanel();
 		nw11.setPreferredSize(small_panel);
 		nw11.setOpaque(false);
-		nw11.add(peanut_cookie7);
-		peanut_cookie7.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie7));
 		northWestSection.add(nw11, inner);
 
 		// North West Center Right
@@ -165,8 +134,8 @@ public class Gooey extends JPanel {
 		JPanel nw21 = new JPanel();
 		nw21.setPreferredSize(small_panel);
 		nw21.setOpaque(false);
-		nw21.add(peanut_cookie8);
-		peanut_cookie8.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie8));
+		nw21.add(peanut_cookie3);
+		peanut_cookie3.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie3));
 		northWestSection.add(nw21, inner);
 
 		// North West Bottom Left
@@ -191,8 +160,6 @@ public class Gooey extends JPanel {
 		JPanel nw22 = new JPanel();
 		nw22.setPreferredSize(small_panel);
 		nw22.setOpaque(false);
-		nw22.add(peanut_cookie6);
-		peanut_cookie6.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie6));
 		northWestSection.add(nw22, inner);
 
 		outer.gridx = 0;
@@ -210,8 +177,6 @@ public class Gooey extends JPanel {
 		JPanel n00 = new JPanel();
 		n00.setPreferredSize(small_panel);
 		n00.setOpaque(false);
-		n00.add(peanut_cookie9);
-		peanut_cookie9.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie9));
 		northSection.add(n00, inner);
 
 		// North Top Center
@@ -244,8 +209,6 @@ public class Gooey extends JPanel {
 		JPanel n11 = new JPanel();
 		n11.setPreferredSize(small_panel);
 		n11.setOpaque(false);
-		n11.add(red_jelly8);
-		red_jelly8.addMouseListener(new LabelMouseListener(this, controller,red_jelly8));
 		northSection.add(n11, inner);
 
 		// North Center Right
@@ -254,8 +217,6 @@ public class Gooey extends JPanel {
 		JPanel n21 = new JPanel();
 		n21.setPreferredSize(small_panel);
 		n21.setOpaque(false);
-		n21.add(red_jelly9);
-		red_jelly9.addMouseListener(new LabelMouseListener(this, controller,red_jelly9));
 		northSection.add(n21, inner);
 
 		// North Bottom Left
@@ -264,8 +225,6 @@ public class Gooey extends JPanel {
 		JPanel n02 = new JPanel();
 		n02.setPreferredSize(small_panel);
 		n02.setOpaque(false);
-		n02.add(red_jelly4);
-		red_jelly4.addMouseListener(new LabelMouseListener(this, controller,red_jelly4));
 		northSection.add(n02, inner);
 
 		// North Bottom Center
@@ -274,8 +233,6 @@ public class Gooey extends JPanel {
 		JPanel n12 = new JPanel();
 		n12.setPreferredSize(small_panel);
 		n12.setOpaque(false);
-		n12.add(red_jelly5);
-		red_jelly5.addMouseListener(new LabelMouseListener(this, controller,red_jelly5));
 		northSection.add(n12, inner);
 
 		// North Bottom Right
@@ -284,8 +241,6 @@ public class Gooey extends JPanel {
 		JPanel n22 = new JPanel();
 		n22.setPreferredSize(small_panel);
 		n22.setOpaque(false);
-		n22.add(red_jelly6);
-		red_jelly6.addMouseListener(new LabelMouseListener(this, controller,red_jelly6));
 		northSection.add(n22, inner);
 
 		outer.gridx = 1;
@@ -311,8 +266,6 @@ public class Gooey extends JPanel {
 		JPanel nE10 = new JPanel();
 		nE10.setPreferredSize(small_panel);
 		nE10.setOpaque(false);
-		nE10.add(red_jelly12);
-		red_jelly12.addMouseListener(new LabelMouseListener(this, controller,red_jelly12));
 		northEastSection.add(nE10, inner);
 
 		// North East Top Right
@@ -329,8 +282,6 @@ public class Gooey extends JPanel {
 		JPanel nE01 = new JPanel();
 		nE01.setPreferredSize(small_panel);
 		nE01.setOpaque(false);
-		nE01.add(red_jelly10);
-		red_jelly10.addMouseListener(new LabelMouseListener(this, controller,red_jelly10));
 		northEastSection.add(nE01, inner);
 
 		// North East Center
@@ -339,8 +290,8 @@ public class Gooey extends JPanel {
 		JPanel nE11 = new JPanel();
 		nE11.setPreferredSize(small_panel);
 		nE11.setOpaque(false);
-		nE11.add(red_jelly11);
-		red_jelly11.addMouseListener(new LabelMouseListener(this, controller,red_jelly11));
+		nE11.add(red_jelly3);
+		red_jelly3.addMouseListener(new LabelMouseListener(this, controller,red_jelly3));
 		northEastSection.add(nE11, inner);
 
 		// North East Center Right
@@ -357,8 +308,6 @@ public class Gooey extends JPanel {
 		JPanel nE02 = new JPanel();
 		nE02.setPreferredSize(small_panel);
 		nE02.setOpaque(false);
-		nE02.add(red_jelly7);
-		red_jelly7.addMouseListener(new LabelMouseListener(this, controller,red_jelly7));
 		northEastSection.add(nE02, inner);
 
 		// North East Bottom Center
@@ -367,6 +316,8 @@ public class Gooey extends JPanel {
 		JPanel nE12 = new JPanel();
 		nE12.setPreferredSize(small_panel);
 		nE12.setOpaque(false);
+		nE12.add(red_jelly2);
+		red_jelly2.addMouseListener(new LabelMouseListener(this, controller,red_jelly2));
 		northEastSection.add(nE12, inner);
 
 		// North East Bottom Right
@@ -400,8 +351,6 @@ public class Gooey extends JPanel {
 		JPanel W10 = new JPanel();
 		W10.setPreferredSize(small_panel);
 		W10.setOpaque(false);
-		W10.add(peanut_cookie3);
-		peanut_cookie3.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie3));
 		westSection.add(W10, inner);
 
 		// West Top Right
@@ -410,8 +359,8 @@ public class Gooey extends JPanel {
 		JPanel W20 = new JPanel();
 		W20.setPreferredSize(small_panel);
 		W20.setOpaque(false);
-		W20.add(peanut_cookie4);
-		peanut_cookie4.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie4));
+		W20.add(peanut_cookie2);
+		peanut_cookie2.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie2));
 		westSection.add(W20, inner);
 
 		// West Center Left
@@ -462,8 +411,6 @@ public class Gooey extends JPanel {
 		JPanel W22 = new JPanel();
 		W22.setPreferredSize(small_panel);
 		W22.setOpaque(false);
-		W22.add(macaron6);
-		macaron6.addMouseListener(new LabelMouseListener(this, controller,macaron6));
 		westSection.add(W22, inner);
 		
 		outer.gridx = 0;
@@ -481,8 +428,6 @@ public class Gooey extends JPanel {
 		JPanel C00 = new JPanel();
 		C00.setPreferredSize(small_panel);
 		C00.setOpaque(false);
-		C00.add(peanut_cookie5);
-		peanut_cookie5.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie5));
 		centerSection.add(C00, inner);
 
 		// Center Top Center
@@ -491,8 +436,8 @@ public class Gooey extends JPanel {
 		JPanel C10 = new JPanel();
 		C10.setPreferredSize(small_panel);
 		C10.setOpaque(false);
-		C10.add(red_jelly2);
-		red_jelly2.addMouseListener(new LabelMouseListener(this, controller,red_jelly2));
+		C10.add(red_jelly1);
+		red_jelly1.addMouseListener(new LabelMouseListener(this, controller,red_jelly1));
 		centerSection.add(C10, inner);
 
 		// Center Top Right
@@ -501,8 +446,8 @@ public class Gooey extends JPanel {
 		JPanel C20 = new JPanel();
 		C20.setPreferredSize(small_panel);
 		C20.setOpaque(false);
-		C20.add(macaron10);
-		macaron10.addMouseListener(new LabelMouseListener(this, controller,macaron10));
+		C20.add(macaron3);
+		macaron3.addMouseListener(new LabelMouseListener(this, controller,macaron3));
 		centerSection.add(C20, inner);
 
 		// Center Center Left
@@ -511,8 +456,6 @@ public class Gooey extends JPanel {
 		JPanel C01 = new JPanel();
 		C01.setPreferredSize(small_panel);
 		C01.setOpaque(false);
-		C01.add(peanut_cookie2);
-		peanut_cookie2.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie2));
 		centerSection.add(C01, inner);
 
 		// Center Center
@@ -521,8 +464,6 @@ public class Gooey extends JPanel {
 		JPanel C11 = new JPanel();
 		C11.setPreferredSize(small_panel);
 		C11.setOpaque(false);
-		C11.add(macaron9);
-		macaron9.addMouseListener(new LabelMouseListener(this, controller,macaron9));
 		centerSection.add(C11, inner);
 
 		// Center Center Right
@@ -531,8 +472,6 @@ public class Gooey extends JPanel {
 		JPanel C21 = new JPanel();
 		C21.setPreferredSize(small_panel);
 		C21.setOpaque(false);
-		C21.add(fudge10);
-		fudge10.addMouseListener(new LabelMouseListener(this, controller,fudge10));
 		centerSection.add(C21, inner);
 
 		// Center Bottom Left
@@ -541,8 +480,6 @@ public class Gooey extends JPanel {
 		JPanel C02 = new JPanel();
 		C02.setPreferredSize(small_panel);
 		C02.setOpaque(false);
-		C02.add(macaron7);
-		macaron7.addMouseListener(new LabelMouseListener(this, controller,macaron7));
 		centerSection.add(C02, inner);
 
 		// Center Bottom Center
@@ -551,8 +488,6 @@ public class Gooey extends JPanel {
 		JPanel C12 = new JPanel();
 		C12.setPreferredSize(small_panel);
 		C12.setOpaque(false);
-		C12.add(macaron8);
-		macaron8.addMouseListener(new LabelMouseListener(this, controller,macaron8));
 		centerSection.add(C12, inner);
 
 		// Center Bottom Right
@@ -561,8 +496,6 @@ public class Gooey extends JPanel {
 		JPanel C22 = new JPanel();
 		C22.setPreferredSize(small_panel);
 		C22.setOpaque(false);
-		C22.add(fudge8);
-		fudge8.addMouseListener(new LabelMouseListener(this, controller,fudge8));
 		centerSection.add(C22, inner);
 
 		outer.gridx = 1;
@@ -580,8 +513,6 @@ public class Gooey extends JPanel {
 		JPanel E00 = new JPanel();
 		E00.setPreferredSize(small_panel);
 		E00.setOpaque(false);
-		E00.add(red_jelly3);
-		red_jelly3.addMouseListener(new LabelMouseListener(this, controller,red_jelly3));
 		eastSection.add(E00, inner);
 
 		// East Top Center
@@ -590,8 +521,6 @@ public class Gooey extends JPanel {
 		JPanel E10 = new JPanel();
 		E10.setPreferredSize(small_panel);
 		E10.setOpaque(false);
-		E10.add(fudge12);
-		fudge12.addMouseListener(new LabelMouseListener(this, controller,fudge12));
 		eastSection.add(E10, inner);
 
 		// East Top Right
@@ -608,8 +537,6 @@ public class Gooey extends JPanel {
 		JPanel E01 = new JPanel();
 		E01.setPreferredSize(small_panel);
 		E01.setOpaque(false);
-		E01.add(red_jelly1);
-		red_jelly1.addMouseListener(new LabelMouseListener(this, controller,red_jelly1));
 		eastSection.add(E01, inner);
 
 		// East Center
@@ -618,8 +545,6 @@ public class Gooey extends JPanel {
 		JPanel E11 = new JPanel();
 		E11.setPreferredSize(small_panel);
 		E11.setOpaque(false);
-		E11.add(fudge11);
-		fudge11.addMouseListener(new LabelMouseListener(this, controller,fudge11));
 		eastSection.add(E11, inner);
 
 		// East Center Right
@@ -636,8 +561,8 @@ public class Gooey extends JPanel {
 		JPanel E02 = new JPanel();
 		E02.setPreferredSize(small_panel);
 		E02.setOpaque(false);
-		E02.add(fudge9);
-		fudge9.addMouseListener(new LabelMouseListener(this, controller,fudge9));
+		E02.add(fudge3);
+		fudge3.addMouseListener(new LabelMouseListener(this, controller,fudge3));
 		eastSection.add(E02, inner);
 
 		// East Bottom Center
@@ -679,8 +604,8 @@ public class Gooey extends JPanel {
 		JPanel SW10 = new JPanel();
 		SW10.setPreferredSize(small_panel);
 		SW10.setOpaque(false);
-		SW10.add(chocoChip6);
-		chocoChip6.addMouseListener(new LabelMouseListener(this, controller,chocoChip6));
+		SW10.add(chocoChip2);
+		chocoChip2.addMouseListener(new LabelMouseListener(this, controller,chocoChip2));
 		southWestSection.add(SW10, inner);
 
 		// South West Top Right
@@ -689,8 +614,6 @@ public class Gooey extends JPanel {
 		JPanel SW20 = new JPanel();
 		SW20.setPreferredSize(small_panel);
 		SW20.setOpaque(false);
-		SW20.add(chocoChip7);
-		chocoChip7.addMouseListener(new LabelMouseListener(this, controller,chocoChip7));
 		southWestSection.add(SW20, inner);
 
 		// South West Center Left
@@ -707,8 +630,6 @@ public class Gooey extends JPanel {
 		JPanel SW11 = new JPanel();
 		SW11.setPreferredSize(small_panel);
 		SW11.setOpaque(false);
-		SW11.add(chocoChip3);
-		chocoChip3.addMouseListener(new LabelMouseListener(this, controller,chocoChip3));
 		southWestSection.add(SW11, inner);
 
 		// South West Center Right
@@ -717,8 +638,8 @@ public class Gooey extends JPanel {
 		JPanel SW21 = new JPanel();
 		SW21.setPreferredSize(small_panel);
 		SW21.setOpaque(false);
-		SW21.add(chocoChip4);
-		chocoChip4.addMouseListener(new LabelMouseListener(this, controller,chocoChip4));
+		SW21.add(chocoChip3);
+		chocoChip3.addMouseListener(new LabelMouseListener(this, controller,chocoChip3));
 		southWestSection.add(SW21, inner);
 
 		// South West Bottom Left
@@ -737,8 +658,6 @@ public class Gooey extends JPanel {
 		JPanel SW12 = new JPanel();
 		SW12.setPreferredSize(small_panel);
 		SW12.setOpaque(false);
-		SW12.add(chocoChip2);
-		chocoChip2.addMouseListener(new LabelMouseListener(this, controller,chocoChip2));
 		southWestSection.add(SW12, inner);
 
 		// South West Bottom Right
@@ -764,8 +683,8 @@ public class Gooey extends JPanel {
 		JPanel S00 = new JPanel();
 		S00.setPreferredSize(small_panel);
 		S00.setOpaque(false);
-		S00.add(macaron3);		
-		macaron3.addMouseListener(new LabelMouseListener(this, controller,macaron3));
+		S00.add(macaron1);		
+		macaron1.addMouseListener(new LabelMouseListener(this, controller,macaron1));
 		southSection.add(S00, inner);
 
 		// South Top Center
@@ -774,8 +693,6 @@ public class Gooey extends JPanel {
 		JPanel S10 = new JPanel();
 		S10.setPreferredSize(small_panel);
 		S10.setOpaque(false);
-		S10.add(macaron4);		
-		macaron4.addMouseListener(new LabelMouseListener(this, controller,macaron4));
 		southSection.add(S10, inner);
 
 		// South Top Right
@@ -784,8 +701,8 @@ public class Gooey extends JPanel {
 		JPanel S20 = new JPanel();
 		S20.setPreferredSize(small_panel);
 		S20.setOpaque(false);
-		S20.add(macaron5);		
-		macaron5.addMouseListener(new LabelMouseListener(this, controller,macaron5));
+		S20.add(macaron2);		
+		macaron2.addMouseListener(new LabelMouseListener(this, controller,macaron2));
 		southSection.add(S20, inner);
 
 		// South Center Left
@@ -794,8 +711,6 @@ public class Gooey extends JPanel {
 		JPanel S01 = new JPanel();
 		S01.setPreferredSize(small_panel);
 		S01.setOpaque(false);
-		S01.add(chocoChip5);
-		chocoChip5.addMouseListener(new LabelMouseListener(this, controller,chocoChip5));
 		southSection.add(S01, inner);
 
 		// South Center
@@ -804,8 +719,8 @@ public class Gooey extends JPanel {
 		JPanel S11 = new JPanel();
 		S11.setPreferredSize(small_panel);
 		S11.setOpaque(false);
-		S11.add(macaron2);		
-		macaron2.addMouseListener(new LabelMouseListener(this, controller,macaron2));
+		S11.add(chocoChip4);
+		chocoChip4.addMouseListener(new LabelMouseListener(this, controller,chocoChip4));
 		southSection.add(S11, inner);
 
 		// South Center Right
@@ -814,8 +729,6 @@ public class Gooey extends JPanel {
 		JPanel S21 = new JPanel();
 		S21.setPreferredSize(small_panel);
 		S21.setOpaque(false);
-		S21.add(fudge2);		
-		fudge2.addMouseListener(new LabelMouseListener(this, controller,fudge2));
 		southSection.add(S21, inner);
 
 		// South Bottom Left
@@ -824,8 +737,6 @@ public class Gooey extends JPanel {
 		JPanel S02 = new JPanel();
 		S02.setPreferredSize(small_panel);
 		S02.setOpaque(false);
-		S02.add(macaron1);		
-		macaron1.addMouseListener(new LabelMouseListener(this, controller,macaron1));
 		southSection.add(S02, inner);
 
 		// South Bottom Center
@@ -859,8 +770,6 @@ public class Gooey extends JPanel {
 		JPanel SE00 = new JPanel();
 		SE00.setPreferredSize(small_panel);
 		SE00.setOpaque(false);
-		SE00.add(fudge5);
-		fudge5.addMouseListener(new LabelMouseListener(this, controller,fudge5));
 		southEastSection.add(SE00, inner);
 
 		// South East Top Center
@@ -869,8 +778,6 @@ public class Gooey extends JPanel {
 		JPanel SE10 = new JPanel();
 		SE10.setPreferredSize(small_panel);
 		SE10.setOpaque(false);
-		SE10.add(fudge6);
-		fudge6.addMouseListener(new LabelMouseListener(this, controller,fudge6));
 		southEastSection.add(SE10, inner);
 
 		// South East Top Right
@@ -879,8 +786,6 @@ public class Gooey extends JPanel {
 		JPanel SE20 = new JPanel();
 		SE20.setPreferredSize(small_panel);
 		SE20.setOpaque(false);
-		SE20.add(fudge7);
-		fudge7.addMouseListener(new LabelMouseListener(this, controller,fudge7));
 		southEastSection.add(SE20, inner);
 
 		// South East Center Left
@@ -889,8 +794,8 @@ public class Gooey extends JPanel {
 		JPanel SE01 = new JPanel();
 		SE01.setPreferredSize(small_panel);
 		SE01.setOpaque(false);
-		SE01.add(fudge3);
-		fudge3.addMouseListener(new LabelMouseListener(this, controller,fudge3));
+		SE01.add(fudge2);
+		fudge2.addMouseListener(new LabelMouseListener(this, controller,fudge2));
 		southEastSection.add(SE01, inner);
 
 		// South East Center
@@ -899,8 +804,6 @@ public class Gooey extends JPanel {
 		JPanel SE11 = new JPanel();
 		SE11.setPreferredSize(small_panel);
 		SE11.setOpaque(false);
-		SE11.add(fudge4);
-		fudge4.addMouseListener(new LabelMouseListener(this, controller,fudge4));
 		southEastSection.add(SE11, inner);
 
 		// South East Center Right
