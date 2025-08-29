@@ -56,7 +56,8 @@ public class LabelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
-		label.setIcon(view.loadImage(level.getDefaultImgPath()));
+		if(level != null)
+			label.setIcon(view.loadImage(level.getDefaultImgPath()));
 	}
 
 	/**
