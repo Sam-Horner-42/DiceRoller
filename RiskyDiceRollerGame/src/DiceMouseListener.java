@@ -8,7 +8,7 @@ public class DiceMouseListener extends MouseAdapter {
 	private Gooey view;
 
 	/**
-	 * The JLabel representing the card
+	 * The JLabel representing the dice
 	 */
 	private JLabel label;
 
@@ -16,8 +16,6 @@ public class DiceMouseListener extends MouseAdapter {
 	 * Reference to the Controller for game actions
 	 */
 	private Controller controller;
-
-	private Model model;
 
 	private Die dice;
 	
@@ -28,10 +26,9 @@ public class DiceMouseListener extends MouseAdapter {
 	 * @param controller The game controller.
 	 * @param label The JLabel associated with the card.
 	 */
-	DiceMouseListener(Gooey view, Controller controller, Model model, JLabel label, Die dice){
+	public DiceMouseListener(Gooey view, Controller controller, JLabel label, Die dice){
 		this.view = view;
 		this.controller = controller;
-		this.model = model;
 		this.label = label;
 		this.dice = dice;
 	}
@@ -43,13 +40,12 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
-
+		if(!view.popup.isVisible()) {
 		Point location = label.getLocationOnScreen();
-        view.popup.setLocation(location.x, location.y + label.getHeight());
+        view.popup.setLocation(location.x, location.y - label.getHeight());
         view.usePopup(dice.getDescription());
         view.popup.setVisible(true);
-
-		System.out.println(dice.getName());
+		}
 	}
 
 	/**
@@ -59,9 +55,7 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
-
 		view.popup.setVisible(false);
-
 	}
 
 	/**
@@ -72,11 +66,7 @@ public class DiceMouseListener extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//TODO what happens when you click on a dice
-		if(!dice.getIsSelected()){
-			model.selectDice(dice);
-		} else {
-			model.deselectDice(dice);
-		}
+		controller.chooseDice(dice);
 	}
 	
 	

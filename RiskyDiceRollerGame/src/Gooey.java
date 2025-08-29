@@ -26,11 +26,7 @@ public class Gooey extends JPanel {
 	JLabel cMinRange = new JLabel("PlaceHolder");
 	JLabel cMaxRange = new JLabel("PlaceHolder");
 
-	JLabel diceSlot1 = new JLabel("PlaceHolder");
-	JLabel diceSlot2 = new JLabel("PlaceHolder");
-	JLabel diceSlot3 = new JLabel("PlaceHolder");
-	JLabel diceSlot4 = new JLabel("PlaceHolder");
-	JLabel diceSlot5 = new JLabel("PlaceHolder");
+	JPanel selectedDiceHolder = new JPanel(new GridLayout(0, 5));
 
 	JLabel itemSlot1 = new JLabel("PlaceHolder");
 	JLabel itemSlot2 = new JLabel("PlaceHolder");
@@ -905,7 +901,7 @@ public class Gooey extends JPanel {
 		back.addActionListener(controller);
 		back.setActionCommand("Back");
 		back.setIcon(loadImage("backArrow"));
-		back.setPreferredSize(new Dimension(225,200));
+		back.setPreferredSize(new Dimension(225,130));
 		levelView.add(back,gbc);
 		gbc = new GridBagConstraints();
 		
@@ -1045,15 +1041,10 @@ public class Gooey extends JPanel {
 		// gbc.gridheight = 2;
 		gbc.weightx = 1.0;
 		gbc.fill = GridBagConstraints.BOTH;
-		JPanel diceHolder = new JPanel(new GridLayout(1, 5));
-		diceHolder.setPreferredSize(new Dimension(675,250));
-		diceHolder.setBackground(Color.MAGENTA);
-		diceHolder.add(diceSlot1);
-		diceHolder.add(diceSlot2);
-		diceHolder.add(diceSlot3);
-		diceHolder.add(diceSlot4);
-		diceHolder.add(diceSlot5);
-		levelView.add(diceHolder, gbc);
+
+		selectedDiceHolder.setPreferredSize(new Dimension(675,250));
+		selectedDiceHolder.setBackground(Color.MAGENTA);
+		levelView.add(selectedDiceHolder, gbc);
 		gbc = new GridBagConstraints();
 
 		// 5th row, 2nd column
@@ -1065,6 +1056,7 @@ public class Gooey extends JPanel {
 		gbc.anchor = GridBagConstraints.LINE_END;
 		JButton roll = new JButton();
 		roll.addActionListener(controller);
+		roll.setIcon(loadImage("RollButton"));
 		roll.setActionCommand("Roll");
 		levelView.add(roll, gbc);
 
@@ -1208,7 +1200,7 @@ public class Gooey extends JPanel {
 			JLabel label = new JLabel(loadImage(die.getFileName()));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
         	label.setVerticalAlignment(SwingConstants.CENTER);
-			label.addMouseListener(new DiceMouseListener(this, controller, model, label, die));
+			label.addMouseListener(new DiceMouseListener(this, controller, label, die));
 			panel.add(label, BorderLayout.CENTER);
 			diceZone.add(panel);
 		}
@@ -1218,29 +1210,17 @@ public class Gooey extends JPanel {
 	}
 
 	public void updateSelectedDice() {
+		selectedDiceHolder.removeAll();;
 		ArrayList<Die> selectedDice = controller.getSelectedDice();
 		for(int i = 0; i < selectedDice.size(); i++){
 			if(selectedDice.get(i) != null){
-				switch(i){
-					case 0:
-					diceSlot1.setIcon(loadImage(selectedDice.get(i).getFileName()));
-					break;
-					case 1:
-					diceSlot2 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
-					break;
-					case 2:
-					diceSlot3 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
-					break;
-					case 3:
-					diceSlot4 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
-					break;
-					case 4:
-					diceSlot5 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
-					break;
-
-				}
+			JLabel selectedDiceIcon = new JLabel(loadImage(selectedDice.get(i).getFileName()));
+			selectedDiceIcon.addMouseListener(new DiceMouseListener(this,controller,selectedDiceIcon,selectedDice.get(i)));
+			selectedDiceHolder.add(selectedDiceIcon);
 			}
 		}
+		selectedDiceHolder.revalidate(); // relayout
+		selectedDiceHolder.repaint(); 
 	}
 
 	public void selectedDiceHelper(int index){
