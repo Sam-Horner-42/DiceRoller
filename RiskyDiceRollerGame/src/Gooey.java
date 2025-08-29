@@ -112,7 +112,7 @@ public class Gooey extends JPanel {
 	}
 	
 	public void useMessageBoard(String text) {
-		Font myFont = new Font("Arial", Font.PLAIN, 20);
+		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
 		messageBoard.setText("");
 		messageBoard.setFont(myFont);
 		messageBoard.setText(text);
@@ -908,7 +908,7 @@ public class Gooey extends JPanel {
 
 	public void initLevelView() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		Font myFont = new Font("Arial", Font.PLAIN, 20);
+		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
 		levelView.setBackground(Color.black);
 		
 		// Top Row 1st Column
@@ -985,7 +985,7 @@ public class Gooey extends JPanel {
 		JPanel cRange = new JPanel(new BorderLayout());
 		cRange.setBackground(PURPLE);
 		cRange.setPreferredSize(new Dimension(225,100));
-		JLabel crange = new JLabel("Current Possible Range");
+		JLabel crange = new JLabel("Possible Range");
 		crange.setFont(myFont);
 		crange.setHorizontalAlignment(SwingConstants.CENTER);
 		crange.setVerticalAlignment(SwingConstants.CENTER);
@@ -1151,7 +1151,7 @@ public class Gooey extends JPanel {
 		// tsection, short for top section, just has the word dice on it
 		JPanel tSection = new JPanel(new BorderLayout());
 		JLabel dice = new JLabel("Dice");
-		Font myFont = new Font("Arial", Font.PLAIN, 20);
+		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
 		dice.setFont(myFont);
 		tSection.add(dice, BorderLayout.CENTER);
 		dice.setHorizontalAlignment(SwingConstants.CENTER);

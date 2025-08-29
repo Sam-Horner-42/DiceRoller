@@ -295,6 +295,13 @@ public class Model {
         }
     }
 
+    /* Deselects all the dice from the selected dice list */
+    public void deselectAll(){
+        if(!selectedDice.isEmpty()){
+            for(Die die: selectedDice) deselectDice(die);
+        }
+    }
+
     /* Calculates total potential damage based on all the currently selected dice */
     public int calculatePotentialMaxDamage(){
         int potentialMax = 0;
