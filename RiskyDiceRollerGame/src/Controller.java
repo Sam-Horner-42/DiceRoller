@@ -80,6 +80,10 @@ public class Controller implements ActionListener {
 		gooey.updateSelectedDice();
 	}
 
+	public void updatePossibleRange(){
+		//TODO add functionality to display possible range based on selected dice
+	}
+
 
 
 	@Override

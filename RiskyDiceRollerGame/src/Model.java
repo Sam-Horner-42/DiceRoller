@@ -299,8 +299,7 @@ public class Model {
     public int calculatePotentialMaxDamage(){
         int potentialMax = 0;
         if(selectedDice != null) {
-            for(int i = 0; i < selectedDice.size(); i++) {
-                Die die = selectedDice.get(i);
+            for(Die die: selectedDice) {
                 potentialMax += die.getNumSides();
             }
         }
@@ -313,9 +312,7 @@ public class Model {
     public int calculatePotentialMinDamage(){
         int potentialMin = 0;
         if(selectedDice != null) {
-            for(int i = 0; i < selectedDice.size(); i++) {
-                potentialMin++;
-            }
+            potentialMin = selectedDice.size();
         }
         return potentialMin;
     }

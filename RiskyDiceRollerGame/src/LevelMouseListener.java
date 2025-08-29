@@ -43,7 +43,7 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
-		System.out.println(model.getLevels().get(label).getName()); 
+		//System.out.println(model.getLevels().get(label).getName()); 
 		label.setIcon(view.loadImage(model.getLevels().get(label).getHoveredImgPath()));
 
 	}
