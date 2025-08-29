@@ -17,6 +17,9 @@ public class LevelMouseListener extends MouseAdapter {
 	private Controller controller;
 
 	private Level level;
+
+	
+	private Model model;
 	
 	/**
 	 * Constructor to initialize the LabelMouseListener.
@@ -25,9 +28,10 @@ public class LevelMouseListener extends MouseAdapter {
 	 * @param controller The game controller.
 	 * @param label The JLabel associated with the card.
 	 */
-	LevelMouseListener(Gooey view, Controller controller, JLabel label){
+	LevelMouseListener(Gooey view, Controller controller, Model model, JLabel label){
 		this.view = view;
 		this.controller = controller;
+		this.model = model;
 		this.label = label;
 	}
 
@@ -39,8 +43,8 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
-		System.out.println(controller.getLevels().get(label).getName()); 
-		label.setIcon(view.loadImage(controller.getLevels().get(label).getHoveredImgPath()));
+		System.out.println(model.getLevels().get(label).getName()); 
+		label.setIcon(view.loadImage(model.getLevels().get(label).getHoveredImgPath()));
 
 	}
 
@@ -52,7 +56,7 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
-		label.setIcon(view.loadImage(controller.getLevels().get(label).getDefaultImgPath()));
+		label.setIcon(view.loadImage(model.getLevels().get(label).getDefaultImgPath()));
 	}
 
 	/**
@@ -61,11 +65,11 @@ public class LevelMouseListener extends MouseAdapter {
 	 * @param e The mouse event triggered when the card is clicked.
 	 */
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		if((controller.getLevels().get(label).getIsLocked()) == false || controller.getLevels().get(label).getIsComplete()){
+	public void mousePressed(MouseEvent e) {
+		if((model.getLevels().get(label).getIsLocked()) == false && model.getLevels().get(label).getIsComplete() == false){
 			//TODO what happens when you click on a level
-			view.fillLevelInfo(controller.getLevels().get(label));
-			String message = "Roll Between " + controller.getLevels().get(label).getMinRange() + " And " + controller.getLevels().get(label).getMaxRange() 
+			view.fillLevelInfo(model.getLevels().get(label));
+			String message = "Roll Between " + model.getLevels().get(label).getMinRange() + " And " + model.getLevels().get(label).getMaxRange() 
 					+ " To Conquer this Kingdom!";
 			view.useMessageBoard(message);
 			view.changeMainArea();

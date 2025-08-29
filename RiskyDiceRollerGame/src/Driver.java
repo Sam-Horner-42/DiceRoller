@@ -16,13 +16,13 @@ public class Driver {
 
         gooey.setController(controller);
         gooey.setModel(model);
+
         model.setView(gooey);
-        
         model.genLevels();
 
-        controller.makeMapsAndList();
+        model.makeMapsAndList();
         model.populateLevelMap();
-
+        
         model.addStarterDice();
 
         gooey.initializeMainFrame();

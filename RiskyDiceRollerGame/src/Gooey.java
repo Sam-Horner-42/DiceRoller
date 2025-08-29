@@ -176,7 +176,7 @@ public class Gooey extends JPanel {
 		nw21.setPreferredSize(small_panel);
 		nw21.setOpaque(false);
 		nw21.add(peanut_cookie3);
-		peanut_cookie3.addMouseListener(new LevelMouseListener(this, controller,peanut_cookie3));
+		peanut_cookie3.addMouseListener(new LevelMouseListener(this, controller, model, peanut_cookie3));
 		northWestSection.add(nw21, inner);
 
 		// North West Bottom Left
@@ -332,7 +332,7 @@ public class Gooey extends JPanel {
 		nE11.setPreferredSize(small_panel);
 		nE11.setOpaque(false);
 		nE11.add(red_jelly3);
-		red_jelly3.addMouseListener(new LevelMouseListener(this, controller,red_jelly3));
+		red_jelly3.addMouseListener(new LevelMouseListener(this, controller, model, red_jelly3));
 		northEastSection.add(nE11, inner);
 
 		// North East Center Right
@@ -358,7 +358,7 @@ public class Gooey extends JPanel {
 		nE12.setPreferredSize(small_panel);
 		nE12.setOpaque(false);
 		nE12.add(red_jelly2);
-		red_jelly2.addMouseListener(new LevelMouseListener(this, controller,red_jelly2));
+		red_jelly2.addMouseListener(new LevelMouseListener(this, controller, model, red_jelly2));
 		northEastSection.add(nE12, inner);
 
 		// North East Bottom Right
@@ -401,7 +401,7 @@ public class Gooey extends JPanel {
 		W20.setPreferredSize(small_panel);
 		W20.setOpaque(false);
 		W20.add(peanut_cookie2);
-		peanut_cookie2.addMouseListener(new LevelMouseListener(this, controller,peanut_cookie2));
+		peanut_cookie2.addMouseListener(new LevelMouseListener(this, controller, model, peanut_cookie2));
 		westSection.add(W20, inner);
 
 		// West Center Left
@@ -419,7 +419,7 @@ public class Gooey extends JPanel {
 		W11.setPreferredSize(small_panel);
 		W11.setOpaque(false);
 		W11.add(peanut_cookie1);
-		peanut_cookie1.addMouseListener(new LevelMouseListener(this, controller,peanut_cookie1));
+		peanut_cookie1.addMouseListener(new LevelMouseListener(this, controller, model, peanut_cookie1));
 		westSection.add(W11, inner);
 
 		// West Center Right
@@ -478,7 +478,7 @@ public class Gooey extends JPanel {
 		C10.setPreferredSize(small_panel);
 		C10.setOpaque(false);
 		C10.add(red_jelly1);
-		red_jelly1.addMouseListener(new LevelMouseListener(this, controller,red_jelly1));
+		red_jelly1.addMouseListener(new LevelMouseListener(this, controller, model, red_jelly1));
 		centerSection.add(C10, inner);
 
 		// Center Top Right
@@ -488,7 +488,7 @@ public class Gooey extends JPanel {
 		C20.setPreferredSize(small_panel);
 		C20.setOpaque(false);
 		C20.add(macaron3);
-		macaron3.addMouseListener(new LevelMouseListener(this, controller,macaron3));
+		macaron3.addMouseListener(new LevelMouseListener(this, controller, model, macaron3));
 		centerSection.add(C20, inner);
 
 		// Center Center Left
@@ -603,7 +603,7 @@ public class Gooey extends JPanel {
 		E02.setPreferredSize(small_panel);
 		E02.setOpaque(false);
 		E02.add(fudge3);
-		fudge3.addMouseListener(new LevelMouseListener(this, controller,fudge3));
+		fudge3.addMouseListener(new LevelMouseListener(this, controller, model, fudge3));
 		eastSection.add(E02, inner);
 
 		// East Bottom Center
@@ -646,7 +646,7 @@ public class Gooey extends JPanel {
 		SW10.setPreferredSize(small_panel);
 		SW10.setOpaque(false);
 		SW10.add(chocoChip2);
-		chocoChip2.addMouseListener(new LevelMouseListener(this, controller,chocoChip2));
+		chocoChip2.addMouseListener(new LevelMouseListener(this, controller, model, chocoChip2));
 		southWestSection.add(SW10, inner);
 
 		// South West Top Right
@@ -680,7 +680,7 @@ public class Gooey extends JPanel {
 		SW21.setPreferredSize(small_panel);
 		SW21.setOpaque(false);
 		SW21.add(chocoChip3);
-		chocoChip3.addMouseListener(new LevelMouseListener(this, controller,chocoChip3));
+		chocoChip3.addMouseListener(new LevelMouseListener(this, controller, model, chocoChip3));
 		southWestSection.add(SW21, inner);
 
 		// South West Bottom Left
@@ -690,7 +690,7 @@ public class Gooey extends JPanel {
 		SW02.setPreferredSize(small_panel);
 		SW02.setOpaque(false);
 		SW02.add(chocoChip1);
-		chocoChip1.addMouseListener(new LevelMouseListener(this, controller,chocoChip1));
+		chocoChip1.addMouseListener(new LevelMouseListener(this, controller, model, chocoChip1));
 		southWestSection.add(SW02, inner);
 
 		// South West Bottom Center
@@ -725,7 +725,7 @@ public class Gooey extends JPanel {
 		S00.setPreferredSize(small_panel);
 		S00.setOpaque(false);
 		S00.add(macaron1);		
-		macaron1.addMouseListener(new LevelMouseListener(this, controller,macaron1));
+		macaron1.addMouseListener(new LevelMouseListener(this, controller, model, macaron1));
 		southSection.add(S00, inner);
 
 		// South Top Center
@@ -743,7 +743,7 @@ public class Gooey extends JPanel {
 		S20.setPreferredSize(small_panel);
 		S20.setOpaque(false);
 		S20.add(macaron2);		
-		macaron2.addMouseListener(new LevelMouseListener(this, controller,macaron2));
+		macaron2.addMouseListener(new LevelMouseListener(this, controller, model, macaron2));
 		southSection.add(S20, inner);
 
 		// South Center Left
@@ -761,7 +761,7 @@ public class Gooey extends JPanel {
 		S11.setPreferredSize(small_panel);
 		S11.setOpaque(false);
 		S11.add(chocoChip4);
-		chocoChip4.addMouseListener(new LevelMouseListener(this, controller,chocoChip4));
+		chocoChip4.addMouseListener(new LevelMouseListener(this, controller, model, chocoChip4));
 		southSection.add(S11, inner);
 
 		// South Center Right
@@ -836,7 +836,7 @@ public class Gooey extends JPanel {
 		SE01.setPreferredSize(small_panel);
 		SE01.setOpaque(false);
 		SE01.add(fudge2);
-		fudge2.addMouseListener(new LevelMouseListener(this, controller,fudge2));
+		fudge2.addMouseListener(new LevelMouseListener(this, controller, model, fudge2));
 		southEastSection.add(SE01, inner);
 
 		// South East Center
@@ -862,7 +862,7 @@ public class Gooey extends JPanel {
 		SE02.setPreferredSize(small_panel);
 		SE02.setOpaque(false);
 		SE02.add(fudge1);
-		fudge1.addMouseListener(new LevelMouseListener(this, controller,fudge1));
+		fudge1.addMouseListener(new LevelMouseListener(this, controller, model, fudge1));
 		southEastSection.add(SE02, inner);
 
 		// South East Bottom Center
@@ -1088,6 +1088,7 @@ public class Gooey extends JPanel {
 		tMaxRange.setText("" + levelMaxRange);
 		cMinRange.setText("" + 0);
 		cMaxRange.setText("" + 0);
+		
 	}
 	
 	public void fillLabelList() {
@@ -1112,9 +1113,9 @@ public class Gooey extends JPanel {
 	
 	public void updateLabels() {
 		for(int i=0;i<levelLabels.size();i++) {
-			boolean change = controller.getLevels().get(levelLabels.get(i)).getIsComplete();
+			boolean change = model.getLevels().get(levelLabels.get(i)).getIsComplete();
 			if(change) {
-				levelLabels.get(i).setIcon(loadImage(controller.getLevels().get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
+				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
 			}
 			
 		}
@@ -1190,7 +1191,7 @@ public class Gooey extends JPanel {
 	}
 
 	public void updateDiceZone() {
-		ArrayList<Die> playerDice = controller.getPlayerDice();
+		ArrayList<Die> playerDice = model.getPlayerDice();
 		Collections.sort(playerDice);
 
 		diceZone.removeAll(); // clear previous dice
@@ -1212,8 +1213,8 @@ public class Gooey extends JPanel {
 	public void updateSelectedDice() {
 		selectedDiceHolder.removeAll();
 
-		ArrayList<Die> selectedDice = controller.getSelectedDice();
-		
+		ArrayList<Die> selectedDice = model.getSelectedDice();
+
 		for(int i = 0; i < selectedDice.size(); i++){
 			if(selectedDice.get(i) != null){
 			JLabel selectedDiceIcon = new JLabel(loadImage(selectedDice.get(i).getFileName()));

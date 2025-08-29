@@ -53,13 +53,7 @@ public class Controller implements ActionListener {
 		this.selectedDice = selectedDice;
 	}
 	
-	public void makeMapsAndList(){
-		levels = model.getLevels();
-		levelData = model.getLevelData();
-
-		playerDice = model.getPlayerDice();
-		selectedDice = model.getSelectedDice();
-	}
+	
 	
 
 	public void setModel(Model model){
@@ -86,7 +80,7 @@ public class Controller implements ActionListener {
 		gooey.updateSelectedDice();
 	}
 
-	
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

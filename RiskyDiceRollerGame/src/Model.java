@@ -38,8 +38,8 @@ public class Model {
     private ArrayList<Item> playerItems; // currently held items
     private ArrayList<Item> selectedItems; // items currently selected
 
-    public HashMap<JLabel, Level> levels = new HashMap<>(); // stores all the different levels associated with their IDs
-    public ArrayList<Level> levelData = new ArrayList<>(); 
+    private HashMap<JLabel, Level> levels; // stores all the different levels associated with their IDs
+    private ArrayList<Level> levelData; 
 
     /* Constructs the lists that store currently held and selected dice/items */
     public Model(){
@@ -163,10 +163,10 @@ public class Model {
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
         Level choco2 = new Level("Death By Chocolate", "chocoChip", "chocoChipHovered", "chocoChipLocked", 1, false, 2, 8, true);
         Level choco3 = new Level("choco3", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, true);
-        Level choco4 = new Level("choco4", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 1, 6, true);
+        Level choco4 = new Level("choco4", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, true, 1, 6, true);
         
-        Level macaron1 = new Level("macaron1", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
-        Level macaron2 = new Level("macaron2", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
+        Level macaron1 = new Level("macaron1", "macaron", "macaronHovered", "macaronLocked", 2, true, 1, 6, true);
+        Level macaron2 = new Level("macaron2", "macaron", "macaronHovered", "macaronLocked", 2, true, 1, 6, true);
         Level macaron3 = new Level("macaron3", "macaron", "macaronHovered", "macaronLocked", 3, false, 1, 6, true);
         
         Level checker1 = new Level("checker1", "fudge", "fudgeHovered", "fudgeLocked",3, false, 1, 6, true);
@@ -229,7 +229,12 @@ public class Model {
 		levels.put(gooey.red_jelly3, levelData.get(15));
 	}
 
-	
+	public void makeMapsAndList(){
+		levels = new HashMap<>();
+
+		playerDice = new ArrayList<>();
+		selectedDice = new ArrayList<>();
+	}
 	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
     public void addStarterDice(){
         

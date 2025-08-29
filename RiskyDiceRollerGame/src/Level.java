@@ -9,6 +9,7 @@ public class Level {
     String hoveredImgPath;
     String lockedImgPath;
     boolean isLocked;
+    
 
     /* Holds the level ID to get from the hashmap, the levels name, the two seperate image icons for the different paths */
     public Level(String name, String defaultImgPath, String hoveredImgPath, String lockedImgPath, int difficulty, boolean isComplete, int minRange, int maxRange, boolean isLocked) {
