@@ -28,7 +28,6 @@ public class Gooey extends JPanel {
 	JLabel macaron2 = new JLabel(loadImage("macaron"));
 	JLabel macaron3 = new JLabel(loadImage("macaron"));
 
-
 	// fudge islands
 	JLabel fudge1 = new JLabel(loadImage("fudge"));
 	JLabel fudge2 = new JLabel(loadImage("fudge"));

@@ -40,7 +40,9 @@ public class LabelMouseListener extends MouseAdapter {
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
 		if(level != null)
-			label.setIcon(view.loadImage(level.getHoveredImgPath()));
+			//label.setIcon(view.loadImage(level.getHoveredImgPath()));
+			System.out.println(controller.levels.get(label)); // Gooey needs an updated Controller
+
 		
 	}
 
