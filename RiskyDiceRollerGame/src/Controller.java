@@ -95,7 +95,7 @@ public class Controller implements ActionListener {
 				model.rollDice();
 				break;
 			case "Back":
-				model.deselectAll(); // deselect all currently selected dice
+				
 				gooey.changeMainArea();
 				break;
 			default:
