@@ -2,7 +2,6 @@
 public class Level {
     private String name;
     private int difficulty;
-    private String levelID;
     private boolean levelComplete;
     private int minRange;
     private int maxRange;
@@ -10,26 +9,16 @@ public class Level {
     String hoveredImgPath;
 
     /* Holds the level ID to get from the hashmap, the levels name, the two seperate image icons for the different paths */
-    public Level(String levelId, String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange) {
-        this.levelID = levelId;
+    public Level(String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange) {
         this.name = name;
-        this.defaultImgPath = "assets/" + name + ".png";
-        this.hoveredImgPath = "assets/hovered" + name + ".png";
+        this.defaultImgPath = defaultImgPath;
+        this.hoveredImgPath = hoveredImgPath;
         this.difficulty = difficulty;
         this.levelComplete = levelComplete;
         this.minRange = minRange;
         this.maxRange = maxRange;
     }
 
-    public Level(String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange) {
-        this.name = name;
-        this.defaultImgPath = "assets/" + name + ".png";
-        this.hoveredImgPath = "assets/hovered" + name + ".png";
-        this.difficulty = difficulty;
-        this.levelComplete = levelComplete;
-        this.minRange = minRange;
-        this.maxRange = maxRange;
-    }
 
     public String getName() {
         return name;
@@ -47,13 +36,6 @@ public class Level {
         this.difficulty = difficulty;
     }
 
-    public String getLevelID() {
-        return levelID;
-    }
-
-    public void setLevelID(String levelID) {
-        this.levelID = levelID;
-    }
 
     public boolean isLevelComplete() {
         return levelComplete;
