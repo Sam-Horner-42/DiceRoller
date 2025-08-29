@@ -112,6 +112,16 @@ public class Controller implements ActionListener {
 	public ArrayList<Die> getPlayerDice(){
 		return model.getPlayerDice();
 	}
+	
+	// will call model's add dice method
+	public void chooseDice(Die dice) {
+		if(!dice.getIsSelected()) {
+		model.selectDice(dice);
+		}
+		else {
+		model.deselectDice(dice);
+		}
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
