@@ -10,10 +10,11 @@ public class Gooey extends JPanel {
 	JFrame frame = new JFrame();
 	ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/mapBackground.png"));
 	ImagePanel map = new ImagePanel(bgIcon, new GridBagLayout());
-	JPanel rightSection = new JPanel(new BorderLayout());
+	JPanel rightSection = new JPanel(new GridBagLayout());
 	JPanel diceZone = new JPanel(new GridLayout());
-	JPanel bSection = new JPanel();
-	JLabel bottomText = new JLabel("example text");
+	JPanel itemZone = new JPanel(new GridLayout());
+	JPanel bSection = new JPanel(new BorderLayout());
+	JLabel bottomText = new JLabel("Items");
 	Controller controller;
 
 	// chocolate chip islands
@@ -841,11 +842,14 @@ public class Gooey extends JPanel {
 		// overarching panel containing our 3 components
 		rightSection.setBackground(Color.blue);
 		rightSection.setPreferredSize(new Dimension(300, 0));
+		GridBagConstraints gbc = new GridBagConstraints();
 
 		// diceZone is where the dice will be displayed in the right panel, we can add
 		// things to it as it is not a local variable
 		diceZone.setBackground(Color.green);
-		diceZone.setPreferredSize(new Dimension(200, 100));
+		diceZone.setPreferredSize(new Dimension(300, 300));
+		itemZone.setBackground(Color.green);
+		itemZone.setPreferredSize(new Dimension(300, 300));
 
 		// tsection, short for top section, just has the word dice on it
 		JPanel tSection = new JPanel(new BorderLayout());
@@ -855,13 +859,13 @@ public class Gooey extends JPanel {
 		tSection.add(dice, BorderLayout.CENTER);
 		dice.setHorizontalAlignment(SwingConstants.CENTER);
 		dice.setVerticalAlignment(SwingConstants.CENTER);
-		tSection.setBackground(Color.blue);
-		tSection.setPreferredSize(new Dimension(200, 150));
+		tSection.setBackground(Color.YELLOW);
+		tSection.setPreferredSize(new Dimension(300, 50));
 
 		// bsection, bottom section, since we need to add info to this, it can't be
 		// local
-		bSection.setBackground(Color.blue);
-		bSection.setPreferredSize(new Dimension(200, 100));
+		bSection.setBackground(Color.RED);
+		bSection.setPreferredSize(new Dimension(300, 50));
 		bottomText.setFont(myFont);
 		bSection.add(bottomText, BorderLayout.CENTER);
 		bottomText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -870,11 +874,28 @@ public class Gooey extends JPanel {
 		// placed dicezone in it
 		JScrollPane diceScroll = new JScrollPane(diceZone, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane itemScroll = new JScrollPane(itemZone, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		diceScroll.setPreferredSize(new Dimension(300,300));
+		itemScroll.setPreferredSize(new Dimension(300,300));
+
 
 		// we add everythin to the overarching right panel, then add it to the frame
-		rightSection.add(tSection, BorderLayout.NORTH);
-		rightSection.add(diceScroll, BorderLayout.CENTER);
-		rightSection.add(bSection, BorderLayout.SOUTH);
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		
+		rightSection.add(tSection, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		rightSection.add(diceScroll, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		rightSection.add(bSection, gbc);
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		gbc.fill = GridBagConstraints.VERTICAL;
+		gbc.weighty = 1;
+		rightSection.add(itemScroll, gbc);
 		frame.add(rightSection, BorderLayout.EAST);
 	}
 
