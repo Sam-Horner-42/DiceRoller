@@ -6,18 +6,25 @@ public class Level {
     private boolean levelComplete;
     private int minRange;
     private int maxRange;
+    String defaultImgPath;
+    String hoveredImgPath;
 
-    public Level(String levelId, String name, int difficulty, boolean levelComplete, int minRange, int maxRange) {
+    /* Holds the level ID to get from the hashmap, the levels name, the two seperate image icons for the different paths */
+    public Level(String levelId, String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange) {
         this.levelID = levelId;
         this.name = name;
+        this.defaultImgPath = "assets/" + name + ".png";
+        this.hoveredImgPath = "assets/hovered" + name + ".png";
         this.difficulty = difficulty;
         this.levelComplete = levelComplete;
         this.minRange = minRange;
         this.maxRange = maxRange;
     }
 
-    public Level(String name, int difficulty, boolean levelComplete, int minRange, int maxRange) {
+    public Level(String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange) {
         this.name = name;
+        this.defaultImgPath = "assets/" + name + ".png";
+        this.hoveredImgPath = "assets/hovered" + name + ".png";
         this.difficulty = difficulty;
         this.levelComplete = levelComplete;
         this.minRange = minRange;
@@ -71,6 +78,24 @@ public class Level {
     public void setMaxRange(int maxRange) {
         this.maxRange = maxRange;
     }
+
+    public String getDefaultImgPath(){
+        return defaultImgPath;
+    }
+
+    public void setDefaultImgPath(String defaultImgPath){
+        this.defaultImgPath = defaultImgPath;
+    }
+
+    public String getHoveredImgPath(){
+        return defaultImgPath;
+    }
+
+    public void setHoveredImgPath(String defaultImgPath){
+        this.defaultImgPath = defaultImgPath;
+    }
+
+
 
 
 

@@ -15,6 +15,8 @@ public class LabelMouseListener extends MouseAdapter {
 	 * Reference to the Controller for game actions
 	 */
 	private Controller controller;
+
+	private Level level;
 	
 	/**
 	 * Constructor to initialize the LabelMouseListener.
@@ -37,6 +39,7 @@ public class LabelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
+		label.setIcon(view.loadImage(level.getHoveredImgPath()));
 		/*if (view.getSelectedLevel() != level) {
 			levelLabel.setIcon(view.loadLevelImage(level.getName())); // Show full card on hover
 		} 
@@ -52,6 +55,7 @@ public class LabelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
+		label.setIcon(view.loadImage(level.getDefaultImgPath()));
 	}
 
 	/**
