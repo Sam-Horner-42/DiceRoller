@@ -35,7 +35,7 @@ public class Gooey extends JPanel {
 	JLabel itemSlot1 = new JLabel("PlaceHolder");
 	JLabel itemSlot2 = new JLabel("PlaceHolder");
 	JLabel itemSlot3 = new JLabel("PlaceHolder");
-
+	JTextPane messageBoard = new JTextPane();
 	JPanel diceZone = new JPanel(new GridLayout(0,2));
 	JPanel itemZone = new JPanel(new GridLayout());
 	Window popup = new JWindow(frame);
@@ -99,6 +99,11 @@ public class Gooey extends JPanel {
 		popupLabel.setText(text);
 	}
 	
+	public void useMessageBoard(String text) {
+		messageBoard.setText("");
+		messageBoard.setText(text);
+
+	}
 
 	public void setController(Controller controller) {
 		this.controller = controller;
@@ -1004,9 +1009,8 @@ public class Gooey extends JPanel {
 		//gbc.gridheight = 2;
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
-		JPanel diceItemHolder = new JPanel(new GridLayout(2, 1));
-		diceItemHolder.setPreferredSize(new Dimension(675,500));
 		JPanel itemHolder = new JPanel(new GridLayout(1, 3));
+		itemHolder.setPreferredSize(new Dimension(675,250));
 		JPanel itemSlot1Holder = new JPanel(new BorderLayout());
 		JPanel itemSlot2Holder = new JPanel(new BorderLayout());
 		JPanel itemSlot3Holder = new JPanel(new BorderLayout());
@@ -1017,34 +1021,54 @@ public class Gooey extends JPanel {
 		itemSlot2Holder.add(itemSlot2, BorderLayout.CENTER);
 		itemHolder.add(itemSlot3Holder);
 		itemSlot3Holder.add(itemSlot3, BorderLayout.CENTER);
-		diceItemHolder.add(itemHolder);
+		levelView.add(itemHolder,gbc);
+		gbc = new GridBagConstraints();
+
+		// 4th row, Second column
+		gbc.gridx = 2;
+		gbc.gridy = 3;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.LINE_END;
+		messageBoard.setEditable(false);
+		messageBoard.setPreferredSize(new Dimension(225,250));
+		messageBoard.setBackground(Color.black);
+		messageBoard.setForeground(Color.white);
+		levelView.add(messageBoard, gbc);
+		gbc = new GridBagConstraints();
+
+		// 5th row, First column pls
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.gridwidth = 2;
+		// gbc.gridheight = 2;
+		gbc.weightx = 1.0;
+		gbc.fill = GridBagConstraints.BOTH;
 		JPanel diceHolder = new JPanel(new GridLayout(1, 5));
+		diceHolder.setPreferredSize(new Dimension(675,250));
 		diceHolder.setBackground(Color.MAGENTA);
 		diceHolder.add(diceSlot1);
 		diceHolder.add(diceSlot2);
 		diceHolder.add(diceSlot3);
 		diceHolder.add(diceSlot4);
 		diceHolder.add(diceSlot5);
-		diceItemHolder.add(diceHolder);
-		levelView.add(diceItemHolder, gbc);
+		levelView.add(diceHolder, gbc);
 		gbc = new GridBagConstraints();
 
-		// 4th row, 2nd column
+		// 5th row, 2nd column
 		gbc.gridx = 2;
-		gbc.gridy = 3;
+		gbc.gridy = 4;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		//gbc.gridheight = 2;
 		gbc.fill = GridBagConstraints.BOTH;
-
-
 		gbc.anchor = GridBagConstraints.LINE_END;
 		JButton roll = new JButton();
-		//roll.setPreferredSize(new Dimension(225, 500));
+		roll.addActionListener(controller);
+		roll.setActionCommand("Roll");
 		levelView.add(roll, gbc);
 
 		mainArea.add(levelView, "level");
-
 	}
 
 	public void addMainArea() {
