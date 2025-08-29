@@ -66,7 +66,8 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		//TODO what happens when you click on a level
+		//TODO what happens when you click on a dice
+		//model.selectDice();
 	}
 	
 	

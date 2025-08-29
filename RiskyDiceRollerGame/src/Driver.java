@@ -14,6 +14,7 @@ public class Driver {
         controller.makeMapsAndList();
         controller.populateLevelMap();
         gooey.initializeMainFrame();
+        gooey.updateDiceZone();
 
         model.addStarterDice();
         System.out.println("Dice @ Start " + model.getPlayerDice());

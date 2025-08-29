@@ -1058,7 +1058,7 @@ public class Gooey extends JPanel {
 			}
 			
 		}
-		}
+	}
 	
 	/*
 	 * Creates right panel
@@ -1128,7 +1128,13 @@ public class Gooey extends JPanel {
 	}
 
 	public void updateDiceZone() {
-
+		//ArrayList<Die> playerDice = model.getPlayerDice();
+		//Collections.sort(playerDice);
+		/* for (Die die : playerDice) {
+			JLabel label = new JLabel(die.getName());
+			diceZone.add(label);
+		}*/
+		
 	}
 
 	public ImageIcon loadImage(String dieName) {
