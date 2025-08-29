@@ -2,6 +2,8 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -10,20 +12,36 @@ public class Gooey extends JPanel {
 	JFrame frame = new JFrame();
 	ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/mapBackground.png"));
 	ImagePanel map = new ImagePanel(bgIcon, new GridBagLayout());
-	JPanel rightSection = new JPanel(new GridBagLayout());
+	JPanel mainArea = new JPanel(new CardLayout());
+	JPanel levelView = new JPanel(new GridBagLayout());
+	JLabel cityName = new JLabel("PlaceHolder");
+	JLabel tMinRange = new JLabel("PlaceHolder");
+	JLabel tMaxRange = new JLabel("PlaceHolder");
+	JLabel cMinRange = new JLabel("PlaceHolder");
+	JLabel cMaxRange = new JLabel("PlaceHolder");
+	JLabel diceSlot1 = new JLabel("PlaceHolder");
+	JLabel diceSlot2 = new JLabel("PlaceHolder");
+	JLabel diceSlot3 = new JLabel("PlaceHolder");
+	JLabel diceSlot4 = new JLabel("PlaceHolder");
+	JLabel diceSlot5 = new JLabel("PlaceHolder");
+	JLabel itemSlot1 = new JLabel("PlaceHolder");
+	JLabel itemSlot2 = new JLabel("PlaceHolder");
+	JLabel itemSlot3 = new JLabel("PlaceHolder");
+
 	JPanel diceZone = new JPanel(new GridLayout());
 	JPanel itemZone = new JPanel(new GridLayout());
-	JPanel bSection = new JPanel(new BorderLayout());
-	JLabel bottomText = new JLabel("Items");
+	
+	ArrayList<JLabel> levelLabels = new ArrayList<>();
+	boolean labelListFilled = false;
+	boolean mapOnScreen = true;
 	Controller controller;
-
+	Model model;
 	// chocolate chip islands
 	JLabel chocoChip1 = new JLabel(loadImage("chocoChip"));
 	JLabel chocoChip2 = new JLabel(loadImage("chocoChip"));
 	JLabel chocoChip3 = new JLabel(loadImage("chocoChip"));
 	JLabel chocoChip4 = new JLabel(loadImage("chocoChip"));
-
-
+	
 	// macaron islands
 	JLabel macaron1 = new JLabel(loadImage("macaron"));
 	JLabel macaron2 = new JLabel(loadImage("macaron"));
@@ -44,7 +62,7 @@ public class Gooey extends JPanel {
 	JLabel red_jelly1 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly2 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly3 = new JLabel(loadImage("red_jelly"));
-
+	
 
 
 	/**
@@ -59,6 +77,13 @@ public class Gooey extends JPanel {
 		frame.setResizable(false);
 		frame.setLayout(new BorderLayout());
 	}
+	
+	
+
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+
 
 	/*
 	 * Makes Game map
@@ -123,7 +148,7 @@ public class Gooey extends JPanel {
 		nw21.setPreferredSize(small_panel);
 		nw21.setOpaque(false);
 		nw21.add(peanut_cookie3);
-		peanut_cookie3.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie3));
+		peanut_cookie3.addMouseListener(new LevelMouseListener(this, controller,peanut_cookie3));
 		northWestSection.add(nw21, inner);
 
 		// North West Bottom Left
@@ -279,7 +304,7 @@ public class Gooey extends JPanel {
 		nE11.setPreferredSize(small_panel);
 		nE11.setOpaque(false);
 		nE11.add(red_jelly3);
-		red_jelly3.addMouseListener(new LabelMouseListener(this, controller,red_jelly3));
+		red_jelly3.addMouseListener(new LevelMouseListener(this, controller,red_jelly3));
 		northEastSection.add(nE11, inner);
 
 		// North East Center Right
@@ -305,7 +330,7 @@ public class Gooey extends JPanel {
 		nE12.setPreferredSize(small_panel);
 		nE12.setOpaque(false);
 		nE12.add(red_jelly2);
-		red_jelly2.addMouseListener(new LabelMouseListener(this, controller,red_jelly2));
+		red_jelly2.addMouseListener(new LevelMouseListener(this, controller,red_jelly2));
 		northEastSection.add(nE12, inner);
 
 		// North East Bottom Right
@@ -348,7 +373,7 @@ public class Gooey extends JPanel {
 		W20.setPreferredSize(small_panel);
 		W20.setOpaque(false);
 		W20.add(peanut_cookie2);
-		peanut_cookie2.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie2));
+		peanut_cookie2.addMouseListener(new LevelMouseListener(this, controller,peanut_cookie2));
 		westSection.add(W20, inner);
 
 		// West Center Left
@@ -366,7 +391,7 @@ public class Gooey extends JPanel {
 		W11.setPreferredSize(small_panel);
 		W11.setOpaque(false);
 		W11.add(peanut_cookie1);
-		peanut_cookie1.addMouseListener(new LabelMouseListener(this, controller,peanut_cookie1));
+		peanut_cookie1.addMouseListener(new LevelMouseListener(this, controller,peanut_cookie1));
 		westSection.add(W11, inner);
 
 		// West Center Right
@@ -425,7 +450,7 @@ public class Gooey extends JPanel {
 		C10.setPreferredSize(small_panel);
 		C10.setOpaque(false);
 		C10.add(red_jelly1);
-		red_jelly1.addMouseListener(new LabelMouseListener(this, controller,red_jelly1));
+		red_jelly1.addMouseListener(new LevelMouseListener(this, controller,red_jelly1));
 		centerSection.add(C10, inner);
 
 		// Center Top Right
@@ -435,7 +460,7 @@ public class Gooey extends JPanel {
 		C20.setPreferredSize(small_panel);
 		C20.setOpaque(false);
 		C20.add(macaron3);
-		macaron3.addMouseListener(new LabelMouseListener(this, controller,macaron3));
+		macaron3.addMouseListener(new LevelMouseListener(this, controller,macaron3));
 		centerSection.add(C20, inner);
 
 		// Center Center Left
@@ -550,7 +575,7 @@ public class Gooey extends JPanel {
 		E02.setPreferredSize(small_panel);
 		E02.setOpaque(false);
 		E02.add(fudge3);
-		fudge3.addMouseListener(new LabelMouseListener(this, controller,fudge3));
+		fudge3.addMouseListener(new LevelMouseListener(this, controller,fudge3));
 		eastSection.add(E02, inner);
 
 		// East Bottom Center
@@ -593,7 +618,7 @@ public class Gooey extends JPanel {
 		SW10.setPreferredSize(small_panel);
 		SW10.setOpaque(false);
 		SW10.add(chocoChip2);
-		chocoChip2.addMouseListener(new LabelMouseListener(this, controller,chocoChip2));
+		chocoChip2.addMouseListener(new LevelMouseListener(this, controller,chocoChip2));
 		southWestSection.add(SW10, inner);
 
 		// South West Top Right
@@ -627,7 +652,7 @@ public class Gooey extends JPanel {
 		SW21.setPreferredSize(small_panel);
 		SW21.setOpaque(false);
 		SW21.add(chocoChip3);
-		chocoChip3.addMouseListener(new LabelMouseListener(this, controller,chocoChip3));
+		chocoChip3.addMouseListener(new LevelMouseListener(this, controller,chocoChip3));
 		southWestSection.add(SW21, inner);
 
 		// South West Bottom Left
@@ -637,7 +662,7 @@ public class Gooey extends JPanel {
 		SW02.setPreferredSize(small_panel);
 		SW02.setOpaque(false);
 		SW02.add(chocoChip1);
-		chocoChip1.addMouseListener(new LabelMouseListener(this, controller,chocoChip1));
+		chocoChip1.addMouseListener(new LevelMouseListener(this, controller,chocoChip1));
 		southWestSection.add(SW02, inner);
 
 		// South West Bottom Center
@@ -672,7 +697,7 @@ public class Gooey extends JPanel {
 		S00.setPreferredSize(small_panel);
 		S00.setOpaque(false);
 		S00.add(macaron1);		
-		macaron1.addMouseListener(new LabelMouseListener(this, controller,macaron1));
+		macaron1.addMouseListener(new LevelMouseListener(this, controller,macaron1));
 		southSection.add(S00, inner);
 
 		// South Top Center
@@ -690,7 +715,7 @@ public class Gooey extends JPanel {
 		S20.setPreferredSize(small_panel);
 		S20.setOpaque(false);
 		S20.add(macaron2);		
-		macaron2.addMouseListener(new LabelMouseListener(this, controller,macaron2));
+		macaron2.addMouseListener(new LevelMouseListener(this, controller,macaron2));
 		southSection.add(S20, inner);
 
 		// South Center Left
@@ -708,7 +733,7 @@ public class Gooey extends JPanel {
 		S11.setPreferredSize(small_panel);
 		S11.setOpaque(false);
 		S11.add(chocoChip4);
-		chocoChip4.addMouseListener(new LabelMouseListener(this, controller,chocoChip4));
+		chocoChip4.addMouseListener(new LevelMouseListener(this, controller,chocoChip4));
 		southSection.add(S11, inner);
 
 		// South Center Right
@@ -783,7 +808,7 @@ public class Gooey extends JPanel {
 		SE01.setPreferredSize(small_panel);
 		SE01.setOpaque(false);
 		SE01.add(fudge2);
-		fudge2.addMouseListener(new LabelMouseListener(this, controller,fudge2));
+		fudge2.addMouseListener(new LevelMouseListener(this, controller,fudge2));
 		southEastSection.add(SE01, inner);
 
 		// South East Center
@@ -809,7 +834,7 @@ public class Gooey extends JPanel {
 		SE02.setPreferredSize(small_panel);
 		SE02.setOpaque(false);
 		SE02.add(fudge1);
-		fudge1.addMouseListener(new LabelMouseListener(this, controller,fudge1));
+		fudge1.addMouseListener(new LevelMouseListener(this, controller,fudge1));
 		southEastSection.add(SE02, inner);
 
 		// South East Bottom Center
@@ -832,14 +857,202 @@ public class Gooey extends JPanel {
 		outer.gridy = 2;
 		map.add(southEastSection, outer);
 
-		frame.add(map, BorderLayout.CENTER);
+		mainArea.add(map, "map");
 	}
 
+	public void initLevelView() {
+		GridBagConstraints gbc = new GridBagConstraints();
+		Font myFont = new Font("Arial", Font.PLAIN, 20);
+		
+		// Top Row 1st Column
+		gbc.gridx = 0; gbc.gridy = 0;
+		gbc.weightx = 0.1; gbc.weighty = 0.2;
+		JButton back = new JButton();
+		back.setIcon(loadImage("backArrow"));
+		back.setPreferredSize(new Dimension(90,180));
+		levelView.add(back,gbc);
+		
+		// Top Row 2nd Column
+		gbc.gridx = 1;
+		gbc.weightx = 0.9;
+		gbc.fill = GridBagConstraints.BOTH;
+		JPanel namePanel = new JPanel(new BorderLayout());
+		namePanel.setBackground(Color.cyan);
+		namePanel.add(cityName,BorderLayout.CENTER);
+		cityName.setFont(myFont);
+		cityName.setHorizontalAlignment(SwingConstants.CENTER);
+		cityName.setVerticalAlignment(SwingConstants.CENTER);
+		levelView.add(namePanel,gbc);
+		
+		// Second Row 1st Column
+		gbc.gridx = 0; gbc.gridy = 1;
+		gbc.weightx = 0.1;
+		JPanel tRange = new JPanel(new BorderLayout());
+		tRange.setBackground(Color.RED);
+		JLabel trange = new JLabel("Target Range");
+		trange.setFont(myFont);
+		trange.setHorizontalAlignment(SwingConstants.CENTER);
+		trange.setVerticalAlignment(SwingConstants.CENTER);
+		tRange.add(trange, BorderLayout.CENTER);
+		levelView.add(tRange,gbc);
+		
+		// 2nd Row 2nd Column
+		gbc.gridx = 1; gbc.gridy = 1; gbc.weightx = 0.9;
+		JPanel tRangePanel = new JPanel(new GridLayout());
+		tRangePanel.setBackground(Color.GREEN);
+		JLabel dash1 = new JLabel("To");
+		dash1.setFont(myFont);
+		dash1.setHorizontalAlignment(SwingConstants.CENTER);
+		dash1.setVerticalAlignment(SwingConstants.CENTER);
+		tMinRange.setFont(myFont);
+		tMinRange.setHorizontalAlignment(SwingConstants.CENTER);
+		tMinRange.setVerticalAlignment(SwingConstants.CENTER);
+		tMaxRange.setFont(myFont);
+		tMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
+		tMaxRange.setVerticalAlignment(SwingConstants.CENTER);
+		tRangePanel.add(tMinRange);
+		tRangePanel.add(dash1);
+		tRangePanel.add(tMaxRange);
+		levelView.add(tRangePanel, gbc);
+
+		// 3rd Row 1st Column
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		gbc.weightx = 0.1;
+		JPanel cRange = new JPanel(new BorderLayout());
+		cRange.setBackground(Color.BLUE);
+		JLabel crange = new JLabel("Current Possible Range");
+		crange.setFont(myFont);
+		crange.setHorizontalAlignment(SwingConstants.CENTER);
+		crange.setVerticalAlignment(SwingConstants.CENTER);
+		cRange.add(crange, BorderLayout.CENTER);
+		levelView.add(cRange, gbc);
+
+		// 3rd Row 2nd Column
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		gbc.weightx = 0.9;
+		JPanel cRangePanel = new JPanel(new GridLayout());
+		cRangePanel.setBackground(Color.GRAY);
+		JLabel dash2 = new JLabel("To");
+		dash2.setFont(myFont);
+		dash2.setHorizontalAlignment(SwingConstants.CENTER);
+		dash2.setVerticalAlignment(SwingConstants.CENTER);
+		cMinRange.setFont(myFont);
+		cMinRange.setHorizontalAlignment(SwingConstants.CENTER);
+		cMinRange.setVerticalAlignment(SwingConstants.CENTER);
+		cMaxRange.setFont(myFont);
+		cMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
+		cMaxRange.setVerticalAlignment(SwingConstants.CENTER);
+		cRangePanel.add(cMinRange);
+		cRangePanel.add(dash2);
+		cRangePanel.add(cMaxRange);
+		levelView.add(cRangePanel, gbc);
+		
+		// 4th row, First column
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		gbc.weightx = 0.9;
+		gbc.weighty = 0.4;
+		JPanel diceItemHolder = new JPanel(new GridLayout(2,1));
+		JPanel itemHolder = new JPanel(new GridLayout(1,3));
+		JPanel itemSlot1Holder = new JPanel(new BorderLayout());
+		JPanel itemSlot2Holder = new JPanel(new BorderLayout());
+		JPanel itemSlot3Holder = new JPanel(new BorderLayout());
+		itemHolder.setBackground(Color.PINK);
+		itemHolder.add(itemSlot1Holder);
+		itemSlot1Holder.add(itemSlot1,BorderLayout.CENTER);
+		itemHolder.add(itemSlot2Holder);
+		itemSlot2Holder.add(itemSlot2,BorderLayout.CENTER);
+		itemHolder.add(itemSlot3Holder);
+		itemSlot3Holder.add(itemSlot3,BorderLayout.CENTER);
+		diceItemHolder.add(itemHolder);
+		JPanel diceHolder = new JPanel(new GridLayout(1,5));
+		diceHolder.setBackground(Color.MAGENTA);
+		diceHolder.add(diceSlot1);
+		diceHolder.add(diceSlot2);
+		diceHolder.add(diceSlot3);
+		diceHolder.add(diceSlot4);
+		diceHolder.add(diceSlot5);
+		diceItemHolder.add(diceHolder);
+		levelView.add(diceItemHolder, gbc);
+		
+		
+		// 4th row, 2nd column
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		gbc.weightx = 0.1;
+		gbc.weighty = 0.4;
+		JPanel rollPanel = new JPanel(new BorderLayout());
+		rollPanel.setBackground(Color.RED);
+		JButton roll = new JButton();
+		rollPanel.add(roll, BorderLayout.CENTER);
+		levelView.add(rollPanel,gbc);
+
+		
+
+		
+
+		mainArea.add(levelView, "level");
+
+	}
+	
+	public void addMainArea() {
+		frame.add(mainArea, BorderLayout.CENTER);
+	}
+	
+	public void changeMainArea() {
+		CardLayout cl = (CardLayout) mainArea.getLayout();
+		if(mapOnScreen) {
+		cl.show(mainArea, "level");
+		mapOnScreen = false;
+		}
+		else {
+			cl.show(mainArea, "map");
+			mapOnScreen = true;
+		}
+	}
+	
+	public void fillLevelInfo(Level level) {
+		
+	}
+	
+	public void fillLabelList() {
+		levelLabels.add(chocoChip1);
+		levelLabels.add(chocoChip2);
+		levelLabels.add(chocoChip3);
+		levelLabels.add(chocoChip4);
+		levelLabels.add(macaron1);
+		levelLabels.add(macaron2);
+		levelLabels.add(macaron3);
+		levelLabels.add(fudge1);
+		levelLabels.add(fudge2);
+		levelLabels.add(fudge3);
+		levelLabels.add(peanut_cookie1);
+		levelLabels.add(peanut_cookie2);
+		levelLabels.add(peanut_cookie3);
+		levelLabels.add(red_jelly1);
+		levelLabels.add(red_jelly2);
+		levelLabels.add(red_jelly3);
+		labelListFilled = true;
+	}
+	
+	public void updateLabels() {
+		for(int i=0;i<levelLabels.size();i++) {
+			boolean change = controller.levels.get(levelLabels.get(i)).isLevelComplete();
+			if(change) {
+				levelLabels.get(i).setIcon(loadImage(controller.levels.get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
+			}
+			
+		}
+		}
+	
 	/*
 	 * Creates right panel
 	 */
 	public void initDiceZone() {
 		// overarching panel containing our 3 components
+		JPanel rightSection = new JPanel(new GridBagLayout());
 		rightSection.setBackground(Color.blue);
 		rightSection.setPreferredSize(new Dimension(300, 0));
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -864,6 +1077,8 @@ public class Gooey extends JPanel {
 
 		// bsection, bottom section, since we need to add info to this, it can't be
 		// local
+		JPanel bSection = new JPanel(new BorderLayout());
+		JLabel bottomText = new JLabel("Items");
 		bSection.setBackground(Color.RED);
 		bSection.setPreferredSize(new Dimension(300, 50));
 		bottomText.setFont(myFont);
@@ -917,8 +1132,14 @@ public class Gooey extends JPanel {
 	 * Creates the main window and components for view.
 	 */
 	public void initializeMainFrame() {
+		if(labelListFilled == false) {
+			fillLabelList();
+		}
 		createMainFrame();
+		updateLabels();
 		initMap();
+		initLevelView();
+		addMainArea();
 		initDiceZone();
 		frame.setVisible(true);
 		frame.pack();

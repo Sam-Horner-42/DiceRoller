@@ -2,7 +2,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
-public class LabelMouseListener extends MouseAdapter {
+public class DiceMouseListener extends MouseAdapter {
 
 	private Gooey view;
 
@@ -25,7 +25,7 @@ public class LabelMouseListener extends MouseAdapter {
 	 * @param controller The game controller.
 	 * @param label The JLabel associated with the card.
 	 */
-	LabelMouseListener(Gooey view, Controller controller, JLabel label){
+	DiceMouseListener(Gooey view, Controller controller, JLabel label){
 		this.view = view;
 		this.controller = controller;
 		this.label = label;
@@ -39,9 +39,10 @@ public class LabelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
+		System.out.println(controller.levels.get(label).getName()); 
 		if(level != null)
 			//label.setIcon(view.loadImage(level.getHoveredImgPath()));
-			System.out.println(controller.levels.get(label)); // Gooey needs an updated Controller
+			System.out.println(controller.levels.get(label).getName()); 
 
 		
 	}

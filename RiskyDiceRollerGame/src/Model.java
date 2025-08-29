@@ -23,7 +23,7 @@ public class Model {
 
     
 
-    public LabelMouseListener listener;
+    public LevelMouseListener listener;
 
     // Sets of enums to hold dice and item labels
     private enum DICE{D4, D6, D8, D10, D12, D20}
@@ -99,11 +99,11 @@ public class Model {
         this.potentialMax = potentialMax;
     }
 
-    public LabelMouseListener getListener() {
+    public LevelMouseListener getListener() {
         return listener;
     }
 
-    public void setListener(LabelMouseListener listener) {
+    public void setListener(LevelMouseListener listener) {
         this.listener = listener;
     }
 
@@ -157,47 +157,48 @@ public class Model {
 
     public void genLevels(){
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
-        Level choco1 = new Level("Cookie Kingdom", "assets/chocoChip.png", "assets/chocoChipHovered.png", 1, false, 1, 6);
-        Level choco2 = new Level("Cookie Kingdom", "assets/chocoChip.png", "assets/chocoChipHovered.png", 1, false, 2, 8);
-        Level choco3 = new Level("Cookie Kingdom", "assets/chocoChip.png", "assets/chocoChipHovered.png", 1, false, 1, 6);
+        Level choco1 = new Level("choco1", "chocoChip", "assets/chocoChipHovered.png", 1, false, 1, 6);
+        Level choco2 = new Level("choco2", "chocoChip", "assets/chocoChipHovered.png", 1, false, 2, 8);
+        Level choco3 = new Level("choco3", "chocoChip", "assets/chocoChipHovered.png", 1, false, 1, 6);
+        Level choco4 = new Level("choco4", "chocoChip", "assets/chocoChipHovered.png", 1, false, 1, 6);
         
-        Level checker1 = new Level("Cookie Kingdom", "assets/fudge.png", "assets/fudgeHovered.png", 1, false, 1, 6);
-        Level checker2 = new Level("Cookie Kingdom", "assets/fudge.png", "assets/fudgeHovered.png", 1, false, 1, 6);
-        Level checker3 = new Level("Cookie Kingdom", "assets/fudge.png", "assets/fudgeHovered.png", 1, false, 1, 6);
+        Level macaron1 = new Level("macaron1", "macaron", "assets/macaronHovered.png", 1, false, 1, 6);
+        Level macaron2 = new Level("macaron2", "macaron", "assets/macaronHovered.png", 1, false, 1, 6);
+        Level macaron3 = new Level("macaron3", "macaron", "assets/macaronHovered.png", 1, false, 1, 6);
         
-        Level macaron1 = new Level("Cookie Kingdom", "assets/macaron.png", "assets/macaronHovered.png", 1, false, 1, 6);
-        Level macaron2 = new Level("Cookie Kingdom", "assets/macaron.png", "assets/macaronHovered.png", 1, false, 1, 6);
-        Level macaron3 = new Level("Cookie Kingdom", "assets/macaron.png", "assets/macaronHovered.png", 1, false, 1, 6);
+        Level checker1 = new Level("checker1", "fudge", "assets/fudgeHovered.png", 1, false, 1, 6);
+        Level checker2 = new Level("checker2", "fudge", "assets/fudgeHovered.png", 1, false, 1, 6);
+        Level checker3 = new Level("checker3", "fudge", "assets/fudgeHovered.png", 1, false, 1, 6);
         
-        Level jammyDodger1 = new Level("Cookie Kingdom", "assets/red_jelly.png", "assets/red_jellyHovered.png", 1, false, 1, 6);
-        Level jammyDodger2 = new Level("Cookie Kingdom", "assets/red_jelly.png", "assets/red_jellyHovered.png", 1, false, 1, 6);
-        Level jammyDodger3 = new Level("Cookie Kingdom", "assets/red_jelly.png", "assets/red_jellyHovered.png", 1, false, 1, 6);
+        Level peanutButter1 = new Level("peanutButter1", "peanut_cookie", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
+        Level peanutButter2 = new Level("peanutButter2", "peanut_cookie", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
+        Level peanutButter3 = new Level("peanutButter3", "peanut_cookie", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
         
-        Level peanutButter1 = new Level("Cookie Kingdom", "assets/peanut_cookie.png", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
-        Level peanutButter2 = new Level("Cookie Kingdom", "assets/peanut_cookie.png", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
-        Level peanutButter3 = new Level("Cookie Kingdom", "assets/peanut_cookie.png", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
+        Level jammyDodger1 = new Level("jammyDodger1", "red_jelly", "assets/red_jellyHovered.png", 1, false, 1, 6);
+        Level jammyDodger2 = new Level("jammyDodger2", "red_jelly", "assets/red_jellyHovered.png", 1, false, 1, 6);
+        Level jammyDodger3 = new Level("jammyDodger3", "red_jelly", "assets/red_jellyHovered.png", 1, false, 1, 6);
 
         levelData = new ArrayList<>();
         levelData.add(choco1);
         levelData.add(choco2);
         levelData.add(choco3);
-
-        levelData.add(checker1);
-        levelData.add(checker2);
-        levelData.add(checker3);
+        levelData.add(choco4);
 
         levelData.add(macaron1);
         levelData.add(macaron2);
         levelData.add(macaron3);
-
-        levelData.add(jammyDodger1);
-        levelData.add(jammyDodger2);
-        levelData.add(jammyDodger3);
+        
+        levelData.add(checker1);
+        levelData.add(checker2);
+        levelData.add(checker3);
 
         levelData.add(peanutButter1);
         levelData.add(peanutButter2);
         levelData.add(peanutButter3);
-    
+        
+        levelData.add(jammyDodger1);
+        levelData.add(jammyDodger2);
+        levelData.add(jammyDodger3);
     }
 
     /* When the player clicks PLAY */
