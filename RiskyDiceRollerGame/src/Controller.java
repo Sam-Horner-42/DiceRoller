@@ -84,6 +84,10 @@ public class Controller implements ActionListener {
 		//TODO add functionality to display possible range based on selected dice
 	}
 
+	public void goBack(){
+		model.deselectAll();
+		gooey.changeMainArea();
+	}
 
 
 	@Override
@@ -95,8 +99,7 @@ public class Controller implements ActionListener {
 				model.rollDice();
 				break;
 			case "Back":
-				
-				gooey.changeMainArea();
+				goBack();
 				break;
 			default:
 				System.out.println("This is not a button.");
