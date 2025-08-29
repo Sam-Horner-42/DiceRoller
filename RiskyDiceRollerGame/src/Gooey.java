@@ -25,11 +25,13 @@ public class Gooey extends JPanel {
 	JLabel tMaxRange = new JLabel("PlaceHolder");
 	JLabel cMinRange = new JLabel("PlaceHolder");
 	JLabel cMaxRange = new JLabel("PlaceHolder");
+
 	JLabel diceSlot1 = new JLabel("PlaceHolder");
 	JLabel diceSlot2 = new JLabel("PlaceHolder");
 	JLabel diceSlot3 = new JLabel("PlaceHolder");
 	JLabel diceSlot4 = new JLabel("PlaceHolder");
 	JLabel diceSlot5 = new JLabel("PlaceHolder");
+
 	JLabel itemSlot1 = new JLabel("PlaceHolder");
 	JLabel itemSlot2 = new JLabel("PlaceHolder");
 	JLabel itemSlot3 = new JLabel("PlaceHolder");
@@ -100,6 +102,10 @@ public class Gooey extends JPanel {
 
 	public void setController(Controller controller) {
 		this.controller = controller;
+	}
+
+	public void setModel(Model model){
+		this.model = model;
 	}
 
 	public void initMenu(){
@@ -1178,16 +1184,42 @@ public class Gooey extends JPanel {
 			JLabel label = new JLabel(loadImage(die.getFileName()));
 			label.setHorizontalAlignment(SwingConstants.CENTER);
         	label.setVerticalAlignment(SwingConstants.CENTER);
-			label.addMouseListener(new DiceMouseListener(this, controller, label, die));
+			label.addMouseListener(new DiceMouseListener(this, controller, model, label, die));
 			panel.add(label, BorderLayout.CENTER);
 			diceZone.add(panel);
-			controller.addDice(label, die);
-			
 		}
 
 		diceZone.revalidate(); // relayout
     	diceZone.repaint();    // refresh
-		
+	}
+
+	public void updateSelectedDice() {
+		ArrayList<Die> selectedDice = controller.getSelectedDice();
+		for(int i = 0; i < selectedDice.size(); i++){
+			if(selectedDice.get(i) != null){
+				switch(i){
+					case 0:
+					diceSlot1.setIcon(loadImage(selectedDice.get(i).getFileName()));
+					break;
+					case 1:
+					diceSlot2 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
+					break;
+					case 2:
+					diceSlot3 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
+					break;
+					case 3:
+					diceSlot4 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
+					break;
+					case 4:
+					diceSlot5 = new JLabel(loadImage(selectedDice.get(i).getFileName()));
+					break;
+
+				}
+			}
+		}
+	}
+
+	public void selectedDiceHelper(int index){
 		
 	}
 

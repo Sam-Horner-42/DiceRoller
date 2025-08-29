@@ -11,9 +11,6 @@ public class Controller implements ActionListener {
 	private HashMap<JLabel, Level> levels;
 	private ArrayList<Level> levelData;
 
-	private HashMap<JLabel, Die> unselectedDice;
-	private HashMap<JLabel, Die> rollingDice;
-
 	private ArrayList<Die> playerDice; // the dice the player currently has
 	private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
 
@@ -43,23 +40,6 @@ public class Controller implements ActionListener {
 		this.levelData = levelData;
 	}
 
-	public HashMap<JLabel, Die> getUnselectedDice() {
-		return unselectedDice;
-	}
-
-	public void setUnselectedDice(HashMap<JLabel, Die> unselectedDice) {
-		this.unselectedDice = unselectedDice;
-	}
-
-	public HashMap<JLabel, Die> getRollingDice() {
-		return rollingDice;
-	}
-
-	public void setRollingDice(HashMap<JLabel, Die> rollingDice) {
-		this.rollingDice = rollingDice;
-	}
-
-	
 
 	public void setPlayerDice(ArrayList<Die> playerDice) {
 		this.playerDice = playerDice;
@@ -76,9 +56,6 @@ public class Controller implements ActionListener {
 	public void makeMapsAndList(){
 		levels = model.getLevels();
 		levelData = model.getLevelData();
-
-		unselectedDice = model.getUnselectedDice();
-		rollingDice = model.getRollingDice();
 
 		playerDice = model.getPlayerDice();
 		selectedDice = model.getSelectedDice();
@@ -110,9 +87,6 @@ public class Controller implements ActionListener {
 		levels.put(gooey.red_jelly3, levelData.get(15));
 	}
 
-	public void addDice(JLabel label, Die die){
-		unselectedDice.put(label, die);
-	}
 	
 	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
     public void addStarterDice(){

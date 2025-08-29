@@ -81,7 +81,7 @@ public class Die implements Comparable<Die>{
     
     public String generateDescription(){
         String info = "This is a " + name + "\n it's sides are: ";
-        for(int i = 1; i<numSides + 1;i++) {
+        for(int i = 1; i<numSides + 1; i++) {
         	if(i == numSides) {
         		info = info + i;
         	}else {

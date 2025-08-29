@@ -15,6 +15,8 @@ public class Driver {
         controller.setGooey(gooey);
 
         gooey.setController(controller);
+        gooey.setModel(model);
+        model.setView(gooey);
         
         model.genLevels();
 
@@ -25,7 +27,6 @@ public class Driver {
 
         gooey.initializeMainFrame();
 
-        
         gooey.updateDiceZone();
     }
 }

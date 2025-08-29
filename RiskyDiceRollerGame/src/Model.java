@@ -22,7 +22,6 @@ public class Model {
     private int potentialMax;
 
     
-
     public LevelMouseListener listener;
 
     // Sets of enums to hold dice and item labels
@@ -31,9 +30,6 @@ public class Model {
     private enum UNCOMMON_ITEMS{}
     private enum RARE_ITEMS{}
     private enum STATE{MAP, LEVEL}
-
-    public HashMap<JLabel, Die> unselectedDice = new HashMap<>();
-    public HashMap<JLabel, Die> rollingDice = new HashMap<>();
 
     private ArrayList<Die> playerDice; // the dice the player currently has
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
@@ -157,23 +153,10 @@ public class Model {
     public void setLevelData(ArrayList<Level> levelData){
         this.levelData = levelData;
     }
-
-    public HashMap<JLabel, Die> getUnselectedDice() {
-        return unselectedDice;
-    }
-
-    public void setUnselectedDice(HashMap<JLabel, Die> unselectedDice) {
-        this.unselectedDice = unselectedDice;
-    }
-
-    public HashMap<JLabel, Die> getRollingDice() {
-        return rollingDice;
-    }
-
-    public void setRollingDice(HashMap<JLabel, Die> rollingDice) {
-        this.rollingDice = rollingDice;
-    }
     
+    public void setView(Gooey view){
+        this.view = view;
+    }
 
     public void genLevels(){
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
@@ -241,27 +224,36 @@ public class Model {
     /* Adds a single die by index to the selected dice ArrayList and removes it from playerDice 
      * Updates potential max and potential min of this roll
     */
-    public void selectCombatDice(int index) {
-        if(selectedDice.size() < 5) {
-            selectedDice.add(playerDice.get(index));
-            selectedDice.get(index).setIsSelected(true); // this dice is now selected
-            playerDice.remove(index);
+    public void selectDice(Die die) {
+        
+        if(selectedDice.size() < 5 ) {
+            if (die.getIsSelected() == false)
+                die.setIsSelected(true); // this dice is now selected
+            selectedDice.add(die);
+            playerDice.remove(die);
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
+            Collections.sort(selectedDice);
+            Collections.sort(playerDice);
+            view.updateDiceZone();
+            view.updateSelectedDice();
         }   
-        Collections.sort(selectedDice);
+        
     }
 
     /* Removes a single deselected die from the selected dice ArrayList and place it back in playerDice 
     *  Updates potential max and potential min of this roll
     */
-    public void deselectCombatDice(int index){
-        playerDice.add(selectedDice.get(index));
-        playerDice.get(index).setIsSelected(false); // this dice is no longer selected
-        selectedDice.remove(index);
-        potentialMin = calculatePotentialMinDamage();
-        potentialMax = calculatePotentialMaxDamage();
-        Collections.sort(playerDice);
+    public void deselectDice(Die die){
+        if(die.getIsSelected()){
+            die.setIsSelected(false);
+            playerDice.add(die);
+            selectedDice.remove(die);
+            Collections.sort(playerDice);
+            Collections.sort(selectedDice);
+            view.updateDiceZone();
+            view.updateSelectedDice();
+        }
     }
 
     /* Calculates total potential damage based on all the currently selected dice */
