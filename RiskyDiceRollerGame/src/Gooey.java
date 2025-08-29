@@ -873,6 +873,7 @@ public class Gooey extends JPanel {
 		back.setIcon(loadImage("backArrow"));
 		back.setPreferredSize(new Dimension(90,180));
 		levelView.add(back,gbc);
+		back.addActionListener(e -> changeMainArea());
 		
 		// Top Row 2nd Column
 		gbc.gridx = 1;
