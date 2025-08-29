@@ -1210,8 +1210,10 @@ public class Gooey extends JPanel {
 	}
 
 	public void updateSelectedDice() {
-		selectedDiceHolder.removeAll();;
+		selectedDiceHolder.removeAll();
+
 		ArrayList<Die> selectedDice = controller.getSelectedDice();
+		
 		for(int i = 0; i < selectedDice.size(); i++){
 			if(selectedDice.get(i) != null){
 			JLabel selectedDiceIcon = new JLabel(loadImage(selectedDice.get(i).getFileName()));

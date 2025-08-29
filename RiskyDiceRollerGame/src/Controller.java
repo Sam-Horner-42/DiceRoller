@@ -62,45 +62,6 @@ public class Controller implements ActionListener {
 	}
 	
 
-	public void populateLevelMap(){
-		// chocolate chip islands
-		levels.put(gooey.chocoChip1, levelData.get(0));
-		levels.put(gooey.chocoChip2, levelData.get(1));
-		levels.put(gooey.chocoChip3, levelData.get(2));
-		levels.put(gooey.chocoChip4, levelData.get(3));
-
-		
-		levels.put(gooey.macaron1, levelData.get(4));
-		levels.put(gooey.macaron2, levelData.get(5));
-		levels.put(gooey.macaron3, levelData.get(6));
-
-		levels.put(gooey.fudge1, levelData.get(7));
-		levels.put(gooey.fudge2, levelData.get(8));
-		levels.put(gooey.fudge3, levelData.get(9));
-
-		levels.put(gooey.peanut_cookie1, levelData.get(10));
-		levels.put(gooey.peanut_cookie2, levelData.get(11));
-		levels.put(gooey.peanut_cookie3, levelData.get(12));
-
-		levels.put(gooey.red_jelly1, levelData.get(13));
-		levels.put(gooey.red_jelly2, levelData.get(14));
-		levels.put(gooey.red_jelly3, levelData.get(15));
-	}
-
-	
-	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
-    public void addStarterDice(){
-        Die starterD6 = new Die("", 6, "", false);
-        Die starterD4 = new Die("", 4, "", false);
-        for(int i = 0; i < 6; i++) { 
-            playerDice.add(starterD6);
-            playerDice.add(starterD4);
-        } 
-        Collections.sort(playerDice);
-
-		gooey.updateDiceZone();
-    }
-
 	public void setModel(Model model){
 		this.model = model;
 	}
@@ -114,14 +75,18 @@ public class Controller implements ActionListener {
 	}
 	
 	// will call model's add dice method
-	public void chooseDice(Die dice) {
-		if(!dice.getIsSelected()) {
-		model.selectDice(dice);
-		}
-		else {
-		model.deselectDice(dice);
-		}
+	public void chooseDice(Die die) {
+		if (!die.getIsSelected()) 
+			model.selectDice(die);
+		else 
+			model.deselectDice(die);
+
+		// Always update the displayed (single!) view here:
+		gooey.updateDiceZone();
+		gooey.updateSelectedDice();
 	}
+
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -135,7 +100,7 @@ public class Controller implements ActionListener {
 				gooey.changeMainArea();
 				break;
 			default:
-				System.out.println("Fuck you.");
+				System.out.println("This is not a button.");
 		}
 	}
 

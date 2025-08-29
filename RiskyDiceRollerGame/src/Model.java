@@ -9,7 +9,7 @@ public class Model {
     Player player;
     Die die;
     Level level;
-    private Gooey view;
+    private Gooey gooey;
 
     private final int maxDice = 20;
     private final int maxItems = 5;
@@ -154,8 +154,8 @@ public class Model {
         this.levelData = levelData;
     }
     
-    public void setView(Gooey view){
-        this.view = view;
+    public void setView(Gooey gooey){
+        this.gooey = gooey;
     }
 
     public void genLevels(){
@@ -204,7 +204,43 @@ public class Model {
         levelData.add(jammyDodger3);
     }
 
-    
+    public void populateLevelMap(){
+		// chocolate chip islands
+		levels.put(gooey.chocoChip1, levelData.get(0));
+		levels.put(gooey.chocoChip2, levelData.get(1));
+		levels.put(gooey.chocoChip3, levelData.get(2));
+		levels.put(gooey.chocoChip4, levelData.get(3));
+
+		
+		levels.put(gooey.macaron1, levelData.get(4));
+		levels.put(gooey.macaron2, levelData.get(5));
+		levels.put(gooey.macaron3, levelData.get(6));
+
+		levels.put(gooey.fudge1, levelData.get(7));
+		levels.put(gooey.fudge2, levelData.get(8));
+		levels.put(gooey.fudge3, levelData.get(9));
+
+		levels.put(gooey.peanut_cookie1, levelData.get(10));
+		levels.put(gooey.peanut_cookie2, levelData.get(11));
+		levels.put(gooey.peanut_cookie3, levelData.get(12));
+
+		levels.put(gooey.red_jelly1, levelData.get(13));
+		levels.put(gooey.red_jelly2, levelData.get(14));
+		levels.put(gooey.red_jelly3, levelData.get(15));
+	}
+
+	
+	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
+    public void addStarterDice(){
+        
+        for(int i = 0; i < 6; i++) { 
+            playerDice.add(new Die("", 6, "", false));
+            playerDice.add(new Die("", 4, "", false));
+        } 
+        Collections.sort(playerDice);
+
+		gooey.updateDiceZone();
+    }
 
     public void wager(){
 
@@ -226,17 +262,17 @@ public class Model {
     */
     public void selectDice(Die die) {
         
-        if(selectedDice.size() < 5 ) {
-            if (die.getIsSelected() == false)
-                die.setIsSelected(true); // this dice is now selected
+        if(selectedDice.size() < 5 && !die.getIsSelected()) {
+            die.setIsSelected(true); // this dice is now selected
             selectedDice.add(die);
             playerDice.remove(die);
+
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
+
             Collections.sort(selectedDice);
             Collections.sort(playerDice);
-            view.updateDiceZone();
-            view.updateSelectedDice();
+            
         }   
         
     }
@@ -245,14 +281,12 @@ public class Model {
     *  Updates potential max and potential min of this roll
     */
     public void deselectDice(Die die){
-        if(die.getIsSelected()){
+        if (die.getIsSelected()) {
             die.setIsSelected(false);
             playerDice.add(die);
             selectedDice.remove(die);
             Collections.sort(playerDice);
             Collections.sort(selectedDice);
-            view.updateDiceZone();
-            view.updateSelectedDice();
         }
     }
 
@@ -286,13 +320,15 @@ public class Model {
     */
     public void rollDice() {
         int result = 0;
-        for (int i = 0; i < playerDice.size(); i++) {
-            Die die = selectedDice.get(i);
+        for (Die die: selectedDice) {
             result += rollDie(die);
             }
         totalDamage = result;
+
+        for (Die die: selectedDice) die.setIsSelected(false);
+
         playerDice.addAll(selectedDice); // put all the selected dice back in the player dice
-        selectedDice.removeAll(selectedDice); // remove all the selected dice
+        selectedDice.clear(); // remove all the selected dice
         Collections.sort(playerDice);
     }
     

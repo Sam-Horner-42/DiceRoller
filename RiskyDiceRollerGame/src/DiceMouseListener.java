@@ -64,7 +64,7 @@ public class DiceMouseListener extends MouseAdapter {
 	 * @param e The mouse event triggered when the card is clicked.
 	 */
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		//TODO what happens when you click on a dice
 		controller.chooseDice(dice);
 	}
