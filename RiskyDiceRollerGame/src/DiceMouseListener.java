@@ -40,6 +40,7 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
+
 		Point location = label.getLocationOnScreen();
         view.popup.setLocation(location.x, location.y + label.getHeight());
         view.usePopup(dice.getDescription());
@@ -53,7 +54,9 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
+
 		view.popup.setVisible(false);
+
 	}
 
 	/**

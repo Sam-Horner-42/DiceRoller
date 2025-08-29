@@ -110,9 +110,10 @@ public class Controller implements ActionListener {
 		levels.put(gooey.red_jelly3, levelData.get(15));
 	}
 
-	public void addDice(Die die, JLabel label){
+	public void addDice(JLabel label, Die die){
 		unselectedDice.put(label, die);
 	}
+	
 	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
     public void addStarterDice(){
         Die starterD6 = new Die("", 6, "", false);

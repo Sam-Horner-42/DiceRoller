@@ -1181,7 +1181,7 @@ public class Gooey extends JPanel {
 			label.addMouseListener(new DiceMouseListener(this, controller, label, die));
 			panel.add(label, BorderLayout.CENTER);
 			diceZone.add(panel);
-			controller.addDice(die, label);
+			controller.addDice(label, die);
 			
 		}
 
