@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
+import javax.swing.JLabel;
 
 public class Model {
     
@@ -20,6 +21,8 @@ public class Model {
     private int potentialMin;
     private int potentialMax;
 
+    
+
     public LabelMouseListener listener;
 
     // Sets of enums to hold dice and item labels
@@ -36,8 +39,9 @@ public class Model {
     private ArrayList<Item> playerItems; // currently held items
     private ArrayList<Item> selectedItems; // items currently selected
 
-    private HashMap<String, Level> levels; // stores all the different levels associated with their IDs
-    
+    public HashMap<JLabel, Level> levels = new HashMap<>(); // stores all the different levels associated with their IDs
+    public ArrayList<Level> levelData = new ArrayList<>(); 
+
     /* Constructs the lists that store currently held and selected dice/items */
     public Model(){
         this.playerDice = new ArrayList<>(); // all the dice currently in inventory
@@ -135,16 +139,65 @@ public class Model {
         this.selectedItems = selectedItems;
     }
 
-    public HashMap<String, Level> getLevels() {
+    public HashMap<JLabel, Level> getLevels() {
         return levels;
     }
 
-    public void setLevels(HashMap<String, Level> levels) {
+    public void setLevels(HashMap<JLabel, Level> levels) {
         this.levels = levels;
     }
 
+    public ArrayList<Level> getLevelData(){
+        return levelData;
+    }
+
+    public void setLevelData(ArrayList<Level> levelData){
+        this.levelData = levelData;
+    }
+
     public void genLevels(){
+        // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
+        Level choco1 = new Level("Cookie Kingdom", "assets/chocoChip.png", "assets/chocoChipHovered.png", 1, false, 1, 6);
+        Level choco2 = new Level("Cookie Kingdom", "assets/chocoChip.png", "assets/chocoChipHovered.png", 1, false, 2, 8);
+        Level choco3 = new Level("Cookie Kingdom", "assets/chocoChip.png", "assets/chocoChipHovered.png", 1, false, 1, 6);
         
+        Level checker1 = new Level("Cookie Kingdom", "assets/fudge.png", "assets/fudgeHovered.png", 1, false, 1, 6);
+        Level checker2 = new Level("Cookie Kingdom", "assets/fudge.png", "assets/fudgeHovered.png", 1, false, 1, 6);
+        Level checker3 = new Level("Cookie Kingdom", "assets/fudge.png", "assets/fudgeHovered.png", 1, false, 1, 6);
+        
+        Level macaron1 = new Level("Cookie Kingdom", "assets/macaron.png", "assets/macaronHovered.png", 1, false, 1, 6);
+        Level macaron2 = new Level("Cookie Kingdom", "assets/macaron.png", "assets/macaronHovered.png", 1, false, 1, 6);
+        Level macaron3 = new Level("Cookie Kingdom", "assets/macaron.png", "assets/macaronHovered.png", 1, false, 1, 6);
+        
+        Level jammyDodger1 = new Level("Cookie Kingdom", "assets/red_jelly.png", "assets/red_jellyHovered.png", 1, false, 1, 6);
+        Level jammyDodger2 = new Level("Cookie Kingdom", "assets/red_jelly.png", "assets/red_jellyHovered.png", 1, false, 1, 6);
+        Level jammyDodger3 = new Level("Cookie Kingdom", "assets/red_jelly.png", "assets/red_jellyHovered.png", 1, false, 1, 6);
+        
+        Level peanutButter1 = new Level("Cookie Kingdom", "assets/peanut_cookie.png", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
+        Level peanutButter2 = new Level("Cookie Kingdom", "assets/peanut_cookie.png", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
+        Level peanutButter3 = new Level("Cookie Kingdom", "assets/peanut_cookie.png", "assets/peanut_cookieHovered.png", 1, false, 1, 6);
+
+        levelData = new ArrayList<>();
+        levelData.add(choco1);
+        levelData.add(choco2);
+        levelData.add(choco3);
+
+        levelData.add(checker1);
+        levelData.add(checker2);
+        levelData.add(checker3);
+
+        levelData.add(macaron1);
+        levelData.add(macaron2);
+        levelData.add(macaron3);
+
+        levelData.add(jammyDodger1);
+        levelData.add(jammyDodger2);
+        levelData.add(jammyDodger3);
+
+        levelData.add(peanutButter1);
+        levelData.add(peanutButter2);
+        levelData.add(peanutButter3);
+    
     }
 
     /* When the player clicks PLAY */
