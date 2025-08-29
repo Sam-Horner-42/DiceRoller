@@ -90,7 +90,7 @@ public class Gooey extends JPanel {
 	
 	public void createPopup() {
 	    popup.setLayout(new BorderLayout());
-	    popup.setSize(200, 100);	
+	    popup.setSize(250, 75);	
 		popup.add(popupLabel, BorderLayout.CENTER);
 		popup.setVisible(false);
 	}
