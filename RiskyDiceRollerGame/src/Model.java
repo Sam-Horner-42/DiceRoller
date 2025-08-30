@@ -47,8 +47,7 @@ public class Model {
 
     private HashMap<JLabel, Level> levels; // stores all the different levels associated with their IDs
     private ArrayList<Level> levelData; 
-    private ArrayList<Die> dieRewards; 
-    private ArrayList<Item> itemRewards; 
+    
     /* Constructs the lists that store currently held and selected dice/items */
     public Model(){
         this.playerDice = new ArrayList<>(); // all the dice currently in inventory
