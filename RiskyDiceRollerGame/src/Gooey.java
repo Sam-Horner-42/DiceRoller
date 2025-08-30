@@ -956,7 +956,7 @@ public class Gooey extends JPanel {
 		//namePanel.setPreferredSize(new Dimension(675,225));
 		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
-		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 30);
+		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 20);
 		cityName.setFont(cityFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);
@@ -1267,7 +1267,6 @@ public class Gooey extends JPanel {
 		itemZone.repaint();    // refresh
 	}
 
-
 	public void updateSelectedDice() {
 		selectedDiceHolder.removeAll();
 
@@ -1303,7 +1302,40 @@ public class Gooey extends JPanel {
 	public void selectedDiceHelper(int index){
 		
 	}
+	
+	public void winDialog(int rollResult, ArrayList<Die> diceReward, ArrayList<Item> itemReward) {
+		//TODO finish
+		changeMainArea();
+		 // Create the dialog (modal)
+        JDialog dialog = new JDialog(frame, "WINNER! GANGANT!", true);
+        dialog.setLayout(new BorderLayout(10, 10));
 
+        // Message at the top
+        JLabel message = new JLabel("You rolled a " + rollResult + "! You conquered this kingdom!");
+        message.setHorizontalAlignment(SwingConstants.CENTER);
+        dialog.add(message, BorderLayout.NORTH);
+
+        // Extra panel in the middle
+        JPanel rewardPanel = new JPanel(new GridLayout());
+            dialog.add(rewardPanel, BorderLayout.CENTER);
+        
+
+        // OK button at the bottom
+        JButton okButton = new JButton("OK");
+        okButton.addActionListener(e -> dialog.dispose());
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(okButton);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        // Size + position
+        dialog.setSize(300, 200);
+        dialog.setLocationRelativeTo(frame);
+        dialog.setVisible(true); // blocks until closed
+	}
+	
+	public void loseDialog() {
+		
+	}
 	public ImageIcon loadImage(String dieName) {
 		try {
 			BufferedImage image = ImageIO.read(getClass().getResource("/assets/" + dieName + ".png"));
