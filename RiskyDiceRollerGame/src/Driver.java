@@ -25,7 +25,7 @@ public class Driver {
         
         model.addStarterDice();
         //model.addStarterItems();
-        model.addAllItems();
+        //model.addAllItems();
 
         gooey.initializeMainFrame();
         gooey.updateItemZone();

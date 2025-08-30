@@ -34,7 +34,15 @@ public class Model {
     Die d8 = new Die("", 8, "", false);
     Die d20 = new Die("", 20, "", false);
 
+    Item goldenEgg = new GoldenEgg(); 
+    Item slotMachine = new SlotMachine();
+    Item milk = new Milk(); 
+    Item whisk = new Whisk();
+    Item chocolateCoin = new ChocolateCoin(); 
+    Item timer = new Timer();
+
     private Die[] rewardDice = {d4, d6, d8, d20};
+    private Item[] possibleItems = {goldenEgg, slotMachine, milk, whisk, chocolateCoin, timer};
     private ArrayList<Item> itemRewards = new ArrayList<>();
     private ArrayList<Die> dieRewards = new ArrayList<>();
 
@@ -571,16 +579,25 @@ public class Model {
         
         //Add 2 Common Items
         Random random = new Random();
-        int randomDice = random.nextInt(3);
         int randomAmount = random.nextInt(2) + 1;
-        
+        int giveItem = random.nextInt(6);
+
         // add 2 dice - d4/d6/d8
         for(int i = 0; i < randomAmount; i++) { 
+            int randomDice = random.nextInt(3);
             Die newDice = new Die(rewardDice[randomDice].getName(), 
                 rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
             playerDice.add(newDice);
             dieRewards.add(newDice);
         } 
+
+        if(giveItem == 1){
+            int randomItem = random.nextInt(6);
+            Item rewardItem = possibleItems[randomItem];
+            if(playerItems.size() < 6){
+                playerItems.add(rewardItem);
+            }
+        }
         
         Collections.sort(playerDice);
 
