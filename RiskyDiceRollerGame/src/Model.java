@@ -568,26 +568,20 @@ public class Model {
 
     
     public void reward(){
-        int currentLevelIndex = levelData.indexOf(currentLevel);
-        if(currentLevelIndex < 5){
-            //Add 2 Common Items
-            Random random = new Random();
-            int randomDice = random.nextInt(3);
-            int randomAmount = random.nextInt(2) + 1;
-            
-            // add 2 dice - d4/d6/d8
-            for(int i = 0; i < randomAmount; i++) { 
-               Die newDice = new Die(rewardDice[randomDice].getName(), 
-                    rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
-               playerDice.add(newDice);
-               dieRewards.add(newDice);
-            } 
         
-        } else if(currentLevelIndex >= 5 && currentLevelIndex < 10){
-            //Add 2 UnCommon Items
-        } else if(currentLevelIndex >= 10 && currentLevelIndex < 16){
-            //Add 2 Rare Items
+        //Add 2 Common Items
+        Random random = new Random();
+        int randomDice = random.nextInt(3);
+        int randomAmount = random.nextInt(2) + 1;
+        
+        // add 2 dice - d4/d6/d8
+        for(int i = 0; i < randomAmount; i++) { 
+            Die newDice = new Die(rewardDice[randomDice].getName(), 
+                rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
+            playerDice.add(newDice);
+            dieRewards.add(newDice);
         } 
+        
         Collections.sort(playerDice);
 
 		gooey.updateDiceZone();
