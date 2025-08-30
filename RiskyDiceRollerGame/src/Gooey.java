@@ -20,7 +20,8 @@ public class Gooey extends JPanel {
 	ImagePanel map = new ImagePanel(bgIcon, new GridBagLayout());
 	JPanel mainArea = new JPanel(new CardLayout());
 	JPanel levelView = new JPanel(new GridBagLayout());
-	JLabel cityName = new JLabel("PlaceHolder");
+	JScrollPane namePanel;
+	JTextPane cityName = new JTextPane();
 	
 	JLabel tMinToMaxRange = new JLabel("PlaceHolder");
 	JLabel cMinToMaxRange = new JLabel("PlaceHolder");
@@ -952,14 +953,17 @@ public class Gooey extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
-		JPanel namePanel = new JPanel(new BorderLayout());
+		 namePanel  = new JScrollPane(cityName, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		//namePanel.setPreferredSize(new Dimension(675,225));
 		namePanel.setBackground(DARK_BROWN);
-		namePanel.add(cityName,BorderLayout.CENTER);
-		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 20);
+		namePanel.setPreferredSize(new Dimension(275,130));
+		//namePanel.add(cityName,BorderLayout.CENTER);
+		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 55);
 		cityName.setFont(cityFont);
-		cityName.setHorizontalAlignment(SwingConstants.CENTER);
-		cityName.setVerticalAlignment(SwingConstants.CENTER);
+		cityName.setBackground(DARK_BROWN);
+		cityName.setForeground(PURPLE);
+		cityName.setEditable(false);
 		levelView.add(namePanel,gbc);
 		gbc = new GridBagConstraints();
 
@@ -1107,7 +1111,7 @@ public class Gooey extends JPanel {
 		levelName = level.getName();
 		levelMinRange = level.getMinRange();
 		levelMaxRange = level.getMaxRange(); 
-		cityName.setText(levelName);
+		cityName.setText("       " +levelName);
 		tMinToMaxRange.setText("" + levelMinRange + " to " + levelMaxRange);
 		cMinToMaxRange.setText(0 + " to " + 0);
 
