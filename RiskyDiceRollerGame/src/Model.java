@@ -266,16 +266,33 @@ public class Model {
     */
     public void startCombat(){
         totalDamage = rollDice();
-        deselectAll(); // deselect all currently selected dice
-        Collections.sort(playerDice);
-
-        gooey.updateDiceZone();
-        gooey.updateSelectedDice();
-
-        displayResults(combatResult(totalDamage));
+        
+        boolean winLose = combatResult(totalDamage);
         totalDamage = 0; // reset total damage
+        handleResults(winLose);
+        displayResults(winLose);
+        
     }
 
+    /* Used to remove wagered dice/items */
+    public void handleResults(boolean result) {
+        if(result){
+            int nextLevelIndex = levelData.indexOf(currentLevel) + 1;
+            levelData.get(nextLevelIndex).setIsLocked(false);
+
+            deselectAll(); // deselect all currently selected dice
+            Collections.sort(playerDice);
+            
+            gooey.updateDiceZone();
+            gooey.updateSelectedDice();
+        } else {
+            selectedDice.clear();
+        }
+    }
+
+    /*
+     * Used to update the Gooey with the relevant window
+     */
     public void displayResults(boolean result){
         if (result) {
             System.out.println("YOU WIN!");
