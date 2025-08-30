@@ -273,10 +273,9 @@ public class Model {
     }
 
 	public void addStarterItems() {
-		Item goldenEgg = new GoldenEgg(); 
-		Item slotMachine = new SlotMachine();
-		playerItems.add(goldenEgg);
-		playerItems.add(slotMachine);
+		Item chocolateCoin = new ChocolateCoin(); 
+
+		playerItems.add(chocolateCoin);
 
 
 		gooey.updateDiceZone();
