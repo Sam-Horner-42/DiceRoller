@@ -943,14 +943,12 @@ public class Gooey extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		JPanel namePanel = new JPanel(new BorderLayout());
 		//namePanel.setPreferredSize(new Dimension(675,225));
-		
 		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
-		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 25);
+		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 20);
 		cityName.setFont(cityFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);
-		
 		levelView.add(namePanel,gbc);
 		gbc = new GridBagConstraints();
 
@@ -1401,6 +1399,49 @@ public class Gooey extends JPanel {
 		        dialog.setVisible(true); // blocks until closed
 		
 	}
+	
+public void loseGame() {
+		
+		//TODO Make pretty
+				changeMainArea();
+				 // Create the dialog (modal)
+		        JDialog dialog = new JDialog(frame, "Defeated :(", true);
+		        dialog.setLayout(new BorderLayout(10, 10));
+
+		        // Message at the top
+		        JLabel message = new JLabel("You ran out of dice! Thats how the cookie crumbles...");
+		        message.setHorizontalAlignment(SwingConstants.CENTER);
+		        dialog.add(message, BorderLayout.NORTH);
+
+		       
+		        JPanel buttonPanel = new JPanel();
+
+		        // Restart button
+		        JButton restartButton = new JButton("Restart");
+		        restartButton.addActionListener(e -> {
+		            dialog.dispose();   // close dialog
+		            //model.restartGame();      // call your restart function
+		        });
+		        buttonPanel.add(restartButton);
+
+		        // Exit button
+		        JButton exitButton = new JButton("Exit");
+		        exitButton.addActionListener(e -> {
+		            dialog.dispose();   // close dialog
+		            System.exit(0);     // quit the whole program
+		        });
+		        buttonPanel.add(exitButton);
+
+		        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+		        // Size + position
+		        dialog.setSize(350, 200);
+		        dialog.setLocationRelativeTo(frame);
+		        dialog.setVisible(true); // blocks until closed
+		
+	}
+	
+	
 	public ImageIcon loadImage(String dieName) {
 		try {
 			BufferedImage image = ImageIO.read(getClass().getResource("/assets/" + dieName + ".png"));
