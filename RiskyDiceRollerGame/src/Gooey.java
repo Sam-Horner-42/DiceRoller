@@ -27,14 +27,14 @@ public class Gooey extends JPanel {
 	JLabel cMaxRange = new JLabel("PlaceHolder");
 
 	JPanel selectedDiceHolder = new JPanel(new GridLayout(0, 5));
-	JPanel selectedItemHolder = new JPanel(new GridLayout(1, 3));
+	JPanel selectedItemHolder = new JPanel(new GridLayout(0, 3));
 
 	JLabel itemSlot1 = new JLabel("PlaceHolder");
 	JLabel itemSlot2 = new JLabel("PlaceHolder");
 	JLabel itemSlot3 = new JLabel("PlaceHolder");
 	JTextPane messageBoard = new JTextPane();
 	JPanel diceZone = new JPanel(new GridLayout(0,2));
-	JPanel itemZone = new JPanel(new GridLayout());
+	JPanel itemZone = new JPanel(new GridLayout(0,2));
 	Window popup = new JWindow(frame);
 	JLabel popupLabel =new JLabel();
 	
@@ -915,6 +915,8 @@ public class Gooey extends JPanel {
 	public void initLevelView() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
+		Font myFontbigger = new Font("Coiny Regular", Font.PLAIN, 35);
+
 		levelView.setBackground(Color.black);
 		
 		// Top Row 1st Column
@@ -929,6 +931,9 @@ public class Gooey extends JPanel {
 		levelView.add(back,gbc);
 		gbc = new GridBagConstraints();
 		
+		
+		//TODO Switdh purple and brown labels for target
+		
 		// Top Row 2nd Column
 		gbc.gridx = 1; gbc.gridy = 0;
 		gbc.gridwidth = 2;
@@ -938,7 +943,7 @@ public class Gooey extends JPanel {
 		//namePanel.setPreferredSize(new Dimension(675,225));
 		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
-		Font cityFont = new Font("Coiny Regular", Font.PLAIN, 20);
+		Font cityFont = new Font("Coiny Regular", Font.PLAIN, 30);
 		cityName.setFont(cityFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);
@@ -950,15 +955,16 @@ public class Gooey extends JPanel {
 		gbc.gridx = 0; gbc.gridy = 1;
 		gbc.weightx = 0; gbc.weighty = 0;
 		gbc.anchor = GridBagConstraints.LINE_START;
-		JPanel tRange = new JPanel(new BorderLayout());
-		tRange.setPreferredSize(new Dimension(225,100));
-		tRange.setBackground(DARK_BROWN);
-		JLabel trange = new JLabel("Target Range");
-		trange.setFont(myFont);
-		trange.setHorizontalAlignment(SwingConstants.CENTER);
-		trange.setVerticalAlignment(SwingConstants.CENTER);
-		tRange.add(trange, BorderLayout.CENTER);
-		levelView.add(tRange,gbc);
+		JPanel cRange = new JPanel(new BorderLayout());
+		cRange.setBackground(LIGHT_BROWN);
+		cRange.setPreferredSize(new Dimension(225,100));
+		JLabel crange = new JLabel("Possible Range");
+		crange.setForeground(PURPLE);	
+		crange.setFont(myFont);
+		crange.setHorizontalAlignment(SwingConstants.CENTER);
+		crange.setVerticalAlignment(SwingConstants.CENTER);
+		cRange.add(crange, BorderLayout.CENTER);
+		levelView.add(cRange, gbc);
 		gbc = new GridBagConstraints();
 
 		
@@ -967,55 +973,19 @@ public class Gooey extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
-		JPanel tRangePanel = new JPanel(new GridLayout());
-		tRangePanel.setBackground(LIGHT_BROWN);
-		JLabel dash1 = new JLabel("To");
-		dash1.setFont(myFont);
-		dash1.setHorizontalAlignment(SwingConstants.CENTER);
-		dash1.setVerticalAlignment(SwingConstants.CENTER);
-		tMinRange.setFont(myFont);
-		tMinRange.setHorizontalAlignment(SwingConstants.CENTER);
-		tMinRange.setVerticalAlignment(SwingConstants.CENTER);
-		tMaxRange.setFont(myFont);
-		tMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
-		tMaxRange.setVerticalAlignment(SwingConstants.CENTER);
-		tRangePanel.add(tMinRange);
-		tRangePanel.add(dash1);
-		tRangePanel.add(tMaxRange);
-		levelView.add(tRangePanel, gbc);
-		gbc = new GridBagConstraints();
-
-		// 3rd Row 1st Column
-		gbc.gridx = 0; gbc.gridy = 2;
-		gbc.weightx = 0; gbc.weighty = 0;
-		gbc.anchor = GridBagConstraints.LINE_START;
-		JPanel cRange = new JPanel(new BorderLayout());
-		cRange.setBackground(PURPLE);
-		cRange.setPreferredSize(new Dimension(225,100));
-		JLabel crange = new JLabel("Possible Range");
-		crange.setFont(myFont);
-		crange.setHorizontalAlignment(SwingConstants.CENTER);
-		crange.setVerticalAlignment(SwingConstants.CENTER);
-		cRange.add(crange, BorderLayout.CENTER);
-		levelView.add(cRange, gbc);
-		gbc = new GridBagConstraints();
-
-
-		// 3rd Row 2nd Column
-		gbc.gridx = 1; gbc.gridy = 2;
-		gbc.gridwidth = 2;
-		gbc.weightx = 1.0; 
-		gbc.fill = GridBagConstraints.BOTH;
 		JPanel cRangePanel = new JPanel(new GridLayout());
-		cRangePanel.setBackground(DARK_BROWN);
+		cRangePanel.setBackground(LIGHT_BROWN);
 		JLabel dash2 = new JLabel("To");
-		dash2.setFont(myFont);
+		dash2.setFont(myFontbigger);
+		dash2.setForeground(PURPLE);
 		dash2.setHorizontalAlignment(SwingConstants.CENTER);
 		dash2.setVerticalAlignment(SwingConstants.CENTER);
-		cMinRange.setFont(myFont);
+		cMinRange.setFont(myFontbigger);
+		cMinRange.setForeground(PURPLE);
 		cMinRange.setHorizontalAlignment(SwingConstants.CENTER);
 		cMinRange.setVerticalAlignment(SwingConstants.CENTER);
-		cMaxRange.setFont(myFont);
+		cMaxRange.setFont(myFontbigger);
+		cMaxRange.setForeground(PURPLE);
 		cMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
 		cMaxRange.setVerticalAlignment(SwingConstants.CENTER);
 		cRangePanel.add(cMinRange);
@@ -1024,7 +994,51 @@ public class Gooey extends JPanel {
 		levelView.add(cRangePanel, gbc);
 		gbc = new GridBagConstraints();
 
+		// 3rd Row 1st Column
+		gbc.gridx = 0; gbc.gridy = 2;
+		gbc.weightx = 0; gbc.weighty = 0;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		JPanel tRange = new JPanel(new BorderLayout());
+		tRange.setPreferredSize(new Dimension(225,100));
+		tRange.setBackground(PURPLE);
+		JLabel trange = new JLabel("Target Range");
+		trange.setFont(myFont);
+		trange.setForeground(BEIGE);
+		trange.setHorizontalAlignment(SwingConstants.CENTER);
+		trange.setVerticalAlignment(SwingConstants.CENTER);
+		tRange.add(trange, BorderLayout.CENTER);
+		levelView.add(tRange,gbc);
+		gbc = new GridBagConstraints();
+
+
+		// 3rd Row 2nd Column
+		gbc.gridx = 1; gbc.gridy = 2;
+		gbc.gridwidth = 2;
+		gbc.weightx = 1.0; 
+		gbc.fill = GridBagConstraints.BOTH;
+		JPanel tRangePanel = new JPanel(new GridLayout());
+		tRangePanel.setBackground(PURPLE);
+		JLabel dash1 = new JLabel("To");
+		dash1.setFont(myFontbigger);
+		dash1.setForeground(BEIGE);
+		dash1.setHorizontalAlignment(SwingConstants.CENTER);
+		dash1.setVerticalAlignment(SwingConstants.CENTER);
+		tMinRange.setFont(myFontbigger);
+		tMinRange.setForeground(BEIGE);
+		tMinRange.setHorizontalAlignment(SwingConstants.CENTER);
+		tMinRange.setVerticalAlignment(SwingConstants.CENTER);
+		tMaxRange.setFont(myFontbigger);
+		tMaxRange.setForeground(BEIGE);
+		tMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
+		tMaxRange.setVerticalAlignment(SwingConstants.CENTER);
+		tRangePanel.add(tMinRange);
+		tRangePanel.add(dash1);
+		tRangePanel.add(tMaxRange);
+		levelView.add(tRangePanel, gbc);
+		gbc = new GridBagConstraints();
+
 		// 4th row, First column
+		myFont = new Font("Coiny Regular", Font.PLAIN, 20);
 		gbc.gridx = 0; gbc.gridy = 3;
 		gbc.gridwidth = 2;
 		//gbc.gridheight = 2;
@@ -1141,11 +1155,16 @@ public class Gooey extends JPanel {
 			boolean change = model.getLevels().get(levelLabels.get(i)).getIsComplete();
 			if(change) {
 				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).getDefaultImgPath() + "Flag"));
+				levelLabels.get(i).repaint();
+				levelLabels.get(i).revalidate();
+
 			}
 		}
 		for(int i=0;i<levelLabels.size();i++) {
 			if(model.getLevels().get(levelLabels.get(i)).isLocked) {
 				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).lockedImgPath));
+				levelLabels.get(i).repaint();
+				levelLabels.get(i).revalidate();
 			}
 		}
 		
@@ -1236,10 +1255,30 @@ public class Gooey extends JPanel {
 			panel.add(label, BorderLayout.CENTER);
 			diceZone.add(panel);
 		}
-
-		diceZone.revalidate(); // relayout
+		
+    	diceZone.revalidate(); // relayout
     	diceZone.repaint();    // refresh
 	}
+	
+	public void updateItemZone() {
+		ArrayList<Item> playerItems = model.getPlayerItems();
+
+		itemZone.removeAll();
+		for (Item item : playerItems) {
+			JPanel panel = new JPanel(new BorderLayout());
+			panel.setOpaque(false);
+			JLabel label = new JLabel(loadImage(item.getName()));
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+        	label.setVerticalAlignment(SwingConstants.CENTER);
+			label.addMouseListener(new ItemMouseListener(this, controller, label, item));
+			panel.add(label, BorderLayout.CENTER);
+			itemZone.add(panel);
+		}
+
+		itemZone.revalidate(); // relayout
+		itemZone.repaint();    // refresh
+	}
+
 
 	public void updateSelectedDice() {
 		selectedDiceHolder.removeAll();
@@ -1255,6 +1294,22 @@ public class Gooey extends JPanel {
 		}
 		selectedDiceHolder.revalidate(); // relayout
 		selectedDiceHolder.repaint(); 
+	}
+	
+	public void updateSelectedItem() {
+		selectedItemHolder.removeAll();
+
+		ArrayList<Item> selectedItems = model.getSelectedItems();
+
+		for(int i = 0; i < selectedItems.size(); i++){
+			if(selectedItems.get(i) != null){
+			JLabel selectedItemIcon = new JLabel(loadImage(selectedItems.get(i).getName()));
+			selectedItemIcon.addMouseListener(new ItemMouseListener(this,controller,selectedItemIcon,selectedItems.get(i)));
+			selectedItemHolder.add(selectedItemIcon);
+			}
+		}
+		selectedItemHolder.revalidate(); // relayout
+		selectedItemHolder.repaint(); 
 	}
 
 	public void selectedDiceHelper(int index){
