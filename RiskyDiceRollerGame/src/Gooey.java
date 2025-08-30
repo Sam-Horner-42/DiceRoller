@@ -22,10 +22,10 @@ public class Gooey extends JPanel {
 	JPanel mainArea = new JPanel(new CardLayout());
 	JPanel levelView = new JPanel(new GridBagLayout());
 	JLabel cityName = new JLabel("PlaceHolder");
-	JLabel tMinRange = new JLabel("PlaceHolder");
-	JLabel tMaxRange = new JLabel("PlaceHolder");
-	JLabel cMinRange = new JLabel("PlaceHolder");
-	JLabel cMaxRange = new JLabel("PlaceHolder");
+	
+	JLabel tMinToMaxRange = new JLabel("PlaceHolder");
+	JLabel cMinToMaxRange = new JLabel("PlaceHolder");
+
 
 	JPanel selectedDiceHolder = new JPanel(new GridLayout(0, 5));
 	JPanel selectedItemHolder = new JPanel(new GridLayout(0, 3));
@@ -928,8 +928,8 @@ public class Gooey extends JPanel {
 
 	public void initLevelView() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
-		Font myFontbigger = coinyRegular.deriveFont(Font.PLAIN, 35);
+		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
+		Font myFontbigger = coinyRegular.deriveFont(Font.PLAIN, 22);
 
 		levelView.setBackground(Color.black);
 		
@@ -946,7 +946,6 @@ public class Gooey extends JPanel {
 		gbc = new GridBagConstraints();
 		
 		
-		//TODO Switdh purple and brown labels for target
 		
 		// Top Row 2nd Column
 		gbc.gridx = 1; gbc.gridy = 0;
@@ -987,24 +986,13 @@ public class Gooey extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
-		JPanel cRangePanel = new JPanel(new GridLayout());
+		JPanel cRangePanel = new JPanel(new BorderLayout());
 		cRangePanel.setBackground(LIGHT_BROWN);
-		JLabel dash2 = new JLabel("To");
-		dash2.setFont(myFontbigger);
-		dash2.setForeground(PURPLE);
-		dash2.setHorizontalAlignment(SwingConstants.CENTER);
-		dash2.setVerticalAlignment(SwingConstants.CENTER);
-		cMinRange.setFont(myFontbigger);
-		cMinRange.setForeground(PURPLE);
-		cMinRange.setHorizontalAlignment(SwingConstants.CENTER);
-		cMinRange.setVerticalAlignment(SwingConstants.CENTER);
-		cMaxRange.setFont(myFontbigger);
-		cMaxRange.setForeground(PURPLE);
-		cMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
-		cMaxRange.setVerticalAlignment(SwingConstants.CENTER);
-		cRangePanel.add(cMinRange);
-		cRangePanel.add(dash2);
-		cRangePanel.add(cMaxRange);
+		cMinToMaxRange.setFont(myFontbigger);
+		cMinToMaxRange.setForeground(PURPLE);
+		cMinToMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
+		cMinToMaxRange.setVerticalAlignment(SwingConstants.CENTER);
+		cRangePanel.add(cMinToMaxRange, BorderLayout.CENTER);
 		levelView.add(cRangePanel, gbc);
 		gbc = new GridBagConstraints();
 
@@ -1030,24 +1018,13 @@ public class Gooey extends JPanel {
 		gbc.gridwidth = 2;
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
-		JPanel tRangePanel = new JPanel(new GridLayout());
+		JPanel tRangePanel = new JPanel(new BorderLayout());
 		tRangePanel.setBackground(PURPLE);
-		JLabel dash1 = new JLabel("To");
-		dash1.setFont(myFontbigger);
-		dash1.setForeground(BEIGE);
-		dash1.setHorizontalAlignment(SwingConstants.CENTER);
-		dash1.setVerticalAlignment(SwingConstants.CENTER);
-		tMinRange.setFont(myFontbigger);
-		tMinRange.setForeground(BEIGE);
-		tMinRange.setHorizontalAlignment(SwingConstants.CENTER);
-		tMinRange.setVerticalAlignment(SwingConstants.CENTER);
-		tMaxRange.setFont(myFontbigger);
-		tMaxRange.setForeground(BEIGE);
-		tMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
-		tMaxRange.setVerticalAlignment(SwingConstants.CENTER);
-		tRangePanel.add(tMinRange);
-		tRangePanel.add(dash1);
-		tRangePanel.add(tMaxRange);
+		tMinToMaxRange.setFont(myFontbigger);
+		tMinToMaxRange.setForeground(BEIGE);
+		tMinToMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
+		tMinToMaxRange.setVerticalAlignment(SwingConstants.CENTER);
+		tRangePanel.add(tMinToMaxRange, BorderLayout.CENTER);
 		levelView.add(tRangePanel, gbc);
 		gbc = new GridBagConstraints();
 
@@ -1073,6 +1050,7 @@ public class Gooey extends JPanel {
 		gbc.anchor = GridBagConstraints.LINE_END;
 		messageBoard.setEditable(false);
 		messageBoard.setPreferredSize(new Dimension(225,250));
+		messageBoard.setFont(myFont);
 		messageBoard.setBackground(BEIGE);
 		messageBoard.setForeground(PURPLE);
 		levelView.add(messageBoard, gbc);
@@ -1130,17 +1108,16 @@ public class Gooey extends JPanel {
 		levelMinRange = level.getMinRange();
 		levelMaxRange = level.getMaxRange(); 
 		cityName.setText(levelName);
-		tMinRange.setText("" + levelMinRange);
-		tMaxRange.setText("" + levelMaxRange);
-		cMinRange.setText("" + 0);
-		cMaxRange.setText("" + 0);
+		tMinToMaxRange.setText("" + levelMinRange + " to " + levelMaxRange);
+		cMinToMaxRange.setText(0 + " to " + 0);
+
 		
 	}
 
 	/* Updates the current range for the dice currently selected */
 	public void updateRanges(int min, int max){
-		cMinRange.setText("" + min);
-		cMaxRange.setText("" + max);
+		cMinToMaxRange.setText("" + min + " to " + max);
+
 	}
 	
 	/*  */
