@@ -1392,14 +1392,18 @@ public class Gooey extends JPanel {
 	public void loseDialog(int rollResult, ArrayList<Die> diceLost) {
 		
 		//TODO Make pretty
-				changeMainArea();
+
 				 // Create the dialog (modal)
 		        JDialog dialog = new JDialog(frame, "Defeated :(", true);
 		        dialog.setLayout(new BorderLayout(10, 10));
+		        Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
+				Font myFonts = coinyRegular.deriveFont(Font.PLAIN, 16);
 
 		        // Message at the top
-		        JLabel message = new JLabel("You rolled " + rollResult + "You've been defeated");
-		        message.setHorizontalAlignment(SwingConstants.CENTER);
+				JTextPane message = new JTextPane();
+		        message.setText("	You rolled " + rollResult + " You've been defeated"); 
+		        message.setEditable(false);
+
 		        dialog.add(message, BorderLayout.NORTH);
 
 		        // Extra panel in the middle
