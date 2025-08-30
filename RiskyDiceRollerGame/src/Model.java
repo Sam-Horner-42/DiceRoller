@@ -358,8 +358,8 @@ public class Model {
             startCombat();
         } else {
             selectedDice.clear();
-            selectedItems.clear();
         }
+        selectedItems.clear();
         gooey.updateDiceZone();
         gooey.updateSelectedDice();
         gooey.updateLabels();
