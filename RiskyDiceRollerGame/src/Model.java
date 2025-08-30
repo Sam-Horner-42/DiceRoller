@@ -276,6 +276,22 @@ public class Model {
 		gooey.updateDiceZone();
 	}
 
+    /* For debugging purposes only */
+    public void addAllItems(){
+        Item goldenEgg = new GoldenEgg(); 
+		Item slotMachine = new SlotMachine();
+        Item milk = new Milk(); 
+		Item whisk = new Whisk();
+        Item chocolateCoin = new ChocolateCoin(); 
+		Item timer = new Timer();
+        playerItems.add(goldenEgg);
+		playerItems.add(slotMachine);
+        playerItems.add(milk);
+		playerItems.add(whisk);
+        playerItems.add(chocolateCoin);
+		playerItems.add(timer);
+
+    }
 	public void wager() {
 
 	}
@@ -302,6 +318,7 @@ public class Model {
             for (Item it : selectedItems) if (it instanceof Whisk) count++;
         return count;
     }
+
     private boolean consumeOneSelectedWhisk() {
         for (int i = 0; i < selectedItems.size(); i++) {
             Item it = selectedItems.get(i);
@@ -489,7 +506,7 @@ public class Model {
         for (Die die: selectedDice) {
         	preItemTotal += rollDie(die);
             }
-
+        
         IntWrapper total = new IntWrapper(preItemTotal);
 
         // Apply all items to total
@@ -529,7 +546,8 @@ public class Model {
             int randomDice = random.nextInt(2);
             // add 2 dice - d4/d6/d8
             for(int i = 0; i < 2; i++) { 
-                playerDice.add(rewardDice[randomDice]);
+                playerDice.add(new Die(rewardDice[randomDice].getName(), 
+                    rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected()));
             } 
         
         } else if(currentLevelIndex >= 5 && currentLevelIndex < 10){
