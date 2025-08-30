@@ -375,7 +375,7 @@ public class Model {
             consumeOneSelectedWhisk();
             startCombat();
         } else {
-            if(playerDice.isEmpty() && playerItems.isEmpty()){
+            if(playerDice.isEmpty()){
                 //TODO lose screen
                 gooey.loseGame();
                 return;
