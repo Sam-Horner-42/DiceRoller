@@ -74,6 +74,7 @@ public class LevelMouseListener extends MouseAdapter {
 		if((model.getLevels().get(label).getIsLocked()) == false && model.getLevels().get(label).getIsComplete() == false){
 			//TODO what happens when you click on a level
 			view.fillLevelInfo(model.getLevels().get(label));
+			model.setCurrentLevel(model.getLevels().get(label));
 			String message = "Roll Between " + model.getLevels().get(label).getMinRange() + " And " + model.getLevels().get(label).getMaxRange() 
 					+ " To Conquer this Kingdom!";
 			view.useMessageBoard(message);
