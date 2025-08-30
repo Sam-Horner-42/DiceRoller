@@ -75,7 +75,7 @@ public class Die implements Comparable<Die>{
 
     public String generateFileName(int numSides){
         String fileName = "";
-        fileName += "D" + numSides;
+        fileName += "d" + numSides;
         return fileName;
     }
     
