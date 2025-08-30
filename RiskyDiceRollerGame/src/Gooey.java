@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.imageio.ImageIO;
@@ -85,7 +86,7 @@ public class Gooey extends JPanel {
 	
 	static final Color PURPLE = new Color(153, 77, 115);
 	static final Color WHITE = new Color(250,243,225);
-
+	static Font coinyRegular;
 
 
 	/**
@@ -99,6 +100,19 @@ public class Gooey extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLayout(new BorderLayout());
+		setUpFont();
+		
+	}
+
+	public void setUpFont(){
+		try {
+			InputStream is = getClass().getResourceAsStream("/fonts/COINY-REGULAR.TTF");
+			coinyRegular = Font.createFont(Font.TRUETYPE_FONT, is);
+			coinyRegular = coinyRegular.deriveFont(Font.BOLD, 30);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void createPopup() {
@@ -110,7 +124,7 @@ public class Gooey extends JPanel {
 	}
 	
 	public void usePopup(String text) {
-		Font myFont = new Font("Coiny Regular", Font.PLAIN, 16);
+		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 16);
 		popupLabel.setFont(myFont);
 		popupLabel.setBackground(PURPLE);
 		popupLabel.setForeground(PURPLE);
@@ -118,7 +132,7 @@ public class Gooey extends JPanel {
 	}
 	
 	public void useMessageBoard(String text) {
-		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
+		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 20);
 		messageBoard.setText("");
 		messageBoard.setFont(myFont);
 		messageBoard.setText(text);
@@ -915,7 +929,7 @@ public class Gooey extends JPanel {
 	public void initLevelView() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
-		Font myFontbigger = new Font("Coiny Regular", Font.PLAIN, 35);
+		Font myFontbigger = coinyRegular.deriveFont(Font.PLAIN, 35);
 
 		levelView.setBackground(Color.black);
 		
@@ -943,7 +957,7 @@ public class Gooey extends JPanel {
 		//namePanel.setPreferredSize(new Dimension(675,225));
 		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
-		Font cityFont = new Font("Coiny Regular", Font.PLAIN, 30);
+		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 30);
 		cityName.setFont(cityFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);
@@ -1038,7 +1052,7 @@ public class Gooey extends JPanel {
 		gbc = new GridBagConstraints();
 
 		// 4th row, First column
-		myFont = new Font("Coiny Regular", Font.PLAIN, 20);
+		//myFont = coinyRegular.deriveFont(Font.PLAIN, 20);
 		gbc.gridx = 0; gbc.gridy = 3;
 		gbc.gridwidth = 2;
 		//gbc.gridheight = 2;
@@ -1190,8 +1204,7 @@ public class Gooey extends JPanel {
 		// tsection, short for top section, just has the word dice on it
 		JPanel tSection = new JPanel(new BorderLayout());
 		JLabel dice = new JLabel("Dice");
-		Font myFont = new Font("Coiny Regular", Font.PLAIN, 20);
-		dice.setFont(myFont);
+		dice.setFont(coinyRegular);
 		tSection.add(dice, BorderLayout.CENTER);
 		dice.setHorizontalAlignment(SwingConstants.CENTER);
 		dice.setVerticalAlignment(SwingConstants.CENTER);
@@ -1204,7 +1217,7 @@ public class Gooey extends JPanel {
 		JLabel bottomText = new JLabel("Items");
 		bSection.setBackground(LIGHT_BROWN);
 		bSection.setPreferredSize(new Dimension(300, 50));
-		bottomText.setFont(myFont);
+		bottomText.setFont(coinyRegular);
 		bSection.add(bottomText, BorderLayout.CENTER);
 		bottomText.setHorizontalAlignment(SwingConstants.CENTER);
 		bottomText.setVerticalAlignment(SwingConstants.CENTER);

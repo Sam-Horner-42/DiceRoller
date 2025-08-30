@@ -49,8 +49,6 @@ public class Model {
         this.selectedDice = new ArrayList<>(); // all the dice the player has selected to roll
         this.playerItems = new ArrayList<>();
         this.selectedItems = new ArrayList<>();
-
-
     }
 
 
@@ -244,9 +242,10 @@ public class Model {
 
 	public void makeMapsAndList(){
 		levels = new HashMap<>();
-
 		playerDice = new ArrayList<>();
 		selectedDice = new ArrayList<>();
+        playerItems = new ArrayList<>();
+        selectedItems = new ArrayList<>();
 	}
 	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
     public void addStarterDice(){
