@@ -87,19 +87,21 @@ public class Controller implements ActionListener {
 	public void goBack(){
 		model.deselectAll();
 		gooey.changeMainArea();
+		gooey.updateDiceZone();
+		gooey.updateSelectedDice();
+		gooey.updateRanges(0, 0);
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		String command = e.getActionCommand();
 		switch(command){
 			case "Roll":
 				model.rollDice();
 				break;
 			case "Back":
-				gooey.changeMainArea();
+				goBack();
 				break;
 			default:
 				System.out.println("This is not a button.");

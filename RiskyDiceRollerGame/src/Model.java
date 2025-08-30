@@ -300,10 +300,21 @@ public class Model {
     }
 
     /* Deselects all the dice from the selected dice list */
-    public void deselectAll(){
-        if(!selectedDice.isEmpty()){
-            for(Die die: selectedDice) deselectDice(die);
-        }
+    public void deselectAll() {
+        if (selectedDice.isEmpty()) return;
+
+        // reset flags first
+        for (Die d : selectedDice) d.setIsSelected(false);
+
+        // move all, then clear once
+        playerDice.addAll(selectedDice);
+        selectedDice.clear();
+
+        Collections.sort(playerDice);
+
+        // keep model state in sync
+        potentialMin = 0;
+        potentialMax = 0;
     }
 
     /* Calculates total potential damage based on all the currently selected dice */
