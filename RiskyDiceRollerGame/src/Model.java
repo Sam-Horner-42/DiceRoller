@@ -264,12 +264,25 @@ public class Model {
      * Sets up min and max range associated with the current level
      * Resets totalDamage to 0
     */
-    public void startCombat(Level level){
-        int minRange = currentLevel.getMinRange();
-        int maxRange = currentLevel.getMaxRange();
-        totalDamage = 0;
+    public void startCombat(){
+        totalDamage = rollDice();
+        deselectAll(); // deselect all currently selected dice
+        Collections.sort(playerDice);
+
+        gooey.updateDiceZone();
+        gooey.updateSelectedDice();
+
+        displayResults(combatResult(totalDamage));
+        totalDamage = 0; // reset total damage
     }
 
+    public void displayResults(boolean result){
+        if (result) {
+            System.out.println("YOU WIN!");
+        } else {
+            System.out.println("YOU LOSE!");
+        }
+    }
     /* Adds a single die by index to the selected dice ArrayList and removes it from playerDice 
      * Updates potential max and potential min of this roll
     */
@@ -351,20 +364,14 @@ public class Model {
     /* Iterates through the array list of dice and returns the total calculated roll 
      * Will be called when the user selects ROLL
     */
-    public void rollDice() {
+    public int rollDice() {
         int result = 0;
         for (Die die: selectedDice) {
             result += rollDie(die);
             }
         totalDamage = result;
+        return totalDamage;
 
-        for (Die die: selectedDice) die.setIsSelected(false);
-
-        deselectAll();
-        System.out.println(result);
-        Collections.sort(playerDice);
-        System.out.println(combatResult(totalDamage));
-        totalDamage = 0;
     }
     
     /*

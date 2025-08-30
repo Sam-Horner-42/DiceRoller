@@ -70,14 +70,17 @@ public class Controller implements ActionListener {
 	
 	// will call model's add dice method
 	public void chooseDice(Die die) {
-		if (!die.getIsSelected()) 
-			model.selectDice(die);
-		else 
-			model.deselectDice(die);
+		if(!gooey.mapOnScreen){
+			if (!die.getIsSelected()) 
+				model.selectDice(die);
+			else 
+				model.deselectDice(die);
 
-		// Always update the displayed (single!) view here:
-		gooey.updateDiceZone();
-		gooey.updateSelectedDice();
+			// Always update the displayed (single!) view here:
+			gooey.updateDiceZone();
+			gooey.updateSelectedDice();
+		}
+			
 	}
 
 	public void updatePossibleRange(){
@@ -98,7 +101,7 @@ public class Controller implements ActionListener {
 		String command = e.getActionCommand();
 		switch(command){
 			case "Roll":
-				model.rollDice();
+				model.startCombat();
 				break;
 			case "Back":
 				goBack();
