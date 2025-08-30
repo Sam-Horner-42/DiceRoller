@@ -306,9 +306,9 @@ public class Model {
         totalDamage = rollDice();
         
         boolean winLose = combatResult(totalDamage);
-        totalDamage = 0; // reset total damage
         handleResults(winLose);
         displayResults(winLose);
+        totalDamage = 0; // reset total damage
         
     }
 
