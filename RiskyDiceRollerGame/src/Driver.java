@@ -16,7 +16,7 @@ public class Driver {
 
         gooey.setController(controller);
         gooey.setModel(model);
-
+        
         model.setView(gooey);
         model.genLevels();
 

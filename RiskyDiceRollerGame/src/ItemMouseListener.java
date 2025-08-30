@@ -42,7 +42,6 @@ public class ItemMouseListener extends MouseAdapter {
 		if(level != null)
 			//label.setIcon(view.loadImage(level.getHoveredImgPath()));
 			System.out.println(controller.getLevels().get(label).getName()); 
-
 		
 	}
 

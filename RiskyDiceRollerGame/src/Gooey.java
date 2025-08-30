@@ -1109,11 +1109,13 @@ public class Gooey extends JPanel {
 		
 	}
 
+	/* Updates the current range for the dice currently selected */
 	public void updateRanges(int min, int max){
 		cMinRange.setText("" + min);
 		cMaxRange.setText("" + max);
 	}
 	
+	/*  */
 	public void fillLabelList() {
 		levelLabels.add(chocoChip1);
 		levelLabels.add(chocoChip2);
