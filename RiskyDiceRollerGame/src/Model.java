@@ -21,6 +21,7 @@ public class Model {
     private int potentialMin;
     private int potentialMax;
 
+    private Level currentLevel;
     
     public LevelMouseListener listener;
 
@@ -158,6 +159,14 @@ public class Model {
         this.gooey = gooey;
     }
 
+    public void setCurrentLevel(Level currentLevel){
+        this.currentLevel = currentLevel;
+    }
+
+    public Level getCurrentLevel(){
+        return currentLevel;
+    }
+
     public void genLevels(){
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
@@ -255,10 +264,9 @@ public class Model {
      * Sets up min and max range associated with the current level
      * Resets totalDamage to 0
     */
-    public void startCombat(int levelId){
-        Level currentLevel = levels.get(levelId);
-        int minRange = level.getMinRange();
-        int maxRange = level.getMaxRange();
+    public void startCombat(Level level){
+        int minRange = currentLevel.getMinRange();
+        int maxRange = currentLevel.getMaxRange();
         totalDamage = 0;
     }
 
@@ -301,10 +309,21 @@ public class Model {
     }
 
     /* Deselects all the dice from the selected dice list */
-    public void deselectAll(){
-        if(!selectedDice.isEmpty()){
-            for(Die die: selectedDice) deselectDice(die);
-        }
+    public void deselectAll() {
+        if (selectedDice.isEmpty()) return;
+
+        // reset flags first
+        for (Die d : selectedDice) d.setIsSelected(false);
+
+        // move all, then clear once
+        playerDice.addAll(selectedDice);
+        selectedDice.clear();
+
+        Collections.sort(playerDice);
+
+        // keep model state in sync
+        potentialMin = 0;
+        potentialMax = 0;
     }
 
     /* Calculates total potential damage based on all the currently selected dice */
@@ -341,9 +360,11 @@ public class Model {
 
         for (Die die: selectedDice) die.setIsSelected(false);
 
-        playerDice.addAll(selectedDice); // put all the selected dice back in the player dice
-        selectedDice.clear(); // remove all the selected dice
+        deselectAll();
+        System.out.println(result);
         Collections.sort(playerDice);
+        System.out.println(combatResult(totalDamage));
+        totalDamage = 0;
     }
     
     /*
@@ -360,8 +381,8 @@ public class Model {
     /*
     checks if the player rolled between the ranges accounting for the defense buffer
     */
-    public boolean combatResult(int attackTotal, int minRange, int maxRange) {
-        return (attackTotal > minRange && attackTotal < maxRange);
+    public boolean combatResult(int attackTotal) {
+        return (attackTotal >= currentLevel.getMinRange() && attackTotal <= currentLevel.getMaxRange());
     }  
 
     
