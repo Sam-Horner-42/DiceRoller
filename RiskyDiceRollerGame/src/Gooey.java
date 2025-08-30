@@ -1148,6 +1148,7 @@ public class Gooey extends JPanel {
 				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).lockedImgPath));
 			}
 		}
+		
 	}
 	
 	/*
