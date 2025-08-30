@@ -12,6 +12,7 @@ public class Sound {
     public Sound() {
         soundURL[0] = getClass().getResource("/audio/diceRoll.wav"); // sound file at first position in soundURL array
         soundURL[1] = getClass().getResource("/audio/levelWin.wav");
+        soundURL[2] = getClass().getResource("/audio/failLevel.wav");    
     }
     
     public void setFile(int i) {

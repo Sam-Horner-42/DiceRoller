@@ -369,6 +369,7 @@ public class Model {
                 //TODO lose screen
                 restartGame();
             } else {
+                controller.playSE(2);
                 selectedDice.clear();
             }
             
@@ -430,7 +431,7 @@ public class Model {
 			item.setIsSelected(true); // this dice is now selected
 			selectedItems.add(item);
 			playerItems.remove(item);
-
+             
 			potentialMin = calculatePotentialMinDamage();
 			potentialMax = calculatePotentialMaxDamage();
 
@@ -513,8 +514,10 @@ public class Model {
             IntWrapper total = new IntWrapper(potentialMax);
             // Apply all items to total
             for (Item item : selectedItems) {
-                item.use(total);
-                potentialMax = total.value;
+                if(!(item instanceof SlotMachine)){
+                    item.use(total);
+                    potentialMax = total.value;
+                }   
             }
         }
         return potentialMax;
@@ -527,21 +530,25 @@ public class Model {
         int potentialMin = 0;
         boolean goldenEgg = false;
         if(selectedItems != null){
-            for (Item it : selectedItems) 
-                if (it instanceof GoldenEgg) goldenEgg = true;   
+            for (Item it : selectedItems) {
+                if (it instanceof GoldenEgg) goldenEgg = true;  
+            }
+                 
         }       
         if(selectedDice != null) {
             for (Die die: selectedDice) {    
                 if(goldenEgg){
                     potentialMin += die.getNumSides();
-                } else potentialMin = selectedDice.size();
+                } else {
+                    potentialMin = selectedDice.size();
+                } 
             }
         }
         if(selectedItems != null) {
             IntWrapper total = new IntWrapper(potentialMin);
             // Apply all items to total
             for (Item item : selectedItems) {
-                if(!(item instanceof Timer)){
+                if(!(item instanceof SlotMachine)){
                     item.use(total);
                     potentialMin = total.value;
                 }
@@ -561,8 +568,12 @@ public class Model {
 		int preItemTotal = 0;
         boolean goldenEgg = false;
         if(selectedItems != null){
-            for (Item it : selectedItems) 
-                if (it instanceof GoldenEgg) goldenEgg = true;   
+            for (Item it : selectedItems) {
+                if (it instanceof GoldenEgg) goldenEgg = true; 
+                
+            }
+                
+
         } 
         if(selectedDice != null) {
             for (Die die: selectedDice) { 
@@ -573,12 +584,21 @@ public class Model {
             }
         }     
             
-
         IntWrapper total = new IntWrapper(preItemTotal);
+
         if(selectedItems != null){
             // Apply all items to total
             for (Item item : selectedItems) {
-                item.use(total);
+                if (item instanceof SlotMachine){
+                    int slotRange = 0;
+                    IntWrapper adjusted = new IntWrapper(slotRange);
+                    item.use(adjusted);
+                    currentLevel.setMaxRange(slotRange);
+                    currentLevel.setMinRange(-slotRange);
+                } else {
+                    item.use(total);
+                }        
+                
             }
         }
             
