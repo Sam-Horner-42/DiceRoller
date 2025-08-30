@@ -177,9 +177,9 @@ public class Model {
     public void genLevels() {
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
-        Level choco2 = new Level("Chocolate Chipago", "chocoChip", "chocoChipHovered", "chocoChipLocked", 1, false, 2, 8, true);
-        Level choco3 = new Level("Orlandough", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 5, 10, true);
-        Level choco4 = new Level("Bisconsin", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 12, 18, true);
+        Level choco2 = new Level("Chocolate Chipago", "chocoChip", "chocoChipHovered", "chocoChipLocked", 1, false, 4, 8, true);
+        Level choco3 = new Level("Orlandough", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 5, 9, true);
+        Level choco4 = new Level("Bisconsin", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 10, 14, true);
         
         Level macaron1 = new Level("Morrocaroon", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
         Level macaron2 = new Level("Paristachio", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
@@ -341,7 +341,7 @@ public class Model {
             deselectAll(); // deselect all currently selected dice and items
             Collections.sort(playerDice);
 
-            reward();
+            reward(); 
         } else if (rerolls > 0) {
             consumeOneSelectedWhisk();
             startCombat();
@@ -507,8 +507,10 @@ public class Model {
             IntWrapper total = new IntWrapper(potentialMin);
             // Apply all items to total
             for (Item item : selectedItems) {
-                item.use(total);
-                potentialMin = total.value;
+                if(!(item instanceof Timer)){
+                    item.use(total);
+                    potentialMin = total.value;
+                }
             }
         }
         return potentialMin;
@@ -524,12 +526,14 @@ public class Model {
             for (Item it : selectedItems) 
                 if (it instanceof GoldenEgg) goldenEgg = true;   
         } 
-        if(selectedDice != null)       
+        if(selectedDice != null) {
             for (Die die: selectedDice) {    
                 if(goldenEgg){
                     preItemTotal += die.getNumSides();
                 } else preItemTotal += rollDie(die);
             }
+        }     
+            
 
         IntWrapper total = new IntWrapper(preItemTotal);
         if(selectedItems != null){
@@ -568,9 +572,11 @@ public class Model {
         if(currentLevelIndex < 5){
             //Add 2 Common Items
             Random random = new Random();
-            int randomDice = random.nextInt(2);
+            int randomDice = random.nextInt(3);
+            int randomAmount = random.nextInt(2) + 1;
+            
             // add 2 dice - d4/d6/d8
-            for(int i = 0; i < 2; i++) { 
+            for(int i = 0; i < randomAmount; i++) { 
                Die newDice = new Die(rewardDice[randomDice].getName(), 
                     rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
                playerDice.add(newDice);

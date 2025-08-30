@@ -3,8 +3,8 @@ public class Timer extends Item {
 
     @Override
     public void use(IntWrapper total) {
-        if(total.value != 0)
-            total.value /= -2;
+        if(total.value != 0 && total.value != 1)
+            total.value /= 2;
         System.out.println("After Timer: " + total.value);
     }
 }
