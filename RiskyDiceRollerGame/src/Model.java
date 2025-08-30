@@ -47,8 +47,6 @@ public class Model {
 
     private HashMap<JLabel, Level> levels; // stores all the different levels associated with their IDs
     private ArrayList<Level> levelData; 
-    private ArrayList<Die> dieRewards; 
-    private ArrayList<Item> itemRewards; 
     /* Constructs the lists that store currently held and selected dice/items */
     public Model(){
         this.playerDice = new ArrayList<>(); // all the dice currently in inventory
@@ -307,9 +305,9 @@ public class Model {
         totalDamage = rollDice();
         
         boolean winLose = combatResult(totalDamage);
-        totalDamage = 0; // reset total damage
         handleResults(winLose);
         displayResults(winLose);
+        totalDamage = 0; // reset total damage
         
     }
 
@@ -364,6 +362,8 @@ public class Model {
         if (result) {
         	//TODO FINISH
         	gooey.winDialog(totalDamage, dieRewards, itemRewards);
+        	dieRewards.clear();
+        	itemRewards.clear();
             System.out.println("YOU WIN!");
         } else {
             System.out.println("YOU LOSE!");
@@ -570,8 +570,10 @@ public class Model {
             int randomDice = random.nextInt(2);
             // add 2 dice - d4/d6/d8
             for(int i = 0; i < 2; i++) { 
-                playerDice.add(new Die(rewardDice[randomDice].getName(), 
-                    rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected()));
+               Die newDice = new Die(rewardDice[randomDice].getName(), 
+                    rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
+               playerDice.add(newDice);
+               dieRewards.add(newDice);
             } 
         
         } else if(currentLevelIndex >= 5 && currentLevelIndex < 10){

@@ -1316,7 +1316,7 @@ public class Gooey extends JPanel {
         dialog.add(message, BorderLayout.NORTH);
 
         // Extra panel in the middle
-        JPanel rewardPanel = new JPanel(new GridLayout());
+        JPanel rewardPanel = new JPanel(new GridLayout(0,1));
             dialog.add(rewardPanel, BorderLayout.CENTER);
         
 
