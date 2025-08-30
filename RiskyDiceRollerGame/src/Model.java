@@ -35,10 +35,8 @@ public class Model {
     Die d20 = new Die("", 20, "", false);
 
     private Die[] rewardDice = {d4, d6, d8, d20};
-    private enum COMMON_ITEMS{MIN, MAX, PLUS2, MINUS2}
-    private enum UNCOMMON_ITEMS{}
-    private enum RARE_ITEMS{}
-    private enum STATE{MAP, LEVEL}
+    private ArrayList<Item> itemRewards = new ArrayList<>();
+    private ArrayList<Die> dieRewards = new ArrayList<>();
 
     private ArrayList<Die> playerDice; // the dice the player currently has
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
@@ -471,7 +469,7 @@ public class Model {
         int potentialMax = 0;
         if(selectedDice != null) {
             for(Die die: selectedDice) {
-                potentialMax = die.getNumSides();
+                potentialMax += die.getNumSides();
             }
         }
         if(selectedItems != null) {
@@ -479,8 +477,7 @@ public class Model {
             // Apply all items to total
             for (Item item : selectedItems) {
                 item.use(total);
-                potentialMax += total.value;
-                
+                potentialMax = total.value;
             }
         }
         return potentialMax;
@@ -491,15 +488,24 @@ public class Model {
      */
     public int calculatePotentialMinDamage(){
         int potentialMin = 0;
+        boolean goldenEgg = false;
+        if(selectedItems != null){
+            for (Item it : selectedItems) 
+                if (it instanceof GoldenEgg) goldenEgg = true;   
+        }       
         if(selectedDice != null) {
-            potentialMin = selectedDice.size();
+            for (Die die: selectedDice) {    
+                if(goldenEgg){
+                    potentialMin = die.getNumSides();
+                } else potentialMin = selectedDice.size();
+            }
         }
         if(selectedItems != null) {
             IntWrapper total = new IntWrapper(potentialMin);
             // Apply all items to total
             for (Item item : selectedItems) {
                 item.use(total);
-                potentialMin += total.value;
+                potentialMin = total.value;
             }
         }
         return potentialMin;
@@ -510,17 +516,26 @@ public class Model {
     */
     public int rollDice() {
         int preItemTotal = 0;
-        for (Die die: selectedDice) {
-        	preItemTotal += rollDie(die);
+        boolean goldenEgg = false;
+        if(selectedItems != null){
+            for (Item it : selectedItems) 
+                if (it instanceof GoldenEgg) goldenEgg = true;   
+        } 
+        if(selectedDice != null)       
+            for (Die die: selectedDice) {    
+                if(goldenEgg){
+                    preItemTotal += die.getNumSides();
+                } else preItemTotal += rollDie(die);
             }
-        
+
         IntWrapper total = new IntWrapper(preItemTotal);
-
-        // Apply all items to total
-        for (Item item : selectedItems) {
-            item.use(total);
+        if(selectedItems != null){
+            // Apply all items to total
+            for (Item item : selectedItems) {
+                item.use(total);
+            }
         }
-
+            
         totalDamage = total.value;
         return totalDamage;
 
