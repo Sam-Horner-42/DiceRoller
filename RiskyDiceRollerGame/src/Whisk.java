@@ -1,5 +1,5 @@
 public class Whisk extends Item {
-    public Whisk() { super("whisk", "Mix it UP! If you lose, automatically roll again, one time use."); }
+    public Whisk() { super("whisk", "Mix it UP! If you lose, automatically roll again."); }
 
     @Override
     public void use(IntWrapper total) {

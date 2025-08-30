@@ -191,6 +191,17 @@ public class Model {
         return currentLevel;
     }
 
+    private Item newItemByIndex(int index) {
+        return switch (index) {
+            case 0 -> new GoldenEgg();
+            case 1 -> new SlotMachine();
+            case 2 -> new Milk();
+            case 3 -> new Whisk();
+            case 4 -> new ChocolateCoin();
+            case 5 -> new Timer();
+            default -> throw new IllegalArgumentException("Invalid item index: " + index);
+        };
+    }
     public void genLevels() {
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
@@ -532,8 +543,7 @@ public class Model {
         if(selectedItems != null){
             for (Item it : selectedItems) {
                 if (it instanceof GoldenEgg) goldenEgg = true;  
-            }
-                 
+            }      
         }       
         if(selectedDice != null) {
             for (Die die: selectedDice) {    
@@ -589,7 +599,7 @@ public class Model {
         if(selectedItems != null){
             // Apply all items to total
             for (Item item : selectedItems) {
-                if (item instanceof SlotMachine){
+                if (item instanceof SlotMachine) {
                     IntWrapper slotRange = new IntWrapper(0);
                     item.use(slotRange);                // mutates slotRange.value
                     int delta = slotRange.value;        // <-- read it back
@@ -638,7 +648,8 @@ public class Model {
 
         // add 2 dice - d4/d6/d8
        
-        if (playerDice.size()<8) {
+        if (playerDice.size() < 8) {
+            if(playerDice.size() == 7 && randomAmount == 2) randomAmount--;
 			for (int i = 0; i < randomAmount; i++) {
 				int randomDice = random.nextInt(4);
 				Die newDice = new Die(rewardDice[randomDice].getName(), rewardDice[randomDice].getNumSides(),
@@ -650,10 +661,11 @@ public class Model {
 		if (playerItems.size() < 6) {
 			if (giveItem == 1) {
 				int randomItem = random.nextInt(6);
-				Item rewardItem = possibleItems[randomItem];
+                
 				if (playerItems.size() < 6) {
-					playerItems.add(rewardItem);
-					itemRewards.add(rewardItem);
+                    Item rewardItem = newItemByIndex(randomItem);
+                    playerItems.add(rewardItem);
+                    itemRewards.add(rewardItem);
 				}
 			} 
 		}

@@ -1,5 +1,5 @@
 public class GoldenEgg extends Item {
-    public GoldenEgg() { super("goldenEgg", "A golden egg, always roll the max on every die"); }
+    public GoldenEgg() { super("goldenEgg", "Always roll the max on every die, this goose lays a golden egg every time."); }
 
     @Override
     public void use(IntWrapper total) {

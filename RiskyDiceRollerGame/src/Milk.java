@@ -1,5 +1,5 @@
 public class Milk extends Item {
-    public Milk() { super("milk", "Milk, doubles your score, every cookie is better with milk"); }
+    public Milk() { super("milk", "Doubles your score, every cookie is better with milk"); }
 
     @Override
     public void use(IntWrapper total) {
