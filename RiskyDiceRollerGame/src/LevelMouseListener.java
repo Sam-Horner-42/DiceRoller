@@ -1,3 +1,4 @@
+import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -44,6 +45,8 @@ public class LevelMouseListener extends MouseAdapter {
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
 		//System.out.println(model.getLevels().get(label).getName()); 
+		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		label.setEnabled(true);
 		label.setIcon(view.loadImage(model.getLevels().get(label).getHoveredImgPath()));
 
 	}
@@ -56,6 +59,8 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
+		label.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		label.setEnabled(true);
 		label.setIcon(view.loadImage(model.getLevels().get(label).getDefaultImgPath()));
 	}
 

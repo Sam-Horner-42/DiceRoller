@@ -1,3 +1,4 @@
+import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -40,11 +41,13 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		label.setEnabled(true);
 		if(!view.popup.isVisible()) {
-		Point location = label.getLocationOnScreen();
-        view.popup.setLocation(location.x, location.y - label.getHeight());
-        view.usePopup(dice.getDescription());
-        view.popup.setVisible(true);
+			Point location = label.getLocationOnScreen();
+			view.popup.setLocation(location.x, location.y - label.getHeight());
+			view.usePopup(dice.getDescription());
+			view.popup.setVisible(true);
 		}
 	}
 
@@ -55,6 +58,8 @@ public class DiceMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
+		label.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		label.setEnabled(true);
 		view.popup.setVisible(false);
 	}
 
