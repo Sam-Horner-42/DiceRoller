@@ -471,7 +471,7 @@ public class Model {
         int potentialMax = 0;
         if(selectedDice != null) {
             for(Die die: selectedDice) {
-                potentialMax += die.getNumSides();
+                potentialMax = die.getNumSides();
             }
         }
         if(selectedItems != null) {
@@ -479,7 +479,7 @@ public class Model {
             // Apply all items to total
             for (Item item : selectedItems) {
                 item.use(total);
-                potentialMax = total.value;
+                potentialMax += total.value;
                 
             }
         }
@@ -493,6 +493,14 @@ public class Model {
         int potentialMin = 0;
         if(selectedDice != null) {
             potentialMin = selectedDice.size();
+        }
+        if(selectedItems != null) {
+            IntWrapper total = new IntWrapper(potentialMin);
+            // Apply all items to total
+            for (Item item : selectedItems) {
+                item.use(total);
+                potentialMin += total.value;
+            }
         }
         return potentialMin;
     }

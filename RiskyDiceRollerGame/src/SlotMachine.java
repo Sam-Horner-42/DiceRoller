@@ -1,5 +1,5 @@
 public class SlotMachine extends Item {
-    public SlotMachine() { super("slotMachine", "A Slot Machine, always rolls 777"); }
+    public SlotMachine() { super("slotMachine", "A Slot Machine, always rolls Three 7s"); }
 
     @Override
     public void use(IntWrapper total) {
