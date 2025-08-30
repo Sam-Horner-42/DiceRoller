@@ -28,6 +28,8 @@ public class Model {
     
     public LevelMouseListener listener;
 
+    Controller controller = new Controller();
+
     // Sets of enums to hold dice and item labels
     Die d4 = new Die("", 4, "", false);
     Die d6 = new Die("", 6, "", false);
@@ -371,6 +373,12 @@ public class Model {
     public void displayResults(boolean result){
         if (result) {
         	//TODO FINISH
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+            
+            controller.playSE(1); //Win sound
         	gooey.winDialog(totalDamage, dieRewards, itemRewards);
         	dieRewards.clear();
         	itemRewards.clear();
