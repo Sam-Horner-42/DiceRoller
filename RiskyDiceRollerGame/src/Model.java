@@ -413,7 +413,14 @@ public class Model {
 
     
     public void reward(){
-
+        int currentLevelIndex = levelData.indexOf(currentLevel);
+        if(currentLevelIndex < 5){
+            //Common Item Pool
+        } else if(currentLevelIndex >= 5 && currentLevelIndex < 10){
+            //Uncommon Item Pool
+        } else if(currentLevelIndex >= 10 && currentLevelIndex < 16){
+            //Rare Item Pool
+        } 
     }
 
     
