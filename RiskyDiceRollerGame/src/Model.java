@@ -278,7 +278,6 @@ public class Model {
 
     
     
-
     /* For debugging purposes only */
     public void addAllItems(){
         Item goldenEgg = new GoldenEgg(); 
