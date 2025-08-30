@@ -82,6 +82,20 @@ public class Controller implements ActionListener {
 		}
 			
 	}
+	
+	public void chooseItem(Item item) {
+		if(!gooey.mapOnScreen){
+			if (!item.isSelected()) 
+				model.selectItem(item);
+			else 
+				model.deselectItem(item);
+
+			// Always update the displayed (single!) view here:
+			gooey.updateItemZone();
+			gooey.updateSelectedItem();
+		}
+			
+	}
 
 	public void updatePossibleRange(){
 		//TODO add functionality to display possible range based on selected dice

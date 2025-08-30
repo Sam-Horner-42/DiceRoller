@@ -18,6 +18,7 @@ public class Model {
     /* Total amount of dice the player has */
     private int diceCount;
     private int totalDamage;
+    
     private int potentialMin;
     private int potentialMax;
 
@@ -48,9 +49,12 @@ public class Model {
         this.selectedDice = new ArrayList<>(); // all the dice the player has selected to roll
         this.playerItems = new ArrayList<>();
         this.selectedItems = new ArrayList<>();
+
+
     }
 
-    // Getters and Setters
+
+	// Getters and Setters
     public int getMaxDice() {
         return maxDice;
     }
@@ -247,7 +251,7 @@ public class Model {
 	/* Adds 2 6-sided attack die, and 2 4-sided defense die */
     public void addStarterDice(){
         
-        for(int i = 0; i < 6; i++) { 
+        for(int i = 0; i < 2; i++) { 
             playerDice.add(new Die("", 6, "", false));
             playerDice.add(new Die("", 4, "", false));
         } 
@@ -256,14 +260,24 @@ public class Model {
 		gooey.updateDiceZone();
     }
 
-    public void wager(){
+	public void addStarterItems() {
+		Item goldenEgg = new GoldenEgg(); 
+		Item slotMachine = new SlotMachine();
+		playerItems.add(goldenEgg);
+		playerItems.add(slotMachine);
 
-    }
-    /** Comabt always starts here 
-     * Assigns current level based on ID passed in
-     * Sets up min and max range associated with the current level
-     * Resets totalDamage to 0
-    */
+
+		gooey.updateDiceZone();
+	}
+
+	public void wager() {
+
+	}
+
+	/**
+	 * Comabt always starts here Assigns current level based on ID passed in Sets up
+	 * min and max range associated with the current level Resets totalDamage to 0
+	 */
     public void startCombat(){
         totalDamage = rollDice();
         
@@ -295,6 +309,7 @@ public class Model {
      */
     public void displayResults(boolean result){
         if (result) {
+        	//TODO
             System.out.println("YOU WIN!");
         } else {
             System.out.println("YOU LOSE!");
@@ -312,29 +327,57 @@ public class Model {
 
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
-            gooey.updateRanges(potentialMin, potentialMax);
+			gooey.updateRanges(potentialMin, potentialMax);
+			Collections.sort(selectedDice);
+			Collections.sort(playerDice);
+
+		}
+
+	}
+
+	public void selectItem(Item item) {
+
+		if (selectedItems.size() < 3 && !item.isSelected()) {
+			item.setSelected(true); // this dice is now selected
+			selectedItems.add(item);
+			playerItems.remove(item);
+
+			potentialMin = calculatePotentialMinDamage();
+			potentialMax = calculatePotentialMaxDamage();
+			gooey.updateRanges(potentialMin, potentialMax);
+		}
+
+	}
+
+	/*
+	 * Removes a single deselected die from the selected dice ArrayList and place it
+	 * back in playerDice Updates potential max and potential min of this roll
+	 */
+	public void deselectDice(Die die) {
+		if (die.getIsSelected()) {
+			die.setIsSelected(false);
+			playerDice.add(die);
+			selectedDice.remove(die);
+
+			potentialMin = calculatePotentialMinDamage();
+			potentialMax = calculatePotentialMaxDamage();
+			gooey.updateRanges(potentialMin, potentialMax);
+
+			Collections.sort(playerDice);
             Collections.sort(selectedDice);
-            Collections.sort(playerDice);
-            
-        }   
-        
+        }
     }
+	
+	public void deselectItem(Item item) {
+		if (item.isSelected()) {
+			item.setSelected(false);
+			playerItems.add(item);
+			selectedItems.remove(item);
 
-    /* Removes a single deselected die from the selected dice ArrayList and place it back in playerDice 
-    *  Updates potential max and potential min of this roll
-    */
-    public void deselectDice(Die die){
-        if (die.getIsSelected()) {
-            die.setIsSelected(false);
-            playerDice.add(die);
-            selectedDice.remove(die);
+			potentialMin = calculatePotentialMinDamage();
+			potentialMax = calculatePotentialMaxDamage();
+			gooey.updateRanges(potentialMin, potentialMax);
 
-            potentialMin = calculatePotentialMinDamage();
-            potentialMax = calculatePotentialMaxDamage();
-            gooey.updateRanges(potentialMin, potentialMax);
-            
-            Collections.sort(playerDice);
-            Collections.sort(selectedDice);
         }
     }
 
@@ -382,11 +425,19 @@ public class Model {
      * Will be called when the user selects ROLL
     */
     public int rollDice() {
-        int result = 0;
+        int preItemTotal = 0;
         for (Die die: selectedDice) {
-            result += rollDie(die);
+        	preItemTotal += rollDie(die);
             }
-        totalDamage = result;
+
+        IntWrapper total = new IntWrapper(preItemTotal);
+
+        // Apply all items to total
+        for (Item item : selectedItems) {
+            item.use(total);
+        }
+
+        totalDamage = total.value;
         return totalDamage;
 
     }

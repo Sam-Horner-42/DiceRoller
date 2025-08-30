@@ -1,3 +1,5 @@
+import java.awt.Cursor;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -16,7 +18,7 @@ public class ItemMouseListener extends MouseAdapter {
 	 */
 	private Controller controller;
 
-	private Level level;
+	private Item item;
 	
 	/**
 	 * Constructor to initialize the LabelMouseListener.
@@ -25,10 +27,11 @@ public class ItemMouseListener extends MouseAdapter {
 	 * @param controller The game controller.
 	 * @param label The JLabel associated with the card.
 	 */
-	ItemMouseListener(Gooey view, Controller controller, JLabel label){
+	public ItemMouseListener(Gooey view, Controller controller, JLabel label, Item item){
 		this.view = view;
 		this.controller = controller;
 		this.label = label;
+		this.item = item;
 	}
 
 	/**
@@ -38,11 +41,14 @@ public class ItemMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		//TODO what happens when you hover over a level 
-		if(level != null)
-			//label.setIcon(view.loadImage(level.getHoveredImgPath()));
-			System.out.println(controller.getLevels().get(label).getName()); 
-		
+		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		label.setEnabled(true);
+		if(!view.popup.isVisible()) {
+			Point location = label.getLocationOnScreen();
+			view.popup.setLocation(location.x, location.y - label.getHeight());
+			view.usePopup(item.getDescription());
+			view.popup.setVisible(true);
+		}
 	}
 
 	/**
@@ -52,9 +58,9 @@ public class ItemMouseListener extends MouseAdapter {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
-		//TODO what happens when your mouse exits a level
-		if(level != null)
-			label.setIcon(view.loadImage(level.getDefaultImgPath()));
+		label.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+		label.setEnabled(true);
+		view.popup.setVisible(false);
 	}
 
 	/**
@@ -63,13 +69,10 @@ public class ItemMouseListener extends MouseAdapter {
 	 * @param e The mouse event triggered when the card is clicked.
 	 */
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void mousePressed(MouseEvent e) {
 		//TODO what happens when you click on a dice
-		//model.selectDice();
+		controller.chooseItem(item);
 	}
-	
-	
-	
 }
 
 
