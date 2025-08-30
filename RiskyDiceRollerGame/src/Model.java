@@ -282,6 +282,8 @@ public class Model {
 
             deselectAll(); // deselect all currently selected dice
             Collections.sort(playerDice);
+
+            reward();
         } else {
             selectedDice.clear();
         }
