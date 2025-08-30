@@ -75,7 +75,7 @@ public class Level {
     }
 
     public String getHoveredImgPath(){
-        return defaultImgPath;
+        return hoveredImgPath;
     }
 
     public void setHoveredImgPath(String defaultImgPath){
@@ -83,7 +83,7 @@ public class Level {
     }
 
     public String getLockedImgPath(){
-        return defaultImgPath;
+        return lockedImgPath;
     }
 
     public void setLockedImgPath(String defaultImgPath){
