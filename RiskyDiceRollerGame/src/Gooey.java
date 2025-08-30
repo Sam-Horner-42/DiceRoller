@@ -938,7 +938,7 @@ public class Gooey extends JPanel {
 		//namePanel.setPreferredSize(new Dimension(675,225));
 		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
-		Font cityFont = new Font("Coiny Regular", Font.PLAIN, 40);
+		Font cityFont = new Font("Coiny Regular", Font.PLAIN, 20);
 		cityName.setFont(cityFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);

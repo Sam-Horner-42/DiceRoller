@@ -282,12 +282,12 @@ public class Model {
 
             deselectAll(); // deselect all currently selected dice
             Collections.sort(playerDice);
-            
-            gooey.updateDiceZone();
-            gooey.updateSelectedDice();
         } else {
             selectedDice.clear();
         }
+        gooey.updateDiceZone();
+        gooey.updateSelectedDice();
+        gooey.updateLabels();
     }
 
     /*
