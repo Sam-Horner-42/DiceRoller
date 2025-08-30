@@ -53,7 +53,7 @@ public class Model {
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
     //private ArrayList<Integer> wageredDice; // the dice wagered before combat begins, int for the index in player dice
     
-    private ArrayList<Die> lostDice= new ArrayList<>();
+    private ArrayList<Die> lostDice = new ArrayList<>();
 
     private ArrayList<Item> playerItems; // currently held items
     private ArrayList<Item> selectedItems; // items currently selected
@@ -365,7 +365,13 @@ public class Model {
             consumeOneSelectedWhisk();
             startCombat();
         } else {
-            selectedDice.clear();
+            if(playerDice.isEmpty() && playerItems.isEmpty()){
+                //TODO lose screen
+                restartGame();
+            } else {
+                selectedDice.clear();
+            }
+            
         }
 
         gooey.updateDiceZone();
@@ -396,6 +402,8 @@ public class Model {
 
         }
     }
+
+    
     /* Adds a single die by index to the selected dice ArrayList and removes it from playerDice 
      * Updates potential max and potential min of this roll
     */
@@ -525,7 +533,7 @@ public class Model {
         if(selectedDice != null) {
             for (Die die: selectedDice) {    
                 if(goldenEgg){
-                    potentialMin = die.getNumSides();
+                    potentialMin += die.getNumSides();
                 } else potentialMin = selectedDice.size();
             }
         }
@@ -631,7 +639,26 @@ public class Model {
 		gooey.updateDiceZone();
     }
 
-    
+    public void restartGame(){
+        playerDice.clear();
+        selectedDice.clear();
+        playerItems.clear();
+        selectedItems.clear();
+
+        genLevels();
+
+        makeMapsAndList();
+        populateLevelMap();
+        
+        addStarterDice();
+        addStarterItems();
+        //model.addAllItems();
+
+        gooey.updateItemZone();
+        gooey.updateSelectedItem();
+        gooey.updateSelectedDice();
+        gooey.updateDiceZone();
+    }
     /* Displays all the player dice with index 
      * Uses a for loop so we get every index, not just first occurence
     */
