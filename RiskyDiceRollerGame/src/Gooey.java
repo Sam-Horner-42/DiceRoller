@@ -1132,7 +1132,7 @@ public class Gooey extends JPanel {
 		for(int i=0;i<levelLabels.size();i++) {
 			boolean change = model.getLevels().get(levelLabels.get(i)).getIsComplete();
 			if(change) {
-				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
+				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).getDefaultImgPath() + "Flag"));
 			}
 			
 		}

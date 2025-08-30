@@ -20,7 +20,6 @@ public class Model {
     private int totalDamage;
     private int potentialMin;
     private int potentialMax;
-
     
     public LevelMouseListener listener;
 
@@ -332,7 +331,7 @@ public class Model {
     /* Iterates through the array list of dice and returns the total calculated roll 
      * Will be called when the user selects ROLL
     */
-    public void rollDice() {
+    public int rollDice() {
         int result = 0;
         for (Die die: selectedDice) {
             result += rollDie(die);
@@ -344,6 +343,7 @@ public class Model {
         playerDice.addAll(selectedDice); // put all the selected dice back in the player dice
         selectedDice.clear(); // remove all the selected dice
         Collections.sort(playerDice);
+        return result;
     }
     
     /*
