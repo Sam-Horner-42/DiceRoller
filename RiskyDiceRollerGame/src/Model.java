@@ -336,6 +336,7 @@ public class Model {
     /* Used to remove wagered dice/items */
     public void handleResults(boolean result) {
         if(result){
+            currentLevel.setIsComplete(true);
             int nextLevelIndex = levelData.indexOf(currentLevel) + 1;
             levelData.get(nextLevelIndex).setIsLocked(false);
 

@@ -46,9 +46,9 @@ public class LevelMouseListener extends MouseAdapter {
 		//TODO what happens when you hover over a level
 		if(!model.getLevels().get(label).isLocked && !model.getLevels().get(label).getIsComplete() ) {
 
-		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		label.setEnabled(true);
-		label.setIcon(view.loadImage(model.getLevels().get(label).getHoveredImgPath()));
+			label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			label.setEnabled(true);
+			label.setIcon(view.loadImage(model.getLevels().get(label).getHoveredImgPath()));
 		}
 
 	}
@@ -62,9 +62,9 @@ public class LevelMouseListener extends MouseAdapter {
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
 		if(!model.getLevels().get(label).isLocked && !model.getLevels().get(label).getIsComplete() ) {
-		label.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-		label.setEnabled(true);
-		label.setIcon(view.loadImage(model.getLevels().get(label).getDefaultImgPath()));
+			label.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+			label.setEnabled(true);
+			label.setIcon(view.loadImage(model.getLevels().get(label).getDefaultImgPath()));
 		}
 	}
 
