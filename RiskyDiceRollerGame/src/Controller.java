@@ -106,6 +106,8 @@ public class Controller implements ActionListener {
 		gooey.changeMainArea();
 		gooey.updateDiceZone();
 		gooey.updateSelectedDice();
+		gooey.updateItemZone();
+		gooey.updateSelectedItem();
 		gooey.updateRanges(0, 0);
 	}
 

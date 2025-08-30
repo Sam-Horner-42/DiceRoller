@@ -458,11 +458,7 @@ public class Model {
             playerItems.addAll(selectedItems);
             selectedItems.clear();
 
-            Collections.sort(playerDice);
         }
-
-
-            
 
         // keep model state in sync
         potentialMin = 0;
