@@ -1317,7 +1317,27 @@ public class Gooey extends JPanel {
 
         // Extra panel in the middle
         JPanel rewardPanel = new JPanel(new GridLayout(0,1));
-            dialog.add(rewardPanel, BorderLayout.CENTER);
+        JLabel rewardMessage = new JLabel("You didn't even get anything :(");
+        JPanel rewardHolder = new JPanel(new GridLayout(0,3));
+        if(!diceReward.isEmpty()) {
+        	rewardMessage.setText("You recieved a reward");
+        	for(Die dice: diceReward) {
+        		JLabel dreward = new JLabel(loadImage(dice.getFileName()));
+        		rewardHolder.add(dreward);
+        	}
+        }
+        if(!itemReward.isEmpty()) {
+        	rewardMessage.setText("You recieved a reward");
+        	for(Item item: itemReward) {
+        		JLabel dreward = new JLabel(loadImage(item.getName()));
+        		rewardHolder.add(dreward);
+        	}
+        	
+        }
+        
+        rewardPanel.add(rewardMessage);
+        rewardPanel.add(rewardHolder);
+        dialog.add(rewardPanel, BorderLayout.CENTER);
         
 
         // OK button at the bottom
