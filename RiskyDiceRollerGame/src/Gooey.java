@@ -15,7 +15,6 @@ public class Gooey extends JPanel {
 	int levelMaxRange = 0; // Will always start at 0 because the player has not selected dice
 	int currentMinRange = 0; // Same as above
 	int currentMaxRange = 0;
-
 	JFrame frame = new JFrame();
 	ImageIcon bgIcon = new ImageIcon(getClass().getResource("/assets/mapBackground.png"));
 	ImagePanel map = new ImagePanel(bgIcon, new GridBagLayout());
@@ -26,6 +25,7 @@ public class Gooey extends JPanel {
 	JLabel tMinToMaxRange = new JLabel("PlaceHolder");
 	JLabel cMinToMaxRange = new JLabel("PlaceHolder");
 
+	
 
 	JPanel selectedDiceHolder = new JPanel(new GridLayout(0, 5));
 	JPanel selectedItemHolder = new JPanel(new GridLayout(0, 3));
@@ -33,14 +33,13 @@ public class Gooey extends JPanel {
 	JTextPane messageBoard = new JTextPane();
 	JPanel diceZone = new JPanel(new GridLayout(0,2));
 	JPanel itemZone = new JPanel(new GridLayout(0,2));
-	Window popup = new JWindow(frame);
-	JLabel popupLabel =new JLabel();
+	JTextPane popup = new JTextPane();
 	
 	ArrayList<JLabel> levelLabels = new ArrayList<>();
 	boolean labelListFilled = false;
 	boolean mapOnScreen = true;
 	Controller controller;
-	Model model;
+	Model model = new Model();
 	// chocolate chip islands
 	JLabel chocoChip1 = new JLabel(loadImage("chocoChip"));
 	JLabel chocoChip2 = new JLabel(loadImage("chocoChip"));
@@ -67,6 +66,9 @@ public class Gooey extends JPanel {
 	JLabel red_jelly1 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly2 = new JLabel(loadImage("red_jelly"));
 	JLabel red_jelly3 = new JLabel(loadImage("red_jelly"));
+	
+	JLabel dice = new JLabel("Dice  " + model.getDiceCount() + "/8");
+	JLabel items = new JLabel("Items  " + model.getItemCount() + "/6");
 	
 	static final Color DARK_BROWN = new Color(176, 137, 112);
 	
@@ -112,20 +114,10 @@ public class Gooey extends JPanel {
 		
 	}
 	
-	public void createPopup() {
-	    popup.setLayout(new BorderLayout());
-	    popup.setSize(250, 75);	
-		popup.add(popupLabel, BorderLayout.CENTER);
-		popup.setBackground(PURPLE);
-		popup.setVisible(false);
-	}
+
 	
 	public void usePopup(String text) {
-		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 16);
-		popupLabel.setFont(myFont);
-		popupLabel.setBackground(PURPLE);
-		popupLabel.setForeground(PURPLE);
-		popupLabel.setText(text);
+		popup.setText(text);
 	}
 	
 	public void useMessageBoard(String text) {
@@ -1165,64 +1157,76 @@ public class Gooey extends JPanel {
 		// overarching panel containing our 3 components
 		JPanel rightSection = new JPanel(new GridBagLayout());
 		rightSection.setBackground(Color.blue);
-		rightSection.setPreferredSize(new Dimension(300, 0));
+		rightSection.setPreferredSize(new Dimension(300,900));
 		GridBagConstraints gbc = new GridBagConstraints();
-
+		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 20);
 		// diceZone is where the dice will be displayed in the right panel, we can add
 		// things to it as it is not a local variable
 		diceZone.setBackground(DARK_BROWN);
-		diceZone.setPreferredSize(new Dimension(300, 300));
 		itemZone.setBackground(DARK_BROWN);
-		itemZone.setPreferredSize(new Dimension(300, 300));
+		popup.setBackground(BEIGE);
+		popup.setEditable(false);
+		popup.setFont(myFont);
+		
+
 
 		// tsection, short for top section, just has the word dice on it
 		JPanel tSection = new JPanel(new BorderLayout());
-		JLabel dice = new JLabel("Dice");
+
 		dice.setFont(coinyRegular);
 		tSection.add(dice, BorderLayout.CENTER);
 		dice.setHorizontalAlignment(SwingConstants.CENTER);
 		dice.setVerticalAlignment(SwingConstants.CENTER);
 		tSection.setBackground(LIGHT_BROWN);
-		tSection.setPreferredSize(new Dimension(300, 50));
 
 		// bsection, bottom section, since we need to add info to this, it can't be
 		// local
 		JPanel bSection = new JPanel(new BorderLayout());
-		JLabel bottomText = new JLabel("Items");
 		bSection.setBackground(LIGHT_BROWN);
-		bSection.setPreferredSize(new Dimension(300, 50));
-		bottomText.setFont(coinyRegular);
-		bSection.add(bottomText, BorderLayout.CENTER);
-		bottomText.setHorizontalAlignment(SwingConstants.CENTER);
-		bottomText.setVerticalAlignment(SwingConstants.CENTER);
+		items.setFont(coinyRegular);
+		bSection.add(items, BorderLayout.CENTER);
+		items.setHorizontalAlignment(SwingConstants.CENTER);
+		items.setVerticalAlignment(SwingConstants.CENTER);
 		// scrollpane just makes it so that we can scroll down to see all our dice, we
 		// placed dicezone in it
-		JScrollPane diceScroll = new JScrollPane(diceZone, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+		JScrollPane txtScroll = new JScrollPane(popup, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		JScrollPane itemScroll = new JScrollPane(itemZone, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		diceScroll.setPreferredSize(new Dimension(300,300));
-		itemScroll.setPreferredSize(new Dimension(300,300));
-
 
 		// we add everythin to the overarching right panel, then add it to the frame
 		gbc.gridx = 1;
 		gbc.gridy = 0;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 0.08;
 		rightSection.add(tSection, gbc);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 1;
-		gbc.fill = GridBagConstraints.VERTICAL;
-		gbc.weighty = 1;
-		rightSection.add(diceScroll, gbc);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 0.3;
+		rightSection.add(diceZone, gbc);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 2;
-		rightSection.add(bSection, gbc);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 0.2;
+		rightSection.add(txtScroll, gbc);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 3;
-		rightSection.add(itemScroll, gbc);
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 0.08;
+		rightSection.add(bSection, gbc);
+		gbc = new GridBagConstraints();
+		gbc.gridx = 1;
+		gbc.gridy = 4;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 0.3;
+		rightSection.add(itemZone, gbc);
 		frame.add(rightSection, BorderLayout.EAST);
 	}
 
@@ -1242,6 +1246,7 @@ public class Gooey extends JPanel {
 			panel.add(label, BorderLayout.CENTER);
 			diceZone.add(panel);
 		}
+		dice.setText("Dice  " + model.getDiceCount() + "/8");
 		
     	diceZone.revalidate(); // relayout
     	diceZone.repaint();    // refresh
@@ -1261,7 +1266,8 @@ public class Gooey extends JPanel {
 			panel.add(label, BorderLayout.CENTER);
 			itemZone.add(panel);
 		}
-
+		items.setText("Items  " + model.getItemCount() + "/6");
+		
 		itemZone.revalidate(); // relayout
 		itemZone.repaint();    // refresh
 	}
@@ -1413,7 +1419,6 @@ public class Gooey extends JPanel {
 			fillLabelList();
 		}
 		createMainFrame();
-		createPopup();
 		updateLabels();
 		initMap();
 		initLevelView();

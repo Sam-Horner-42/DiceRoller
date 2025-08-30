@@ -43,12 +43,10 @@ public class DiceMouseListener extends MouseAdapter {
 	public void mouseEntered(MouseEvent e) {
 		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		label.setEnabled(true);
-		if(!view.popup.isVisible()) {
-			Point location = label.getLocationOnScreen();
-			view.popup.setLocation(location.x, location.y - label.getHeight());
-			view.usePopup(dice.getDescription());
-			view.popup.setVisible(true);
-		}
+		view.usePopup("");
+		view.usePopup(dice.getDescription());
+
+		
 	}
 
 	/**
@@ -60,7 +58,8 @@ public class DiceMouseListener extends MouseAdapter {
 	public void mouseExited(MouseEvent e) {
 		label.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		label.setEnabled(true);
-		view.popup.setVisible(false);
+		view.usePopup("");
+
 	}
 
 	/**

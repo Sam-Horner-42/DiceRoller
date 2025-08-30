@@ -17,6 +17,7 @@ public class Model {
     private int strengthLevel; // will be used to determine difficulty of neighbouring tiles
     /* Total amount of dice the player has */
     private int diceCount;
+    private int itemCount;
     private int totalDamage;
     
     private int potentialMin;
@@ -87,7 +88,11 @@ public class Model {
     }
 
     public int getDiceCount() {
-        return diceCount;
+        return playerDice.size();
+    }
+    
+    public int getItemCount() {
+        return playerItems.size();
     }
 
     public void setDiceCount(int diceCount) {
