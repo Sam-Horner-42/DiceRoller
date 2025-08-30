@@ -1,5 +1,4 @@
 import java.awt.Cursor;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
@@ -43,7 +42,7 @@ public class ItemMouseListener extends MouseAdapter {
 	public void mouseEntered(MouseEvent e) {
 		label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		label.setEnabled(true);
-		view.usePopup("");
+		//view.usePopup("");
 		view.usePopup(item.getDescription());
 
 
@@ -59,7 +58,7 @@ public class ItemMouseListener extends MouseAdapter {
 	public void mouseExited(MouseEvent e) {
 		label.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		label.setEnabled(true);
-		view.usePopup("");
+		view.usePopup(" ");
 	}
 
 	/**

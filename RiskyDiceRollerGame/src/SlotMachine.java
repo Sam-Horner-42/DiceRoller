@@ -1,7 +1,7 @@
 import java.util.Random;
 public class SlotMachine extends Item {
     public SlotMachine() 
-    { super("slotMachine", "A Slot Machine, rolls three numbers 1-7"); }
+    { super("slotMachine", "Time to GAMBLE! This item rolls 3 numbers (1-7). Increase SAFE RANGE by result."); }
 
     @Override
     public void use(IntWrapper total) {

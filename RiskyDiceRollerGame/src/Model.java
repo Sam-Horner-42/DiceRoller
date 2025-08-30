@@ -590,11 +590,14 @@ public class Model {
             // Apply all items to total
             for (Item item : selectedItems) {
                 if (item instanceof SlotMachine){
-                    int slotRange = 0;
-                    IntWrapper adjusted = new IntWrapper(slotRange);
-                    item.use(adjusted);
-                    currentLevel.setMaxRange(slotRange);
-                    currentLevel.setMinRange(-slotRange);
+                    IntWrapper slotRange = new IntWrapper(0);
+                    item.use(slotRange);                // mutates slotRange.value
+                    int delta = slotRange.value;        // <-- read it back
+                    System.out.println("Slot Range: " + delta);
+                    currentLevel.setMaxRange(currentLevel.getMaxRange() + delta);
+                    currentLevel.setMinRange(currentLevel.getMinRange() - delta);
+                    System.out.println("New Max: " + currentLevel.getMaxRange());
+                    System.out.println("New Min: " + currentLevel.getMinRange());
                 } else {
                     item.use(total);
                 }        
@@ -631,20 +634,20 @@ public class Model {
         //Add 2 Common Items
         Random random = new Random();
         int randomAmount = random.nextInt(2) + 1;
-        int giveItem = random.nextInt(2);
+        int giveItem = random.nextInt(2)+1;
 
         // add 2 dice - d4/d6/d8
        
         if (playerDice.size()<8) {
 			for (int i = 0; i < randomAmount; i++) {
-				int randomDice = random.nextInt(3);
+				int randomDice = random.nextInt(4);
 				Die newDice = new Die(rewardDice[randomDice].getName(), rewardDice[randomDice].getNumSides(),
 						rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
 				playerDice.add(newDice);
 				dieRewards.add(newDice);
 			} 
 		}
-		if (playerItems.size()<6) {
+		if (playerItems.size() < 6) {
 			if (giveItem == 1) {
 				int randomItem = random.nextInt(6);
 				Item rewardItem = possibleItems[randomItem];
