@@ -84,6 +84,7 @@ public class Gooey extends JPanel {
 	static final Color LIGHT_BROWN = new Color(230, 190, 150);
 	
 	static final Color PURPLE = new Color(153, 77, 115);
+	static final Color WHITE = new Color(250,243,225);
 
 
 
@@ -104,10 +105,15 @@ public class Gooey extends JPanel {
 	    popup.setLayout(new BorderLayout());
 	    popup.setSize(250, 75);	
 		popup.add(popupLabel, BorderLayout.CENTER);
+		popup.setBackground(PURPLE);
 		popup.setVisible(false);
 	}
 	
 	public void usePopup(String text) {
+		Font myFont = new Font("Coiny Regular", Font.PLAIN, 16);
+		popupLabel.setFont(myFont);
+		popupLabel.setBackground(PURPLE);
+		popupLabel.setForeground(PURPLE);
 		popupLabel.setText(text);
 	}
 	
@@ -1134,7 +1140,11 @@ public class Gooey extends JPanel {
 			if(change) {
 				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).getDefaultImgPath() + "flag"));
 			}
-			
+		}
+		for(int i=0;i<levelLabels.size();i++) {
+			if(model.getLevels().get(levelLabels.get(i)).isLocked) {
+				levelLabels.get(i).setIcon(loadImage(model.getLevels().get(levelLabels.get(i)).lockedImgPath));
+			}
 		}
 	}
 	

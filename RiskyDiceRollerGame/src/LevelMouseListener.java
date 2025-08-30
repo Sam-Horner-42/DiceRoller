@@ -43,8 +43,10 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		//TODO what happens when you hover over a level
-		//System.out.println(model.getLevels().get(label).getName()); 
+		if(!model.getLevels().get(label).isLocked && !model.getLevels().get(label).getIsComplete() ) {
+
 		label.setIcon(view.loadImage(model.getLevels().get(label).getHoveredImgPath()));
+		}
 
 	}
 
@@ -56,7 +58,9 @@ public class LevelMouseListener extends MouseAdapter {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		//TODO what happens when your mouse exits a level
+		if(!model.getLevels().get(label).isLocked && !model.getLevels().get(label).getIsComplete() ) {
 		label.setIcon(view.loadImage(model.getLevels().get(label).getDefaultImgPath()));
+		}
 	}
 
 	/**
@@ -70,7 +74,7 @@ public class LevelMouseListener extends MouseAdapter {
 			//TODO what happens when you click on a level
 			view.fillLevelInfo(model.getLevels().get(label));
 			String message = "Roll Between " + model.getLevels().get(label).getMinRange() + " And " + model.getLevels().get(label).getMaxRange() 
-					+ " To Conquer this Kingdom!";
+					+ " To Conquer this Kingdom! \nIf your final roll is outside the target range, you will lose the dice you attempted the roll with!";
 			view.useMessageBoard(message);
 			view.changeMainArea();
 		}
