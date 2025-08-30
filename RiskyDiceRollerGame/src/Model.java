@@ -22,12 +22,19 @@ public class Model {
     private int potentialMin;
     private int potentialMax;
 
+    private int rerolls = countSelectedWhisks();
+
     private Level currentLevel;
     
     public LevelMouseListener listener;
 
     // Sets of enums to hold dice and item labels
-    private enum DICE{D4, D6, D8, D10, D12, D20}
+    Die d4 = new Die("", 4, "", false);
+    Die d6 = new Die("", 6, "", false);
+    Die d8 = new Die("", 8, "", false);
+    Die d20 = new Die("", 20, "", false);
+
+    private Die[] rewardDice = {d4, d6, d8, d20};
     private enum COMMON_ITEMS{MIN, MAX, PLUS2, MINUS2}
     private enum UNCOMMON_ITEMS{}
     private enum RARE_ITEMS{}
@@ -278,6 +285,8 @@ public class Model {
 	 * min and max range associated with the current level Resets totalDamage to 0
 	 */
     public void startCombat(){
+        rerolls = countSelectedWhisks();
+        totalDamage = 0; // for safety
         totalDamage = rollDice();
         
         boolean winLose = combatResult(totalDamage);
@@ -287,6 +296,24 @@ public class Model {
         
     }
 
+    private int countSelectedWhisks() {
+        int count = 0;
+        if(selectedItems != null)
+            for (Item it : selectedItems) if (it instanceof Whisk) count++;
+        return count;
+    }
+    private boolean consumeOneSelectedWhisk() {
+        for (int i = 0; i < selectedItems.size(); i++) {
+            Item it = selectedItems.get(i);
+            if (it instanceof Whisk) {
+                // one-time use: remove it and DO NOT return it to inventory
+                selectedItems.remove(i);
+                it.setIsSelected(false);
+                return true;
+            }
+        }
+        return false;
+    }
     /* Used to remove wagered dice/items */
     public void handleResults(boolean result) {
         if(result){
@@ -297,6 +324,9 @@ public class Model {
             Collections.sort(playerDice);
 
             reward();
+        } else if (rerolls > 0) {
+            consumeOneSelectedWhisk();
+            startCombat();
         } else {
             selectedDice.clear();
             selectedItems.clear();
@@ -495,11 +525,21 @@ public class Model {
         int currentLevelIndex = levelData.indexOf(currentLevel);
         if(currentLevelIndex < 5){
             //Add 2 Common Items
+            Random random = new Random();
+            int randomDice = random.nextInt(2);
+            // add 2 dice - d4/d6/d8
+            for(int i = 0; i < 2; i++) { 
+                playerDice.add(rewardDice[randomDice]);
+            } 
+        
         } else if(currentLevelIndex >= 5 && currentLevelIndex < 10){
             //Add 2 UnCommon Items
         } else if(currentLevelIndex >= 10 && currentLevelIndex < 16){
             //Add 2 Rare Items
         } 
+        Collections.sort(playerDice);
+
+		gooey.updateDiceZone();
     }
 
     
