@@ -49,6 +49,8 @@ public class Model {
     private ArrayList<Die> playerDice; // the dice the player currently has
     private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
     //private ArrayList<Integer> wageredDice; // the dice wagered before combat begins, int for the index in player dice
+    
+    private ArrayList<Die> lostDice= new ArrayList<>();
 
     private ArrayList<Item> playerItems; // currently held items
     private ArrayList<Item> selectedItems; // items currently selected
@@ -372,9 +374,10 @@ public class Model {
         	gooey.winDialog(totalDamage, dieRewards, itemRewards);
         	dieRewards.clear();
         	itemRewards.clear();
-            System.out.println("YOU WIN!");
         } else {
-            System.out.println("YOU LOSE!");
+        	gooey.loseDialog(totalDamage, lostDice);
+        	lostDice.clear();
+
         }
     }
     /* Adds a single die by index to the selected dice ArrayList and removes it from playerDice 
@@ -527,14 +530,19 @@ public class Model {
      * Will be called when the user selects ROLL
     */
     public int rollDice() {
-        int preItemTotal = 0;
+    	
+    	if (!lostDice.isEmpty()) {
+			lostDice.clear();
+		}
+		int preItemTotal = 0;
         boolean goldenEgg = false;
         if(selectedItems != null){
             for (Item it : selectedItems) 
                 if (it instanceof GoldenEgg) goldenEgg = true;   
         } 
         if(selectedDice != null) {
-            for (Die die: selectedDice) {    
+            for (Die die: selectedDice) { 
+            	lostDice.add(die);
                 if(goldenEgg){
                     preItemTotal += die.getNumSides();
                 } else preItemTotal += rollDie(die);
@@ -582,23 +590,27 @@ public class Model {
         int giveItem = random.nextInt(6);
 
         // add 2 dice - d4/d6/d8
-        for(int i = 0; i < randomAmount; i++) { 
-            int randomDice = random.nextInt(3);
-            Die newDice = new Die(rewardDice[randomDice].getName(), 
-                rewardDice[randomDice].getNumSides(), rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
-            playerDice.add(newDice);
-            dieRewards.add(newDice);
-        } 
-
-        if(giveItem == 1){
-            int randomItem = random.nextInt(6);
-            Item rewardItem = possibleItems[randomItem];
-            if(playerItems.size() < 6){
-                playerItems.add(rewardItem);
-            }
-        }
-        
-        Collections.sort(playerDice);
+       
+        if (playerDice.size()<8) {
+			for (int i = 0; i < randomAmount; i++) {
+				int randomDice = random.nextInt(3);
+				Die newDice = new Die(rewardDice[randomDice].getName(), rewardDice[randomDice].getNumSides(),
+						rewardDice[randomDice].getFileName(), rewardDice[randomDice].getIsSelected());
+				playerDice.add(newDice);
+				dieRewards.add(newDice);
+			} 
+		}
+		if (playerItems.size()<6) {
+			if (giveItem == 1) {
+				int randomItem = random.nextInt(6);
+				Item rewardItem = possibleItems[randomItem];
+				if (playerItems.size() < 6) {
+					playerItems.add(rewardItem);
+					itemRewards.add(rewardItem);
+				}
+			} 
+		}
+		Collections.sort(playerDice);
 
 		gooey.updateDiceZone();
     }
