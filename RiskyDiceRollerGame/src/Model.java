@@ -180,24 +180,24 @@ public class Model {
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
         Level choco2 = new Level("Chocolate Chipago", "chocoChip", "chocoChipHovered", "chocoChipLocked", 1, false, 2, 8, true);
-        Level choco3 = new Level("Orlandough", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, true);
-        Level choco4 = new Level("Bisconsin", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 1, 6, true);
+        Level choco3 = new Level("Orlandough", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 5, 10, true);
+        Level choco4 = new Level("Bisconsin", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 12, 18, true);
         
         Level macaron1 = new Level("Morrocaroon", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
         Level macaron2 = new Level("Paristachio", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
-        Level macaron3 = new Level("macaron3", "macaron", "macaronHovered", "macaronLocked", 3, false, 1, 6, true);
+        Level macaron3 = new Level("Tokoyoyo", "macaron", "macaronHovered", "macaronLocked", 3, false, 1, 6, true);
         
         Level checker1 = new Level("Orhio", "fudge", "fudgeHovered", "fudgeLocked",3, false, 1, 6, true);
         Level checker2 = new Level("Ottawafer", "fudge", "fudgeHovered", "fudgeLocked", 3, false, 1, 6, true);
-        Level checker3 = new Level("Toronto", "fudge", "fudgeHovered", "fudgeLocked", 4, false, 1, 6, true);
+        Level checker3 = new Level("Fudgisawa", "fudge", "fudgeHovered", "fudgeLocked", 4, false, 1, 6, true);
         
-        Level peanutButter1 = new Level("peanutButter1", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 1, 6, true);
-        Level peanutButter2 = new Level("peanutButter2", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 1, 6, true);
-        Level peanutButter3 = new Level("peanutButter3", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 5, false, 1, 6, true);
+        Level peanutButter1 = new Level("Peanuttsburgh", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 1, 6, true);
+        Level peanutButter2 = new Level("PerthButter", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 1, 6, true);
+        Level peanutButter3 = new Level("Peanutborough", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 5, false, 1, 6, true);
         
         Level jammyDodger1 = new Level("New Jampshire", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 1, 6, true);
         Level jammyDodger2 = new Level("Boston Cream", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 1, 6, true);
-        Level jammyDodger3 = new Level("jammyDodger3", "red_jelly", "red_jellyHovered", "red_jellyLocked", 6, false, 1, 6, true);
+        Level jammyDodger3 = new Level("Toronto", "red_jelly", "red_jellyHovered", "red_jellyLocked", 6, false, 1, 6, true);
 
         levelData = new ArrayList<>();
         levelData.add(choco1);
