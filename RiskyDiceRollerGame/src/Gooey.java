@@ -30,9 +30,6 @@ public class Gooey extends JPanel {
 	JPanel selectedDiceHolder = new JPanel(new GridLayout(0, 5));
 	JPanel selectedItemHolder = new JPanel(new GridLayout(0, 3));
 
-	JLabel itemSlot1 = new JLabel("PlaceHolder");
-	JLabel itemSlot2 = new JLabel("PlaceHolder");
-	JLabel itemSlot3 = new JLabel("PlaceHolder");
 	JTextPane messageBoard = new JTextPane();
 	JPanel diceZone = new JPanel(new GridLayout(0,2));
 	JPanel itemZone = new JPanel(new GridLayout(0,2));
@@ -1304,7 +1301,7 @@ public class Gooey extends JPanel {
 	}
 	
 	public void winDialog(int rollResult, ArrayList<Die> diceReward, ArrayList<Item> itemReward) {
-		//TODO finish
+		//TODO Make pretty
 		changeMainArea();
 		 // Create the dialog (modal)
         JDialog dialog = new JDialog(frame, "WINNER! GANGANT!", true);
@@ -1334,7 +1331,8 @@ public class Gooey extends JPanel {
         	}
         	
         }
-        
+        rewardMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        rewardMessage.setVerticalAlignment(SwingConstants.CENTER);
         rewardPanel.add(rewardMessage);
         rewardPanel.add(rewardHolder);
         dialog.add(rewardPanel, BorderLayout.CENTER);
@@ -1353,7 +1351,46 @@ public class Gooey extends JPanel {
         dialog.setVisible(true); // blocks until closed
 	}
 	
-	public void loseDialog() {
+	public void loseDialog(int rollResult, ArrayList<Die> diceLost) {
+		
+		//TODO Make pretty
+				changeMainArea();
+				 // Create the dialog (modal)
+		        JDialog dialog = new JDialog(frame, "Defeated :(", true);
+		        dialog.setLayout(new BorderLayout(10, 10));
+
+		        // Message at the top
+		        JLabel message = new JLabel("You rolled " + rollResult + "You've been defeated");
+		        message.setHorizontalAlignment(SwingConstants.CENTER);
+		        dialog.add(message, BorderLayout.NORTH);
+
+		        // Extra panel in the middle
+		        JPanel diceLossPanel = new JPanel(new GridLayout(0,1));
+		        JLabel diceLossMessage = new JLabel("You've lost these dice");
+		        JPanel lostDiceHolder = new JPanel(new GridLayout(0,5));
+
+		        	for(Die dice: diceLost) {
+		        		JLabel lostDice = new JLabel(loadImage(dice.getFileName()));
+		        		lostDiceHolder.add(lostDice);
+		        	}
+		        	diceLossMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		        	diceLossMessage.setVerticalAlignment(SwingConstants.CENTER);
+		        	diceLossPanel.add(diceLossMessage);
+		        	diceLossPanel.add(lostDiceHolder);
+		        dialog.add(diceLossPanel, BorderLayout.CENTER);
+		        
+
+		        // OK button at the bottom
+		        JButton okButton = new JButton("OK");
+		        okButton.addActionListener(e -> dialog.dispose());
+		        JPanel buttonPanel = new JPanel();
+		        buttonPanel.add(okButton);
+		        dialog.add(buttonPanel, BorderLayout.SOUTH);
+
+		        // Size + position
+		        dialog.setSize(300, 200);
+		        dialog.setLocationRelativeTo(frame);
+		        dialog.setVisible(true); // blocks until closed
 		
 	}
 	public ImageIcon loadImage(String dieName) {
