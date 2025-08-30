@@ -4,6 +4,6 @@ public class ChocolateCoin extends Item {
     @Override
     public void use(IntWrapper total) {
         total.value = 2;
-
+        System.out.println("After Chocolate Coin: " + total.value);
     }
 }

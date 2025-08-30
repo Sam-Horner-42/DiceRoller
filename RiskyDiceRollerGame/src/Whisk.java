@@ -4,6 +4,6 @@ public class Whisk extends Item {
     @Override
     public void use(IntWrapper total) {
         total.value = 0;
-        //System.out.println("Total doubled: " + total.value);
+        System.out.println("After Whisk: " + total.value);
     }
 }

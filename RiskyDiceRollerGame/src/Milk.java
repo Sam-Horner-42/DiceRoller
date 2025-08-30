@@ -4,5 +4,6 @@ public class Milk extends Item {
     @Override
     public void use(IntWrapper total) {
         total.value += 4;
+        System.out.println("After Milk: " + total.value);
     }
 }
