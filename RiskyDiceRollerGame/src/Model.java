@@ -325,7 +325,6 @@ public class Model {
         
         boolean winLose = combatResult(totalDamage);
         handleResults(winLose);
-        displayResults(winLose);
         totalDamage = 0; // reset total damage
         
     }
@@ -367,14 +366,15 @@ public class Model {
         } else {
             if(playerDice.isEmpty() && playerItems.isEmpty()){
                 //TODO lose screen
-                restartGame();
+                gooey.loseGame();
+                return;
             } else {
                 controller.playSE(2);
                 selectedDice.clear();
             }
-            
-        }
 
+        }
+    	displayResults(result);
         gooey.updateDiceZone();
         gooey.updateSelectedDice();
         gooey.updateLabels();
@@ -678,6 +678,7 @@ public class Model {
         gooey.updateSelectedItem();
         gooey.updateSelectedDice();
         gooey.updateDiceZone();
+        gooey.updateLabels();
     }
     /* Displays all the player dice with index 
      * Uses a for loop so we get every index, not just first occurence

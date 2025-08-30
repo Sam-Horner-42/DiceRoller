@@ -95,7 +95,18 @@ public class Gooey extends JPanel {
 	 * layout manager to BorderLayout.
 	 */
 	public void createMainFrame() {
+		Image image = null;
 		frame = new JFrame("Cookie Conquest");
+		try {
+			 image = ImageIO.read(getClass().getResource("/assets/chocoChip.png"));
+		}
+		catch(IOException | IllegalArgumentException e){
+		
+		}
+		frame.setIconImage(image);
+		frame.setBackground(PURPLE);
+		frame.setForeground(BEIGE);
+		frame.setFont(coinyRegular);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLayout(new BorderLayout());
@@ -1311,34 +1322,47 @@ public class Gooey extends JPanel {
 		changeMainArea();
 		 // Create the dialog (modal)
         JDialog dialog = new JDialog(frame, "WINNER! GANGANT!", true);
-        dialog.setLayout(new BorderLayout(10, 10));
+		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
+		Font myFonts = coinyRegular.deriveFont(Font.PLAIN, 16);
+        dialog.setLayout(new BorderLayout());
+        dialog.setBackground(PURPLE);
 
         // Message at the top
-        JLabel message = new JLabel("You rolled a " + rollResult + "! You conquered this kingdom!");
-        message.setHorizontalAlignment(SwingConstants.CENTER);
+        JTextPane message = new JTextPane();
+        message.setText("	You rolled a " + rollResult + "! \nYou conquered this kingdom!");
+        message.setFont(myFont);
+        message.setForeground(BEIGE);
+        message.setBackground(PURPLE);
+
         dialog.add(message, BorderLayout.NORTH);
 
         // Extra panel in the middle
         JPanel rewardPanel = new JPanel(new GridLayout(0,1));
-        JLabel rewardMessage = new JLabel("You didn't even get anything :(");
+        rewardPanel.setBackground(PURPLE);
+        JTextPane rewardMessage = new JTextPane();
+        rewardMessage.setFont(myFonts);
+        rewardMessage.setText("	You didn't even get anything :(");
+        rewardMessage.setBackground(PURPLE);
+        rewardMessage.setForeground(BEIGE);
         JPanel rewardHolder = new JPanel(new GridLayout(0,3));
+        rewardHolder.setBackground(PURPLE);
+
         if(!diceReward.isEmpty()) {
-        	rewardMessage.setText("You recieved a reward");
+        	rewardMessage.setText("        You recieved a reward");
         	for(Die dice: diceReward) {
         		JLabel dreward = new JLabel(loadImage(dice.getFileName()));
         		rewardHolder.add(dreward);
         	}
         }
         if(!itemReward.isEmpty()) {
-        	rewardMessage.setText("You recieved a reward");
+        	rewardMessage.setText("        You recieved a reward");
         	for(Item item: itemReward) {
         		JLabel dreward = new JLabel(loadImage(item.getName()));
         		rewardHolder.add(dreward);
         	}
         	
         }
-        rewardMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        rewardMessage.setVerticalAlignment(SwingConstants.CENTER);
+
         rewardPanel.add(rewardMessage);
         rewardPanel.add(rewardHolder);
         dialog.add(rewardPanel, BorderLayout.CENTER);
@@ -1346,13 +1370,17 @@ public class Gooey extends JPanel {
 
         // OK button at the bottom
         JButton okButton = new JButton("OK");
+        okButton.setBackground(DARK_BROWN);
+        okButton.setForeground(PURPLE);
+
         okButton.addActionListener(e -> dialog.dispose());
         JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(PURPLE);
         buttonPanel.add(okButton);
         dialog.add(buttonPanel, BorderLayout.SOUTH);
 
         // Size + position
-        dialog.setSize(300, 200);
+        dialog.setSize(300, 250);
         dialog.setLocationRelativeTo(frame);
         dialog.setVisible(true); // blocks until closed
 	}
@@ -1400,7 +1428,7 @@ public class Gooey extends JPanel {
 		
 	}
 	
-public void loseGame() {
+	public void loseGame() {
 		
 		//TODO Make pretty
 				changeMainArea();
@@ -1419,16 +1447,16 @@ public void loseGame() {
 		        // Restart button
 		        JButton restartButton = new JButton("Restart");
 		        restartButton.addActionListener(e -> {
-		            dialog.dispose();   // close dialog
-		            //model.restartGame();      // call your restart function
+		            dialog.dispose();   
+		            model.restartGame(); 
 		        });
 		        buttonPanel.add(restartButton);
 
 		        // Exit button
 		        JButton exitButton = new JButton("Exit");
 		        exitButton.addActionListener(e -> {
-		            dialog.dispose();   // close dialog
-		            System.exit(0);     // quit the whole program
+		            dialog.dispose();  
+		            System.exit(0); 
 		        });
 		        buttonPanel.add(exitButton);
 
