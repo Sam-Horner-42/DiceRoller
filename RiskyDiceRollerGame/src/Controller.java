@@ -99,7 +99,7 @@ public class Controller implements ActionListener {
 				model.rollDice();
 				break;
 			case "Back":
-				goBack();
+				gooey.changeMainArea();
 				break;
 			default:
 				System.out.println("This is not a button.");

@@ -163,10 +163,10 @@ public class Model {
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
         Level choco2 = new Level("Death By Chocolate", "chocoChip", "chocoChipHovered", "chocoChipLocked", 1, false, 2, 8, true);
         Level choco3 = new Level("choco3", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, true);
-        Level choco4 = new Level("choco4", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, true, 1, 6, true);
+        Level choco4 = new Level("choco4", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 1, 6, true);
         
-        Level macaron1 = new Level("macaron1", "macaron", "macaronHovered", "macaronLocked", 2, true, 1, 6, true);
-        Level macaron2 = new Level("macaron2", "macaron", "macaronHovered", "macaronLocked", 2, true, 1, 6, true);
+        Level macaron1 = new Level("macaron1", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
+        Level macaron2 = new Level("macaron2", "macaron", "macaronHovered", "macaronLocked", 2, false, 1, 6, true);
         Level macaron3 = new Level("macaron3", "macaron", "macaronHovered", "macaronLocked", 3, false, 1, 6, true);
         
         Level checker1 = new Level("checker1", "fudge", "fudgeHovered", "fudgeLocked",3, false, 1, 6, true);
