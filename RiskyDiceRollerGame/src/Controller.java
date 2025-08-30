@@ -8,12 +8,14 @@ public class Controller implements ActionListener {
 	//TODO add a map to link Jlabels with levels
 	private Model model;
 	private Gooey gooey;
+	Sound sound = new Sound();
 	private HashMap<JLabel, Level> levels;
 	private ArrayList<Level> levelData;
 
 	private ArrayList<Die> playerDice; // the dice the player currently has
 	private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
 
+	
 	// Getters and Setters
 	public Model getModel() {
 		return model;
@@ -109,14 +111,20 @@ public class Controller implements ActionListener {
 		gooey.updateItemZone();
 		gooey.updateSelectedItem();
 		gooey.updateRanges(0, 0);
+		
 	}
 
-
+	public void playSE(int i){
+		sound.setFile(i);
+		sound.play();
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
 		switch(command){
 			case "Roll":
+				playSE(0);
 				model.startCombat();
 				break;
 			case "Back":
