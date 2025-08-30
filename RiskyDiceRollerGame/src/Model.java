@@ -464,7 +464,14 @@ public class Model {
 
     
     public void reward(){
-
+        int currentLevelIndex = levelData.indexOf(currentLevel);
+        if(currentLevelIndex < 5){
+            //Add 2 Common Items
+        } else if(currentLevelIndex >= 5 && currentLevelIndex < 10){
+            //Add 2 UnCommon Items
+        } else if(currentLevelIndex >= 10 && currentLevelIndex < 16){
+            //Add 2 Rare Items
+        } 
     }
 
     
