@@ -951,12 +951,14 @@ public class Gooey extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		JPanel namePanel = new JPanel(new BorderLayout());
 		//namePanel.setPreferredSize(new Dimension(675,225));
+		
 		namePanel.setBackground(DARK_BROWN);
 		namePanel.add(cityName,BorderLayout.CENTER);
-		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 20);
+		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 25);
 		cityName.setFont(cityFont);
 		cityName.setHorizontalAlignment(SwingConstants.CENTER);
 		cityName.setVerticalAlignment(SwingConstants.CENTER);
+		
 		levelView.add(namePanel,gbc);
 		gbc = new GridBagConstraints();
 

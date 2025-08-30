@@ -80,7 +80,7 @@ public class LevelMouseListener extends MouseAdapter {
 			view.fillLevelInfo(model.getLevels().get(label));
 			model.setCurrentLevel(model.getLevels().get(label));
 			String message = "Roll Between " + model.getLevels().get(label).getMinRange() + " And " + model.getLevels().get(label).getMaxRange() 
-					+ " To Conquer this Kingdom! \nIf your final roll is outside the target range, you will lose the dice you attempted the roll with!";
+					+ "\nTo Conquer this Kingdom! \n\nBut be careful... \n\nAny DICE ROLLED are LOST if you FAIL! \n\nAll Items are ONE TIME USE!";
 			view.useMessageBoard(message);
 			view.changeMainArea();
 		}

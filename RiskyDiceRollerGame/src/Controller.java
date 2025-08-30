@@ -124,7 +124,7 @@ public class Controller implements ActionListener {
 		String command = e.getActionCommand();
 		switch(command){
 			case "Roll":
-				playSE(0);
+				
 				model.startCombat();
 				break;
 			case "Back":

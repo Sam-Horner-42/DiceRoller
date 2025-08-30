@@ -189,25 +189,25 @@ public class Model {
     public void genLevels() {
         // String name, String defaultImgPath, String hoveredImgPath, int difficulty, boolean levelComplete, int minRange, int maxRange
         Level choco1 = new Level("Cookie Kingdom", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 1, 6, false);
-        Level choco2 = new Level("Chocolate Chipago", "chocoChip", "chocoChipHovered", "chocoChipLocked", 1, false, 4, 8, true);
-        Level choco3 = new Level("Orlandough", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 5, 9, true);
-        Level choco4 = new Level("Bisconsin", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 10, 14, true);
+        Level choco2 = new Level("Chocolate Chipago", "chocoChip", "chocoChipHovered", "chocoChipLocked", 1, false, 2, 8, true);
+        Level choco3 = new Level("Orlandough", "chocoChip", "chocoChipHovered","chocoChipLocked", 1, false, 3, 9, true);
+        Level choco4 = new Level("Bisconsin", "chocoChip", "chocoChipHovered", "chocoChipLocked", 2, false, 5, 12, true);
         
-        Level macaron1 = new Level("Morrocaroon", "macaron", "macaronHovered", "macaronLocked", 2, false, 15, 20, true);
-        Level macaron2 = new Level("Paristachio", "macaron", "macaronHovered", "macaronLocked", 2, false, 17, 25, true);
-        Level macaron3 = new Level("Tokoyoyo", "macaron", "macaronHovered", "macaronLocked", 3, false, 20, 30, true);
+        Level macaron1 = new Level("Morrocaroon", "macaron", "macaronHovered", "macaronLocked", 2, false, 5, 10, true);
+        Level macaron2 = new Level("Paristachio", "macaron", "macaronHovered", "macaronLocked", 2, false, 7, 10, true);
+        Level macaron3 = new Level("Tokoyoyo", "macaron", "macaronHovered", "macaronLocked", 3, false, 8, 10, true);
         
-        Level checker1 = new Level("Orhio", "fudge", "fudgeHovered", "fudgeLocked",3, false, 25, 38, true);
-        Level checker2 = new Level("Ottawafer", "fudge", "fudgeHovered", "fudgeLocked", 3, false, 40, 58, true);
-        Level checker3 = new Level("Fudgisawa", "fudge", "fudgeHovered", "fudgeLocked", 4, false, 60, 65, true);
+        Level checker1 = new Level("Orhio", "fudge", "fudgeHovered", "fudgeLocked",3, false, 5, 6, true);
+        Level checker2 = new Level("Ottawafer", "fudge", "fudgeHovered", "fudgeLocked", 3, false, 7, 8, true);
+        Level checker3 = new Level("Fudgisawa", "fudge", "fudgeHovered", "fudgeLocked", 4, false, 9, 9, true);
         
-        Level peanutButter1 = new Level("Peanuttsburgh", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 80, 85, true);
-        Level peanutButter2 = new Level("PerthButter", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 90, 95, true);
-        Level peanutButter3 = new Level("Peanutborough", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 5, false, 115, 120, true);
+        Level peanutButter1 = new Level("Peanuttsburgh", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 10, 12, true);
+        Level peanutButter2 = new Level("PerthButter", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 10, 11, true);
+        Level peanutButter3 = new Level("Peanutborough", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 5, false, 15, 17, true);
         
-        Level jammyDodger1 = new Level("New Jampshire", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 130, 135, true);
-        Level jammyDodger2 = new Level("Boston Cream", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 137, 143, true);
-        Level jammyDodger3 = new Level("Toronto", "red_jelly", "red_jellyHovered", "red_jellyLocked", 6, false, 180, 185, true);
+        Level jammyDodger1 = new Level("New Jampshire", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 20, 25, true);
+        Level jammyDodger2 = new Level("Boston Cream", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 20, 22, true);
+        Level jammyDodger3 = new Level("Toronto", "red_jelly", "red_jellyHovered", "red_jellyLocked", 6, false, 20, 20, true);
 
         levelData = new ArrayList<>();
         levelData.add(choco1);
@@ -312,6 +312,8 @@ public class Model {
 	 * min and max range associated with the current level Resets totalDamage to 0
 	 */
     public void startCombat(){
+        if(selectedDice.isEmpty() && selectedItems.isEmpty()) return;
+        controller.playSE(0);
         rerolls = countSelectedWhisks();
         totalDamage = 0; // for safety
         totalDamage = rollDice();
@@ -344,6 +346,7 @@ public class Model {
     }
     /* Used to remove wagered dice/items */
     public void handleResults(boolean result) {
+        selectedItems.clear();
         if(result){
             currentLevel.setIsComplete(true);
             int nextLevelIndex = levelData.indexOf(currentLevel) + 1;
@@ -359,7 +362,7 @@ public class Model {
         } else {
             selectedDice.clear();
         }
-        selectedItems.clear();
+
         gooey.updateDiceZone();
         gooey.updateSelectedDice();
         gooey.updateLabels();
@@ -595,7 +598,7 @@ public class Model {
         //Add 2 Common Items
         Random random = new Random();
         int randomAmount = random.nextInt(2) + 1;
-        int giveItem = random.nextInt(6);
+        int giveItem = random.nextInt(2);
 
         // add 2 dice - d4/d6/d8
        
