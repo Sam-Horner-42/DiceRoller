@@ -565,7 +565,7 @@ public class Model {
         if(currentLevelIndex < 5){
             //Add 2 Common Items
             Random random = new Random();
-            int randomDice = random.nextInt(2);
+            int randomDice = random.nextInt(3);
             // add 2 dice - d4/d6/d8
             for(int i = 0; i < 2; i++) { 
                 playerDice.add(new Die(rewardDice[randomDice].getName(), 
