@@ -3,7 +3,7 @@ public class SlotMachine extends Item {
 
     @Override
     public void use(IntWrapper total) {
-        total.value = 777;
+        total.value = 7+7+7;
 
     }
 }

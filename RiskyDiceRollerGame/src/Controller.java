@@ -85,7 +85,7 @@ public class Controller implements ActionListener {
 	
 	public void chooseItem(Item item) {
 		if(!gooey.mapOnScreen){
-			if (!item.isSelected()) 
+			if (!item.getIsSelected()) 
 				model.selectItem(item);
 			else 
 				model.deselectItem(item);

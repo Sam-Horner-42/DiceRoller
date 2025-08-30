@@ -293,16 +293,19 @@ public class Model {
             int nextLevelIndex = levelData.indexOf(currentLevel) + 1;
             levelData.get(nextLevelIndex).setIsLocked(false);
 
-            deselectAll(); // deselect all currently selected dice
+            deselectAll(); // deselect all currently selected dice and items
             Collections.sort(playerDice);
 
             reward();
         } else {
             selectedDice.clear();
+            selectedItems.clear();
         }
         gooey.updateDiceZone();
         gooey.updateSelectedDice();
         gooey.updateLabels();
+        gooey.updateItemZone();
+        gooey.updateSelectedItem();
     }
 
     /*
@@ -338,13 +341,14 @@ public class Model {
 
 	public void selectItem(Item item) {
 
-		if (selectedItems.size() < 3 && !item.isSelected()) {
-			item.setSelected(true); // this dice is now selected
+		if (selectedItems.size() < 3 && !item.getIsSelected()) {
+			item.setIsSelected(true); // this dice is now selected
 			selectedItems.add(item);
 			playerItems.remove(item);
 
 			potentialMin = calculatePotentialMinDamage();
 			potentialMax = calculatePotentialMaxDamage();
+
 			gooey.updateRanges(potentialMin, potentialMax);
 		}
 
@@ -370,8 +374,8 @@ public class Model {
     }
 	
 	public void deselectItem(Item item) {
-		if (item.isSelected()) {
-			item.setSelected(false);
+		if (item.getIsSelected()) {
+			item.setIsSelected(false);
 			playerItems.add(item);
 			selectedItems.remove(item);
 
@@ -384,16 +388,32 @@ public class Model {
 
     /* Deselects all the dice from the selected dice list */
     public void deselectAll() {
-        if (selectedDice.isEmpty()) return;
+        if (selectedDice.isEmpty() && selectedItems.isEmpty()) return; // if there are no items and no dice
 
-        // reset flags first
-        for (Die d : selectedDice) d.setIsSelected(false);
+        if(!selectedDice.isEmpty()){
+            // reset flags first
+            for (Die d : selectedDice) d.setIsSelected(false);
 
-        // move all, then clear once
-        playerDice.addAll(selectedDice);
-        selectedDice.clear();
+            // move all, then clear once
+            playerDice.addAll(selectedDice);
+            selectedDice.clear();
 
-        Collections.sort(playerDice);
+            Collections.sort(playerDice);
+        }
+
+        if(!selectedItems.isEmpty()){
+            // reset flags first
+            for (Item i : selectedItems) i.setIsSelected(false);
+
+            // move all, then clear once
+            playerItems.addAll(selectedItems);
+            selectedItems.clear();
+
+            Collections.sort(playerDice);
+        }
+
+
+            
 
         // keep model state in sync
         potentialMin = 0;
@@ -406,6 +426,15 @@ public class Model {
         if(selectedDice != null) {
             for(Die die: selectedDice) {
                 potentialMax += die.getNumSides();
+            }
+        }
+        if(selectedItems != null) {
+            IntWrapper total = new IntWrapper(potentialMax);
+            // Apply all items to total
+            for (Item item : selectedItems) {
+                item.use(total);
+                potentialMax = total.value;
+                
             }
         }
         return potentialMax;
