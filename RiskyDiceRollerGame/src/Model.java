@@ -428,6 +428,7 @@ public class Model {
 
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
+
 			gooey.updateRanges(potentialMin, potentialMax);
 			Collections.sort(selectedDice);
 			Collections.sort(playerDice);
@@ -558,7 +559,7 @@ public class Model {
             IntWrapper total = new IntWrapper(potentialMin);
             // Apply all items to total
             for (Item item : selectedItems) {
-                if(!(item instanceof SlotMachine)){
+                if(!(item instanceof SlotMachine) && !(item instanceof Timer)){
                     item.use(total);
                     potentialMin = total.value;
                 }
