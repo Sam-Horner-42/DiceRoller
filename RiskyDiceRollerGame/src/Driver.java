@@ -24,8 +24,8 @@ public class Driver {
         model.populateLevelMap();
         
         model.addStarterDice();
-        //model.addStarterItems();
-        model.addAllItems();
+        model.addStarterItems();
+        //model.addAllItems();
 
         gooey.initializeMainFrame();
         gooey.updateItemZone();

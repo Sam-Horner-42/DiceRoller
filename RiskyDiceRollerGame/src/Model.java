@@ -371,7 +371,7 @@ public class Model {
             Collections.sort(playerDice);
 
             reward(); 
-        } else if (rerolls > 0) {
+        } else if (rerolls > 0 && !result) {
             consumeOneSelectedWhisk();
             startCombat();
         } else {
@@ -602,8 +602,8 @@ public class Model {
             for (Item item : selectedItems) {
                 if (item instanceof SlotMachine) {
                     IntWrapper slotRange = new IntWrapper(0);
-                    item.use(slotRange);                // mutates slotRange.value
-                    int delta = slotRange.value;        // <-- read it back
+                    item.use(slotRange);                
+                    int delta = slotRange.value;        
                     System.out.println("Slot Range: " + delta);
                     currentLevel.setMaxRange(currentLevel.getMaxRange() + delta);
                     currentLevel.setMinRange(currentLevel.getMinRange() - delta);
