@@ -219,7 +219,7 @@ public class Model {
         
         Level peanutButter1 = new Level("Peanuttsburgh", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 10, 12, true);
         Level peanutButter2 = new Level("PerthButter", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 10, 11, true);
-        Level peanutButter3 = new Level("Peanutborough", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 5, false, 15, 17, true);
+        Level peanutButter3 = new Level("Peanutsborough", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 5, false, 15, 17, true);
         
         Level jammyDodger1 = new Level("New Jampshire", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 20, 25, true);
         Level jammyDodger2 = new Level("Boston Cream", "red_jelly", "red_jellyHovered", "red_jellyLocked", 5, false, 20, 22, true);
