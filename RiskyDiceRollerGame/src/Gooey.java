@@ -85,6 +85,8 @@ public class Gooey extends JPanel {
 	static final Color LIGHT_BROWN = new Color(230, 190, 150);
 	
 	static final Color PURPLE = new Color(153, 77, 115);
+	static final Color LIGHT_PURPLE = new Color(203, 127, 165);
+	static final Color DARK_PURPLE = new Color(123, 47, 95);
 	static final Color WHITE = new Color(250,243,225);
 	static Font coinyRegular;
 
@@ -930,7 +932,8 @@ public class Gooey extends JPanel {
 	public void initLevelView() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
-		Font myFontbigger = coinyRegular.deriveFont(Font.PLAIN, 22);
+		Font myFontbig = coinyRegular.deriveFont(Font.PLAIN, 22);
+		Font myFontbigger = coinyRegular.deriveFont(Font.PLAIN, 30);
 
 		levelView.setBackground(Color.black);
 		
@@ -962,8 +965,8 @@ public class Gooey extends JPanel {
 		Font cityFont = coinyRegular.deriveFont(Font.PLAIN, 55);
 		cityName.setFont(cityFont);
 		cityName.setBackground(DARK_BROWN);
-		cityName.setForeground(PURPLE);
-		cityName.setEditable(false);
+		cityName.setForeground(Color.black);
+		cityName.setEditable(false); //LIGHT_PURPLE  DARK_PURPLE
 		levelView.add(namePanel,gbc);
 		gbc = new GridBagConstraints();
 
@@ -974,10 +977,10 @@ public class Gooey extends JPanel {
 		gbc.anchor = GridBagConstraints.LINE_START;
 		JPanel cRange = new JPanel(new BorderLayout());
 		cRange.setBackground(LIGHT_BROWN);
-		cRange.setPreferredSize(new Dimension(225,100));
+		cRange.setPreferredSize(new Dimension(225,125));
 		JLabel crange = new JLabel("Possible Range");
-		crange.setForeground(PURPLE);	
-		crange.setFont(myFont);
+		crange.setForeground(DARK_PURPLE);	
+		crange.setFont(myFontbig);
 		crange.setHorizontalAlignment(SwingConstants.CENTER);
 		crange.setVerticalAlignment(SwingConstants.CENTER);
 		cRange.add(crange, BorderLayout.CENTER);
@@ -993,7 +996,7 @@ public class Gooey extends JPanel {
 		JPanel cRangePanel = new JPanel(new BorderLayout());
 		cRangePanel.setBackground(LIGHT_BROWN);
 		cMinToMaxRange.setFont(myFontbigger);
-		cMinToMaxRange.setForeground(PURPLE);
+		cMinToMaxRange.setForeground(DARK_PURPLE);
 		cMinToMaxRange.setHorizontalAlignment(SwingConstants.CENTER);
 		cMinToMaxRange.setVerticalAlignment(SwingConstants.CENTER);
 		cRangePanel.add(cMinToMaxRange, BorderLayout.CENTER);
@@ -1005,10 +1008,10 @@ public class Gooey extends JPanel {
 		gbc.weightx = 0; gbc.weighty = 0;
 		gbc.anchor = GridBagConstraints.LINE_START;
 		JPanel tRange = new JPanel(new BorderLayout());
-		tRange.setPreferredSize(new Dimension(225,100));
+		tRange.setPreferredSize(new Dimension(225,125));
 		tRange.setBackground(PURPLE);
 		JLabel trange = new JLabel("Target Range");
-		trange.setFont(myFont);
+		trange.setFont(myFontbig);
 		trange.setForeground(BEIGE);
 		trange.setHorizontalAlignment(SwingConstants.CENTER);
 		trange.setVerticalAlignment(SwingConstants.CENTER);
@@ -1040,7 +1043,7 @@ public class Gooey extends JPanel {
 		gbc.weightx = 1.0; 
 		gbc.fill = GridBagConstraints.BOTH;
 
-		selectedItemHolder.setPreferredSize(new Dimension(675,250));
+		selectedItemHolder.setPreferredSize(new Dimension(675,200));
 		selectedItemHolder.setBackground(LIGHT_BROWN);
 		levelView.add(selectedItemHolder,gbc);
 		gbc = new GridBagConstraints();
@@ -1056,7 +1059,7 @@ public class Gooey extends JPanel {
 		messageBoard.setPreferredSize(new Dimension(225,250));
 		messageBoard.setFont(myFont);
 		messageBoard.setBackground(BEIGE);
-		messageBoard.setForeground(PURPLE);
+		messageBoard.setForeground(DARK_PURPLE);
 		levelView.add(messageBoard, gbc);
 		gbc = new GridBagConstraints();
 
@@ -1169,7 +1172,7 @@ public class Gooey extends JPanel {
 	public void initDiceZone() {
 		// overarching panel containing our 3 components
 		JPanel rightSection = new JPanel(new GridBagLayout());
-		rightSection.setBackground(Color.blue);
+		rightSection.setBackground(DARK_BROWN);
 		rightSection.setPreferredSize(new Dimension(300,900));
 		GridBagConstraints gbc = new GridBagConstraints();
 		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 20);
@@ -1180,6 +1183,7 @@ public class Gooey extends JPanel {
 		popup.setBackground(BEIGE);
 		popup.setEditable(false);
 		popup.setFont(myFont);
+		popup.setForeground(DARK_PURPLE);
 		
 
 
@@ -1209,6 +1213,7 @@ public class Gooey extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.NORTH;
 		gbc.weightx = 1;
 		gbc.weighty = 0.08;
 		rightSection.add(tSection, gbc);
@@ -1317,19 +1322,15 @@ public class Gooey extends JPanel {
 		selectedItemHolder.repaint(); 
 	}
 
-	public void selectedDiceHelper(int index){
-		
-	}
 	
 	public void winDialog(int rollResult, ArrayList<Die> diceReward, ArrayList<Item> itemReward) {
-		//TODO Make pretty
 		changeMainArea();
 		 // Create the dialog (modal)
         JDialog dialog = new JDialog(frame, "WINNER! GANGANT!", true);
+        dialog.setResizable(false);
 		Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
 		Font myFonts = coinyRegular.deriveFont(Font.PLAIN, 16);
         dialog.setLayout(new BorderLayout());
-        dialog.setBackground(PURPLE);
 
         // Message at the top
         JTextPane message = new JTextPane();
@@ -1337,7 +1338,7 @@ public class Gooey extends JPanel {
         message.setFont(myFont);
         message.setForeground(BEIGE);
         message.setBackground(PURPLE);
-
+        message.setEditable(false);
         dialog.add(message, BorderLayout.NORTH);
 
         // Extra panel in the middle
@@ -1345,9 +1346,10 @@ public class Gooey extends JPanel {
         rewardPanel.setBackground(PURPLE);
         JTextPane rewardMessage = new JTextPane();
         rewardMessage.setFont(myFonts);
-        rewardMessage.setText("	You didn't even get anything :(");
+        rewardMessage.setText(" You didn't even get anything :(");
         rewardMessage.setBackground(PURPLE);
         rewardMessage.setForeground(BEIGE);
+        rewardMessage.setEditable(false);
         JPanel rewardHolder = new JPanel(new GridLayout(0,3));
         rewardHolder.setBackground(PURPLE);
 
@@ -1374,7 +1376,7 @@ public class Gooey extends JPanel {
 
         // OK button at the bottom
         JButton okButton = new JButton("OK");
-        okButton.setBackground(DARK_BROWN);
+        okButton.setBackground(LIGHT_BROWN);
         okButton.setForeground(PURPLE);
 
         okButton.addActionListener(e -> dialog.dispose());
@@ -1390,33 +1392,39 @@ public class Gooey extends JPanel {
 	}
 	
 	public void loseDialog(int rollResult, ArrayList<Die> diceLost) {
-		
-		//TODO Make pretty
 
 				 // Create the dialog (modal)
 		        JDialog dialog = new JDialog(frame, "Defeated :(", true);
-		        dialog.setLayout(new BorderLayout(10, 10));
+		        dialog.setResizable(false);
+		        dialog.setLayout(new BorderLayout());
 		        Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
 				Font myFonts = coinyRegular.deriveFont(Font.PLAIN, 16);
 
 		        // Message at the top
 				JTextPane message = new JTextPane();
-		        message.setText("	You rolled " + rollResult + " You've been defeated"); 
+		        message.setText("	You rolled " + rollResult + "...\n   You've been defeated..."); 
 		        message.setEditable(false);
+		        message.setBackground(PURPLE);
+		        message.setForeground(BEIGE);
+		        message.setFont(myFont);
 
 		        dialog.add(message, BorderLayout.NORTH);
 
 		        // Extra panel in the middle
 		        JPanel diceLossPanel = new JPanel(new GridLayout(0,1));
-		        JLabel diceLossMessage = new JLabel("You've lost these dice");
+		        diceLossPanel.setBackground(PURPLE);
+		        JTextPane diceLossMessage = new JTextPane();  
+		        diceLossMessage.setEditable(false);
+		        diceLossMessage.setBackground(PURPLE);
+		        diceLossMessage.setForeground(BEIGE);
+		        diceLossMessage.setFont(myFonts);
+		        diceLossMessage.setText("      You've lost these dice");
 		        JPanel lostDiceHolder = new JPanel(new GridLayout(0,5));
-
+		        lostDiceHolder.setBackground(PURPLE);
 		        	for(Die dice: diceLost) {
 		        		JLabel lostDice = new JLabel(loadImage(dice.getFileName()));
 		        		lostDiceHolder.add(lostDice);
 		        	}
-		        	diceLossMessage.setHorizontalAlignment(SwingConstants.CENTER);
-		        	diceLossMessage.setVerticalAlignment(SwingConstants.CENTER);
 		        	diceLossPanel.add(diceLossMessage);
 		        	diceLossPanel.add(lostDiceHolder);
 		        dialog.add(diceLossPanel, BorderLayout.CENTER);
@@ -1424,36 +1432,54 @@ public class Gooey extends JPanel {
 
 		        // OK button at the bottom
 		        JButton okButton = new JButton("OK");
+		        okButton.setBackground(LIGHT_BROWN);
+		        okButton.setForeground(PURPLE);
 		        okButton.addActionListener(e -> dialog.dispose());
 		        JPanel buttonPanel = new JPanel();
+		        buttonPanel.setBackground(PURPLE);
 		        buttonPanel.add(okButton);
 		        dialog.add(buttonPanel, BorderLayout.SOUTH);
 
 		        // Size + position
-		        dialog.setSize(300, 200);
+		        dialog.setSize(300, 250);
 		        dialog.setLocationRelativeTo(frame);
 		        dialog.setVisible(true); // blocks until closed
 		
 	}
 	
 	public void loseGame() {
-		
-		//TODO Make pretty
 				changeMainArea();
 				 // Create the dialog (modal)
 		        JDialog dialog = new JDialog(frame, "Defeated :(", true);
-		        dialog.setLayout(new BorderLayout(10, 10));
+		        dialog.setResizable(false);
+		        dialog.setLayout(new GridBagLayout());
+		        dialog.setBackground(BEIGE);
+		        Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
+		        GridBagConstraints gbc = new GridBagConstraints();
+		        gbc.gridx = 1;
+				gbc.gridy = 0;
+				gbc.fill = GridBagConstraints.BOTH;
+				gbc.weightx = 1;
+				gbc.weighty = 1;
 
 		        // Message at the top
-		        JLabel message = new JLabel("You ran out of dice! Thats how the cookie crumbles...");
-		        message.setHorizontalAlignment(SwingConstants.CENTER);
-		        dialog.add(message, BorderLayout.NORTH);
+		        JTextPane message = new JTextPane();
+		        message.setText("            You ran out of dice!\n   Thats how the cookie crumbles..."); 
+		        message.setBackground(BEIGE);
+		        message.setForeground(DARK_PURPLE);
+		        message.setEditable(false);
+		        message.setFont(myFont);
+		        dialog.add(message, gbc);
+		        gbc = new GridBagConstraints();
 
 		       
 		        JPanel buttonPanel = new JPanel();
+		        buttonPanel.setBackground(BEIGE);
 
 		        // Restart button
 		        JButton restartButton = new JButton("Restart");
+		        restartButton.setBackground(PURPLE);
+		        restartButton.setForeground(BEIGE);
 		        restartButton.addActionListener(e -> {
 		            dialog.dispose();   
 		            model.restartGame(); 
@@ -1462,21 +1488,88 @@ public class Gooey extends JPanel {
 
 		        // Exit button
 		        JButton exitButton = new JButton("Exit");
+		        exitButton.setBackground(PURPLE);
+		        exitButton.setForeground(BEIGE);
 		        exitButton.addActionListener(e -> {
 		            dialog.dispose();  
 		            System.exit(0); 
 		        });
 		        buttonPanel.add(exitButton);
-
-		        dialog.add(buttonPanel, BorderLayout.SOUTH);
+		        gbc.gridx = 1;
+				gbc.gridy = 1;
+				gbc.fill = GridBagConstraints.BOTH;
+				gbc.weightx = 1;
+				gbc.weighty = 1;
+		        dialog.add(buttonPanel, gbc);
 
 		        // Size + position
-		        dialog.setSize(350, 200);
+		        dialog.setSize(350, 150);
 		        dialog.setLocationRelativeTo(frame);
 		        dialog.setVisible(true); // blocks until closed
 		
 	}
-	
+
+	public void winGame() {
+		changeMainArea();
+		 // Create the dialog (modal)
+        JDialog dialog = new JDialog(frame, "YOU WON!!! :0", true);
+        dialog.setResizable(false);
+        dialog.setLayout(new GridBagLayout());
+        dialog.setBackground(BEIGE);
+        Font myFont = coinyRegular.deriveFont(Font.PLAIN, 18);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+
+        // Message at the top
+        JTextPane message = new JTextPane();
+        message.setText("  You Conquered The Continent!!!\n   Thank you so much for playing!"); 
+        message.setBackground(BEIGE);
+        message.setForeground(DARK_PURPLE);
+        message.setEditable(false);
+        message.setFont(myFont);
+        dialog.add(message, gbc);
+        gbc = new GridBagConstraints();
+
+       
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(BEIGE);
+
+        // Restart button
+        JButton restartButton = new JButton("Restart");
+        restartButton.setBackground(PURPLE);
+        restartButton.setForeground(BEIGE);
+        restartButton.addActionListener(e -> {
+            dialog.dispose();   
+            model.restartGame(); 
+        });
+        buttonPanel.add(restartButton);
+
+        // Exit button
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBackground(PURPLE);
+        exitButton.setForeground(BEIGE);
+        exitButton.addActionListener(e -> {
+            dialog.dispose();  
+            System.exit(0); 
+        });
+        buttonPanel.add(exitButton);
+        gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+        dialog.add(buttonPanel, gbc);
+
+        // Size + position
+        dialog.setSize(350, 170);
+        dialog.setLocationRelativeTo(frame);
+        dialog.setVisible(true); // blocks until closed
+
+}
 	
 	public ImageIcon loadImage(String dieName) {
 		try {
