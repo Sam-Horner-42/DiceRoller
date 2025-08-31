@@ -213,9 +213,9 @@ public class Model {
         Level macaron2 = new Level("Paristachio", "macaron", "macaronHovered", "macaronLocked", 2, false, 7, 10, true);
         Level macaron3 = new Level("Tokoyoyo", "macaron", "macaronHovered", "macaronLocked", 3, false, 8, 10, true);
         
-        Level checker1 = new Level("Orhio", "fudge", "fudgeHovered", "fudgeLocked",3, false, 5, 6, true);
+        Level checker1 = new Level("Orhio", "fudge", "fudgeHovered", "fudgeLocked",3, false, 9, 9, true);
         Level checker2 = new Level("Ottawafer", "fudge", "fudgeHovered", "fudgeLocked", 3, false, 7, 8, true);
-        Level checker3 = new Level("Fudgisawa", "fudge", "fudgeHovered", "fudgeLocked", 4, false, 9, 9, true);
+        Level checker3 = new Level("Fudgisawa", "fudge", "fudgeHovered", "fudgeLocked", 4, false, 5, 6, true);
         
         Level peanutButter1 = new Level("Peanuttsburgh", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 10, 12, true);
         Level peanutButter2 = new Level("PerthButter", "peanut_cookie", "peanut_cookieHovered", "peanut_cookieLocked", 4, false, 10, 11, true);
@@ -559,7 +559,7 @@ public class Model {
             IntWrapper total = new IntWrapper(potentialMin);
             // Apply all items to total
             for (Item item : selectedItems) {
-                if(!(item instanceof SlotMachine)){
+                if(!(item instanceof SlotMachine) && !(item instanceof Timer)){
                     item.use(total);
                     potentialMin = total.value;
                 }
