@@ -371,7 +371,7 @@ public class Model {
             Collections.sort(playerDice);
 
             reward(); 
-        } else if (rerolls > 0 && !result) {
+        } else if (rerolls > 0) {
             consumeOneSelectedWhisk();
             startCombat();
         } else {
@@ -559,7 +559,7 @@ public class Model {
             IntWrapper total = new IntWrapper(potentialMin);
             // Apply all items to total
             for (Item item : selectedItems) {
-                if(!(item instanceof SlotMachine) && !(item instanceof Timer)){
+                if(!(item instanceof SlotMachine)){
                     item.use(total);
                     potentialMin = total.value;
                 }
