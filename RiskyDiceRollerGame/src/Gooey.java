@@ -1352,7 +1352,7 @@ public class Gooey extends JPanel {
         rewardHolder.setBackground(PURPLE);
 
         if(!diceReward.isEmpty()) {
-        	rewardMessage.setText("        You recieved a reward");
+        	rewardMessage.setText("        You received a reward");
         	for(Die dice: diceReward) {
         		JLabel dreward = new JLabel(loadImage(dice.getFileName()));
         		rewardHolder.add(dreward);

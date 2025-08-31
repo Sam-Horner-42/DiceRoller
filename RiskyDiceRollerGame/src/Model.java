@@ -260,9 +260,9 @@ public class Model {
 		levels.put(gooey.macaron2, levelData.get(5));
 		levels.put(gooey.macaron3, levelData.get(6));
 
-		levels.put(gooey.fudge1, levelData.get(7));
+		levels.put(gooey.fudge1, levelData.get(9));
 		levels.put(gooey.fudge2, levelData.get(8));
-		levels.put(gooey.fudge3, levelData.get(9));
+		levels.put(gooey.fudge3, levelData.get(7));
 
 		levels.put(gooey.peanut_cookie1, levelData.get(10));
 		levels.put(gooey.peanut_cookie2, levelData.get(11));
@@ -428,6 +428,7 @@ public class Model {
 
             potentialMin = calculatePotentialMinDamage();
             potentialMax = calculatePotentialMaxDamage();
+
 			gooey.updateRanges(potentialMin, potentialMax);
 			Collections.sort(selectedDice);
 			Collections.sort(playerDice);
@@ -525,10 +526,10 @@ public class Model {
             IntWrapper total = new IntWrapper(potentialMax);
             // Apply all items to total
             for (Item item : selectedItems) {
-                if(!(item instanceof SlotMachine)){
+                if(!(item instanceof SlotMachine) && !(item instanceof GoldenEgg)){
                     item.use(total);
                     potentialMax = total.value;
-                }   
+                }  
             }
         }
         return potentialMax;
@@ -542,13 +543,13 @@ public class Model {
         boolean goldenEgg = false;
         if(selectedItems != null){
             for (Item it : selectedItems) {
-                if (it instanceof GoldenEgg) goldenEgg = true;  
+                if (it instanceof GoldenEgg) goldenEgg = true; 
             }      
         }       
         if(selectedDice != null) {
             for (Die die: selectedDice) {    
                 if(goldenEgg){
-                    potentialMin += die.getNumSides();
+                    potentialMin += die.getNumSides(); 
                 } else {
                     potentialMin = selectedDice.size();
                 } 
@@ -587,7 +588,7 @@ public class Model {
         } 
         if(selectedDice != null) {
             for (Die die: selectedDice) { 
-            	lostDice.add(die);
+            	    lostDice.add(die);
                 if(goldenEgg){
                     preItemTotal += die.getNumSides();
                 } else preItemTotal += rollDie(die);
