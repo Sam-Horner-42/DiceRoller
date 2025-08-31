@@ -364,13 +364,19 @@ public class Model {
         selectedItems.clear();
         if(result){
             currentLevel.setIsComplete(true);
-            int nextLevelIndex = levelData.indexOf(currentLevel) + 1;
-            levelData.get(nextLevelIndex).setIsLocked(false);
+            if(levelData.indexOf(currentLevel) < 15){
+                int nextLevelIndex = levelData.indexOf(currentLevel) + 1;
+                levelData.get(nextLevelIndex).setIsLocked(false);
 
-            deselectAll(); // deselect all currently selected dice and items
-            Collections.sort(playerDice);
+                deselectAll(); // deselect all currently selected dice and items
+                Collections.sort(playerDice);
 
-            reward(); 
+                reward(); 
+            } else {
+                gooey.winGame();
+                return;
+            }
+            
         } else if (rerolls > 0) {
             consumeOneSelectedWhisk();
             startCombat();
