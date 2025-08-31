@@ -211,7 +211,7 @@ public class Model {
         
         Level macaron1 = new Level("Morrocaroon", "macaron", "macaronHovered", "macaronLocked", 2, false, 5, 10, true);
         Level macaron2 = new Level("Paristachio", "macaron", "macaronHovered", "macaronLocked", 2, false, 7, 10, true);
-        Level macaron3 = new Level("Tokoyoyo", "macaron", "macaronHovered", "macaronLocked", 3, false, 8, 10, true);
+        Level macaron3 = new Level("Tokyogurt", "macaron", "macaronHovered", "macaronLocked", 3, false, 8, 10, true);
         
         Level checker1 = new Level("Orhio", "fudge", "fudgeHovered", "fudgeLocked",3, false, 9, 9, true);
         Level checker2 = new Level("Ottawafer", "fudge", "fudgeHovered", "fudgeLocked", 3, false, 7, 8, true);
