@@ -645,7 +645,7 @@ public class Model {
         //Add 2 Common Items
         Random random = new Random();
         int randomAmount = random.nextInt(2) + 1;
-        int giveItem = random.nextInt(2)+1;
+        int giveItem = random.nextInt(3);
 
         // add 2 dice - d4/d6/d8
        
@@ -660,7 +660,7 @@ public class Model {
 			} 
 		}
 		if (playerItems.size() < 6) {
-			if (giveItem == 1) {
+			if (giveItem <= 1) {
 				int randomItem = random.nextInt(6);
                 
 				if (playerItems.size() < 6) {
