@@ -12,13 +12,6 @@ public class LevelMouseListener extends MouseAdapter {
 	 */
 	private JLabel label;
 
-	/**
-	 * Reference to the Controller for game actions
-	 */
-	private Controller controller;
-
-	private Level level;
-
 	
 	private Model model;
 	
@@ -31,7 +24,6 @@ public class LevelMouseListener extends MouseAdapter {
 	 */
 	LevelMouseListener(Gooey view, Controller controller, Model model, JLabel label){
 		this.view = view;
-		this.controller = controller;
 		this.model = model;
 		this.label = label;
 	}

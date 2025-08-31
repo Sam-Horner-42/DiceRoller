@@ -7,7 +7,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class ImagePanel extends JPanel {
-    private final ImageIcon backgroundIcon;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final ImageIcon backgroundIcon;
 
     public ImagePanel(ImageIcon icon, LayoutManager layout) {
         super(layout);
