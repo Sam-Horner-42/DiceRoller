@@ -381,6 +381,7 @@ public class Model {
                 Collections.sort(playerDice);
 
                 reward(); 
+                displayResults(result);
             } else {
                 gooey.winGame();
                 return;
@@ -397,10 +398,11 @@ public class Model {
             } else {
                 controller.playSE(2);
                 selectedDice.clear();
+                displayResults(result);
             }
 
         }
-    	displayResults(result);
+    	
         gooey.updateDiceZone();
         gooey.updateSelectedDice();
         gooey.updateLabels();

@@ -7,4 +7,8 @@ public class Timer extends Item {
             total.value /= 2;
         System.out.println("After Timer: " + total.value);
     }
+
+    public void affectRoll() {
+        //TODO implement this nonsense
+    }
 }
