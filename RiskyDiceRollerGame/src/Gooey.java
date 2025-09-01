@@ -10,6 +10,7 @@ import javax.swing.*;
 
 public class Gooey extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	String levelName;
 	int levelMinRange;
 	int levelMaxRange = 0; // Will always start at 0 because the player has not selected dice
@@ -1354,7 +1355,7 @@ public class Gooey extends JPanel {
         rewardHolder.setBackground(PURPLE);
 
         if(!diceReward.isEmpty()) {
-        	rewardMessage.setText("        You received a reward");
+        	rewardMessage.setText("        You recieved a reward");
         	for(Die dice: diceReward) {
         		JLabel dreward = new JLabel(loadImage(dice.getFileName()));
         		rewardHolder.add(dreward);

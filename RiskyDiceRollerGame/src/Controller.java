@@ -5,14 +5,12 @@ import javax.swing.*;
 
 public class Controller implements ActionListener {
 	
-	//TODO add a map to link Jlabels with levels
 	private Model model;
 	private Gooey gooey;
 	Sound sound = new Sound();
 	private HashMap<JLabel, Level> levels;
 	private ArrayList<Level> levelData;
 
-	private ArrayList<Die> playerDice; // the dice the player currently has
 	private ArrayList<Die> selectedDice; // the currently selected dice to be rolled
 
 	
@@ -43,9 +41,6 @@ public class Controller implements ActionListener {
 	}
 
 
-	public void setPlayerDice(ArrayList<Die> playerDice) {
-		this.playerDice = playerDice;
-	}
 
 	public ArrayList<Die> getSelectedDice() {
 		return selectedDice;

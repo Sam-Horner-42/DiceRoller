@@ -6,7 +6,6 @@ import javax.swing.JLabel;
 
 public class Model {
     
-    Player player;
     Die die;
     Level level;
     private Gooey gooey;
@@ -17,7 +16,7 @@ public class Model {
     private int strengthLevel; // will be used to determine difficulty of neighbouring tiles
     /* Total amount of dice the player has */
     private int diceCount;
-    private int itemCount;
+
     private int totalDamage;
     
     private int potentialMin;
@@ -45,7 +44,6 @@ public class Model {
     Item timer = new Timer();
 
     private Die[] rewardDice = {d4, d6, d8, d20};
-    private Item[] possibleItems = {goldenEgg, slotMachine, milk, whisk, chocolateCoin, timer};
     private ArrayList<Item> itemRewards = new ArrayList<>();
     private ArrayList<Die> dieRewards = new ArrayList<>();
 
