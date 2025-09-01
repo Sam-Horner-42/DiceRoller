@@ -328,7 +328,7 @@ public class Model {
 	 * min and max range associated with the current level Resets totalDamage to 0
 	 */
     public void startCombat(){
-        if(selectedDice.isEmpty() && selectedItems.isEmpty()) return;
+        if(selectedDice.isEmpty() && (selectedItems.isEmpty() || selectedItems.contains(newItemByIndex(1)))) return; 
         controller.playSE(0);
         rerolls = countSelectedWhisks();
         totalDamage = 0; // for safety
@@ -565,7 +565,7 @@ public class Model {
             IntWrapper total = new IntWrapper(potentialMin);
             // Apply all items to total
             for (Item item : selectedItems) {
-                if(!(item instanceof SlotMachine)){
+                if(!(item instanceof SlotMachine) && !(item instanceof Timer)){
                     item.use(total);
                     potentialMin = total.value;
                 }
