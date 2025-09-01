@@ -328,7 +328,9 @@ public class Model {
 	 * min and max range associated with the current level Resets totalDamage to 0
 	 */
     public void startCombat(){
-        if(selectedDice.isEmpty() && (selectedItems.isEmpty() || selectedItems.contains(newItemByIndex(1)))) return; 
+        if(selectedDice.isEmpty() && selectedItems.isEmpty()) return; 
+        //if(selectedDice.isEmpty() && selectedItems.contains()) return;
+        if(selectedDice.isEmpty() && checkForSlotMachine()) return;
         controller.playSE(0);
         rerolls = countSelectedWhisks();
         totalDamage = 0; // for safety
@@ -347,6 +349,12 @@ public class Model {
         return count;
     }
 
+    private boolean checkForSlotMachine(){
+        if(selectedItems != null)
+            for (Item it : selectedItems) if (it instanceof SlotMachine) return true;
+            return false;
+    }
+
     private boolean consumeOneSelectedWhisk() {
         for (int i = 0; i < selectedItems.size(); i++) {
             Item it = selectedItems.get(i);
@@ -359,6 +367,7 @@ public class Model {
         }
         return false;
     }
+    
     /* Used to remove wagered dice/items */
     public void handleResults(boolean result) {
         selectedItems.clear();
@@ -584,9 +593,11 @@ public class Model {
 		}
 		int preItemTotal = 0;
         boolean goldenEgg = false;
+        boolean timer = false;
         if(selectedItems != null){
             for (Item it : selectedItems) {
                 if (it instanceof GoldenEgg) goldenEgg = true; 
+                if (it instanceof Timer) timer = true;
                 
             }
                 
@@ -597,7 +608,10 @@ public class Model {
             	    lostDice.add(die);
                 if(goldenEgg){
                     preItemTotal += die.getNumSides();
-                } else preItemTotal += rollDie(die);
+                } else preItemTotal += rollDie(die); //Potential solution, add a parameter to this function that changed the range of the randomizer for dice
+                if(timer) {
+
+                }
             }
         }     
             
